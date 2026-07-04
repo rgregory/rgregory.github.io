@@ -6,7 +6,7 @@ aliases:
   - Working memory and ant chemical directives
   - Working memory versus pheromone trails
 area: cognitive-science
-status: seed
+status: tracked
 review_status: pending
 tags:
   - cognitive-science
@@ -21,6 +21,9 @@ source:
   publication: Scientific American / The Conversation
   author: Henry Taylor
 relationships:
+  - type: tracked_by
+    target: Tracked Research Topics
+    status: confirmed
   - type: compares_with
     target: Ant Colony Intelligence — Intentional or Functional?
     status: pending

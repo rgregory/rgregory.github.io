@@ -1,0 +1,38 @@
+# macOS / editor noise
+.DS_Store
+.AppleDouble
+.LSOverride
+*~
+*.swp
+*.swo
+
+# Obsidian local UI state / plugins cache
+.obsidian/workspace
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache/
+.obsidian/plugins/*/data.json
+
+# Derived SQLite indexes; rebuild from Markdown
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+*.db-shm
+*.db-wal
+
+# Python generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx

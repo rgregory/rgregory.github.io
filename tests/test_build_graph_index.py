@@ -127,6 +127,61 @@ class BuildGraphIndexTests(unittest.TestCase):
                 [("links_to", 1)],
             )
 
+    def test_slashed_wikilinks_do_not_fall_back_to_ambiguous_stems(self):
+        with tempfile.TemporaryDirectory(prefix="akira-test-") as td:
+            tmp_path = Path(td)
+            vault = tmp_path / "vault"
+            write_note(
+                vault / "areas/academic/Emergence/_index.md",
+                """
+                ---
+                type: area-index
+                ---
+                # Emergence
+                """,
+            )
+            write_note(
+                vault / "areas/academic/Emergence/2026-03-21 — What Is Emergence.md",
+                """
+                ---
+                type: note
+                aliases: [Emergence]
+                ---
+                # What Is Emergence
+                """,
+            )
+            write_note(
+                vault / "source.md",
+                """
+                # Source
+
+                [[MOC/Emergence]] should not resolve by falling back to the ambiguous stem `Emergence`.
+                [[areas/academic/Emergence/_index]] should still resolve by path.
+                [[areas/academic/Emergence/]] should resolve to the area index.
+                """,
+            )
+
+            db = tmp_path / "graph.sqlite"
+            load_builder().build_index(vault, db, excludes=set())
+
+            self.assertEqual(
+                rows(
+                    db,
+                    """
+                    select normalized_target, target_name, resolution_status
+                    from wikilink_edges
+                    where raw_target like '%Emergence%'
+                    order by raw_target
+                    """,
+                ),
+                [
+                    ("MOC/Emergence", None, "unresolved"),
+                    ("areas/academic/Emergence/", "Emergence", "resolved"),
+                    ("areas/academic/Emergence/_index", "Emergence", "resolved"),
+                ],
+            )
+            self.assertEqual(rows(db, "select * from ambiguous_entity_keys where key in ('_index', '_index.md')"), [])
+
     def test_explicit_relationship_to_ambiguous_target_fails_clearly(self):
         with tempfile.TemporaryDirectory(prefix="akira-test-") as td:
             tmp_path = Path(td)

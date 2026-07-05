@@ -104,14 +104,20 @@ def parse_wikilink(raw: str) -> dict[str, str | None]:
 def entity_keys(entity: dict[str, Any]) -> set[tuple[str, str]]:
     source = entity["source_path"]
     source_no_suffix = str(Path(source).with_suffix(""))
+    path = Path(source)
     keys: set[tuple[str, str]] = {
         (entity["id"], "id"),
         (entity["name"], "title"),
         (source, "path"),
         (source_no_suffix, "path"),
-        (Path(source).name, "filename"),
-        (Path(source).stem, "stem"),
     }
+    if path.name != "_index.md" and not source.startswith("MOC/"):
+        keys.add((path.name, "filename"))
+        keys.add((path.stem, "stem"))
+    elif path.name == "_index.md":
+        parent = str(path.parent)
+        keys.add((parent, "area_path"))
+        keys.add((parent + "/", "area_path"))
     for old, new in LEGACY_PREFIXES.items():
         if source_no_suffix.startswith(new):
             keys.add((old + source_no_suffix[len(new) :], "legacy_path"))
@@ -327,22 +333,24 @@ def candidate_keys(target: str) -> list[str]:
         normalized,
         normalized.removesuffix(".md"),
         str(path.with_suffix("")),
-        path.name,
-        path.stem,
     ]
+    if "/" not in normalized:
+        values.extend([path.name, path.stem])
     seen: set[str] = set()
     return [v for v in values if v and not (v in seen or seen.add(v))]
 
 
 def resolve_target(target: str, key_index: dict[str, set[str]]) -> tuple[str, str | None, set[str]]:
-    matches: set[str] = set()
+    ambiguous: set[str] = set()
     for key in candidate_keys(target):
-        matches.update(key_index.get(key, set()))
-    if len(matches) == 1:
-        return "resolved", next(iter(matches)), matches
-    if len(matches) > 1:
-        return "ambiguous", None, matches
-    return "unresolved", None, matches
+        matches = key_index.get(key, set())
+        if len(matches) == 1:
+            return "resolved", next(iter(matches)), matches
+        if len(matches) > 1:
+            ambiguous.update(matches)
+    if ambiguous:
+        return "ambiguous", None, ambiguous
+    return "unresolved", None, set()
 
 
 def insert_relationship(

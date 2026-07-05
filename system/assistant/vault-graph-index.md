@@ -33,19 +33,19 @@ Markdown files in this vault are the source of truth. YAML frontmatter stores ty
 The derived SQLite database is rebuilt from Markdown:
 
 ```text
-/Users/rgregory/sync/areas/akira/graph.sqlite
+/Users/rgregory/.hermes/akira/graph.sqlite
 ```
 
 Build script:
 
 ```text
-/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py
+/Users/rgregory/.hermes/akira/scripts/build_graph_index.py
 ```
 
 Run from the vault root:
 
 ```bash
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira --json
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira --json
 ```
 
 ## Frontmatter Relationship Shape

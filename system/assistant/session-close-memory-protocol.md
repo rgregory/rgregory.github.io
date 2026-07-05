@@ -54,7 +54,7 @@ Do **not** store temporary progress noise, transient command output, one-off err
 4. Rebuild the derived SQLite graph:
 
 ```bash
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira
 ```
 
 5. Validate Markdown↔SQLite sync:

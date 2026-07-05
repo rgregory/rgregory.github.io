@@ -34,6 +34,7 @@ This index tracks durable assistant/Hermes memory notes in the Obsidian vault.
 ## Core Notes
 
 - [[long-term-memory]] — memory architecture and policy for using Obsidian as the canonical long-term knowledge store.
+- [[archival-brain]] — the vault-as-archival-brain policy for durable knowledge and workflows.
 - [[vault-graph-index]] — SQLite graph index design for the vault.
 - [[vault-map]] — folder-to-graph semantics for the Akira vault.
 - [[import-review]] — current import status, unresolved link cleanup targets, and graph health.

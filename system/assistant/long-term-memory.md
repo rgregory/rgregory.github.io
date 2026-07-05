@@ -30,8 +30,9 @@ This note is the canonical place for durable, detailed knowledge that should out
   - `~/.hermes/memories/USER.md`
 - **Hermes session history**: searchable conversation history.
   - `~/.hermes/state.db`
-- **Obsidian vault**: canonical long-term knowledge base for notes, entities, relationships, research, and durable project context.
-  - `/Users/rgregory/sync/areas/akira`
+- **Obsidian vault**: canonical long-term knowledge base for notes, entities, relationships, research, durable project context, and the archival brain.
+  - `/Users/rgregory/.hermes/akira`
+  - [[archival-brain]]
 - **Hermes skills**: reusable procedures and workflows.
   - `~/.hermes/skills/`
 
@@ -39,7 +40,7 @@ This note is the canonical place for durable, detailed knowledge that should out
 
 Use this vault for long-term knowledge that should grow over time.
 
-Hermes built-in memory should remain small and point here rather than accumulating detailed notes. When a fact, relationship, research finding, or project note is too detailed for built-in memory, store it as Markdown in this vault and keep only a compact pointer in Hermes memory if needed.
+Hermes built-in memory should remain small and point here rather than accumulating detailed notes. When a fact, relationship, research finding, or project note is too detailed for built-in memory, store it as Markdown in this vault, keep only a compact pointer in Hermes memory if needed, and rebuild `graph.sqlite` from the vault for offline analysis.
 
 ## Suggested Organization
 

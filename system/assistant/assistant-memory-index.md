@@ -22,6 +22,9 @@ relationships:
   - type: indexes
     target: Import Review
     status: confirmed
+  - type: indexes
+    target: Session Close Memory Protocol
+    status: confirmed
 ---
 
 # Assistant Memory Index
@@ -33,7 +36,8 @@ This index tracks durable assistant/Hermes memory notes in the Obsidian vault.
 - [[long-term-memory]] — memory architecture and policy for using Obsidian as the canonical long-term knowledge store.
 - [[vault-graph-index]] — SQLite graph index design for the vault.
 - [[vault-map]] — folder-to-graph semantics for the Akira vault.
-- [[import-review]] — current import quality report and cleanup targets.
+- [[import-review]] — current import status, unresolved link cleanup targets, and graph health.
+- [[session-close-memory-protocol]] — end-of-session protocol for preserving durable session memory in the vault.
 
 ## Capture Rule
 

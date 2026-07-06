@@ -1,0 +1,28 @@
+---
+id: project_hermes_agent
+name: Hermes Agent
+type: Project
+tags:
+  - agents
+  - automation
+  - local-first
+review_status: confirmed
+aliases:
+  - Hermes
+---
+
+# Hermes Agent
+
+## Summary
+
+Open-source AI agent framework by Nous Research with tools, skills, memory, cron jobs, gateway integrations, and multiple runtime surfaces.
+
+## Relationships
+
+- relationship:: created_by | [[Nous Research]] | confirmed
+- relationship:: related_to | [[Automated Research Loops]] | confirmed
+
+## Sources
+
+- https://hermes-agent.nousresearch.com/docs
+- https://github.com/NousResearch/hermes-agent

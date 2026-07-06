@@ -1,0 +1,8 @@
+# Derived/rebuildable artifacts
+graph.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+
+# Local editor/system files
+.DS_Store

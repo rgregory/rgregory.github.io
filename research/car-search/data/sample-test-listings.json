@@ -1,0 +1,23 @@
+{
+  "run_date": "2099-01-01",
+  "source_notes": {
+    "Autotrader": {"note": "Sample verification row; not a real search result.", "attempted_url": "https://www.autotrader.com/"}
+  },
+  "listings": [
+    {
+      "source": "Autotrader",
+      "url": "https://example.test/listing/1?utm_source=test",
+      "vehicle": "2012 Toyota Tacoma",
+      "year": 2012,
+      "make": "Toyota",
+      "model": "Tacoma",
+      "price": 9500,
+      "mileage": 120000,
+      "location": "Virginia Beach, VA",
+      "distance_miles": 8,
+      "dealer": "Sample Dealer",
+      "notes": "Synthetic verification fixture",
+      "match_reason": "Toyota small pickup under criteria"
+    }
+  ]
+}

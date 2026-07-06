@@ -1,0 +1,29 @@
+{
+  "last_run_utc": "2026-07-06T14:35:59Z",
+  "seen_urls": [
+    "https://github.com/NousResearch/hermes-agent/commit/19d4174454624a1ca91bc47b8f2a7ae8c3b4b5d3",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.200",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.198",
+    "https://github.com/langchain-ai/langgraph/releases/tag/1.2.7",
+    "https://github.com/crewAIInc/crewAI/releases/tag/1.15.2a1",
+    "https://github.com/openai/codex/commit/da4c8ca57d40b074bdc1b5b1218851100150c56b",
+    "http://arxiv.org/abs/2607.02514v1",
+    "http://arxiv.org/abs/2607.02032v1",
+    "http://arxiv.org/abs/2607.01916v1",
+    "https://github.com/crewAIInc/crewAI/commit/2b90117e887ef68a22ccf9552a58ffaf96de1fc4",
+    "https://github.com/NousResearch/hermes-agent/commit/dba585c1794e0c5dc4409c6c60996046e2005063",
+    "http://arxiv.org/abs/2607.01641v1",
+    "http://arxiv.org/abs/2607.01640v1",
+    "http://arxiv.org/abs/2605.26252v1",
+    "https://github.com/langchain-ai/langgraph/releases/tag/1.2.8",
+    "https://github.com/openai/codex/commit/1013295c2d326f3a4d54525a63b68fd1ee355cac"
+  ],
+  "last_briefing": "briefings/2026-07-06.md",
+  "active_topics": [
+    "agent_memory_systems",
+    "coding_agent_evals"
+  ],
+  "completed_topics": [],
+  "blocked_topics": [],
+  "notes": "Added 5 high-signal findings on agent loops, agent dependency graphs, governed evolving memory, LangGraph checkpoint durability, and Codex execution-scoped network attribution. Rebuilt graph.sqlite from Markdown. Cron run produced the Markdown outputs but reported Broken pipe before clean completion/delivery."
+}

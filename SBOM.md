@@ -73,7 +73,7 @@ Scope: software/source bill of materials for Hermes/Akira artifacts created or m
 | `scripts/__init__.py` | Python package marker | Python | Makes vault scripts importable as a package tree |
 | `scripts/cyber_briefing/__init__.py` | Python package marker | Python | Cyber briefing package marker |
 | `scripts/cyber_briefing/run_daily.py` | Daily cyber briefing runner | Python | Ingests configured feeds/API sources, stores deduped operational items, scores/tags signals, renders daily Markdown briefing |
-| `system/cyber-briefing/sources.yaml` | Source manifest | YAML | Declares CISA, CISA KEV, Hackread, BleepingComputer, and SEC 8-K cybersecurity filing sources |
+| `system/cyber-briefing/sources.yaml` | Source manifest | YAML | Declares CISA, CISA KEV, Hackread, BleepingComputer, and SEC 8-K cybersecurity filing sources; includes per-source User-Agent override for SEC |
 | `system/cyber-briefing/taxonomy.yaml` | Analysis taxonomy | YAML | Keyword groups and mitigation categories |
 | `system/cyber-briefing/README.md` | Workflow documentation | Markdown | Documents cyber briefing storage locations |
 | `briefings/cyber/.gitkeep` | Directory marker | Text | Keeps cyber briefing output directory present |

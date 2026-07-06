@@ -1,0 +1,37 @@
+version: 1
+sources:
+  - name: CISA Alerts
+    kind: rss
+    url: https://www.cisa.gov/cybersecurity-advisories/all.xml
+    reliability_tier: 1
+    enabled: true
+    tags: [government, alerts]
+
+  - name: CISA Known Exploited Vulnerabilities
+    kind: json
+    url: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+    reliability_tier: 1
+    enabled: true
+    tags: [government, vulnerabilities, kev]
+
+  - name: Hackread
+    kind: rss
+    url: https://hackread.com/feed/
+    reliability_tier: 2
+    enabled: true
+    tags: [cybersecurity-news, threat-news]
+
+  - name: BleepingComputer
+    kind: rss
+    url: https://www.bleepingcomputer.com/feed/
+    reliability_tier: 2
+    enabled: true
+    tags: [cybersecurity-news, threat-news]
+
+  - name: SEC 8-K Cybersecurity Filings
+    kind: sec_8k
+    url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=8-K&owner=include&count=100&output=atom
+    user_agent: AkiraCyberBriefing/0.1 rtgregory@gmail.com
+    reliability_tier: 1
+    enabled: true
+    tags: [sec, disclosure, cyberbreach]

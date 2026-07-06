@@ -1,0 +1,64 @@
+version: 1
+keywords:
+  ransomware:
+    - ransomware
+    - extortion
+    - double extortion
+    - data leak
+    - encryptor
+  vulnerability_exploitation:
+    - exploited in the wild
+    - zero-day
+    - cve-
+    - remote code execution
+    - privilege escalation
+  identity:
+    - mfa
+    - multi-factor
+    - credential theft
+    - phishing
+    - sso
+    - identity provider
+  sec_disclosure:
+    - item 1.05
+    - cybersecurity incident
+    - material impact
+    - unauthorized activity
+    - incident response
+  cyberinsurance:
+    - claim
+    - underwriting
+    - loss ratio
+    - controls
+    - insurability
+solution_categories:
+  identity_hardening:
+    triggers: [identity, phishing, mfa, credential theft]
+    mitigations:
+      - Phishing-resistant MFA
+      - Conditional access
+      - Privileged access management
+      - Identity threat detection and response
+  vulnerability_management:
+    triggers: [cve, exploited in the wild, zero-day, remote code execution]
+    mitigations:
+      - Asset inventory
+      - Patch prioritization
+      - Exposure management
+      - External attack surface management
+  ransomware_resilience:
+    triggers: [ransomware, extortion, data leak, encryptor]
+    mitigations:
+      - Immutable backups
+      - EDR/MDR
+      - Segmentation
+      - Incident response retainer
+      - Recovery testing
+  detection_response:
+    triggers: [intrusion, lateral movement, persistence, command and control]
+    mitigations:
+      - Centralized logging
+      - SIEM detections
+      - MDR
+      - Threat hunting
+      - Endpoint telemetry

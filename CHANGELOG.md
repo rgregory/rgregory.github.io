@@ -17,6 +17,25 @@ relationships:
 
 # Akira Vault Changelog
 
+## 2026-07-06 — Cyber ingest source-health DNS resilience
+
+### Changed
+
+- Updated cyber briefing fetch logic to retry `urllib` failures and then fall back to `/usr/bin/curl` before marking a source unhealthy.
+- Added per-source `user_agent` support for sources that require a stricter identity string.
+- Corrected the CISA Alerts feed URL from the retired `news-events/cybersecurity-advisories.xml` path to `https://www.cisa.gov/cybersecurity-advisories/all.xml`.
+- Added a SEC-specific User-Agent using the configured Git identity email so SEC EDGAR Atom requests are accepted.
+
+### Verified
+
+- Ran an ad-hoc verifier that mocked `[Errno 8] nodename nor servname provided, or not known` from `urllib`, confirmed two urllib attempts, confirmed curl fallback, and confirmed per-source user-agent propagation.
+- Ran a live dry-run source-health check; all configured cyber sources returned `ok`:
+  - CISA Alerts
+  - CISA Known Exploited Vulnerabilities
+  - Hackread
+  - BleepingComputer
+  - SEC 8-K Cybersecurity Filings
+
 ## 2026-07-06 — Migrate research workspaces into Akira vault
 
 ### Added

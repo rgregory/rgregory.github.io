@@ -1,5 +1,5 @@
 {
-  "last_run_utc": "2026-07-06T14:35:59Z",
+  "last_run_utc": "2026-07-07T14:07:35Z",
   "seen_urls": [
     "https://github.com/NousResearch/hermes-agent/commit/19d4174454624a1ca91bc47b8f2a7ae8c3b4b5d3",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.200",
@@ -16,14 +16,20 @@
     "http://arxiv.org/abs/2607.01640v1",
     "http://arxiv.org/abs/2605.26252v1",
     "https://github.com/langchain-ai/langgraph/releases/tag/1.2.8",
-    "https://github.com/openai/codex/commit/1013295c2d326f3a4d54525a63b68fd1ee355cac"
+    "https://github.com/openai/codex/commit/1013295c2d326f3a4d54525a63b68fd1ee355cac",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.202",
+    "https://github.com/openai/codex/commit/cca16a10878202cb2f6e9666b6b4330329ea7e65",
+    "https://github.com/openai/codex/commit/6cf42cf16516ab3a125d853561ae3b8c77d6c13e",
+    "http://arxiv.org/abs/2607.05378v1",
+    "https://github.com/NousResearch/hermes-agent/commit/009b42d008b81c18af39414dded9ecdf06082d93"
   ],
-  "last_briefing": "briefings/2026-07-06.md",
+  "last_briefing": "briefings/2026-07-07.md",
   "active_topics": [
-    "agent_memory_systems",
     "coding_agent_evals"
   ],
-  "completed_topics": [],
+  "completed_topics": [
+    "agent_memory_systems"
+  ],
   "blocked_topics": [],
-  "notes": "Added 5 high-signal findings on agent loops, agent dependency graphs, governed evolving memory, LangGraph checkpoint durability, and Codex execution-scoped network attribution. Rebuilt graph.sqlite from Markdown. Cron run produced the Markdown outputs but reported Broken pipe before clean completion/delivery."
+  "notes": "Added 5 high-signal findings on Claude Code workflow telemetry/sizing, Codex canonical command items, Codex MCP OAuth credential-store serialization, CompactionRL context compaction for long-horizon agents, and Hermes Discord prompt content fallback. Moved agent_memory_systems to done. Rebuilt graph.sqlite from Markdown."
 }

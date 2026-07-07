@@ -17,3 +17,8 @@ Use this file for uncertain claims, review candidates, and follow-up research th
 - 2026-07-06: Design a Markdown-first representation for memory revision and forgetting that preserves auditability while supporting Governed Evolving Memory-style state evolution.
 - 2026-07-06: Determine whether scheduled LangGraph agents should verify first-checkpoint persistence after state initialization.
 - 2026-07-06: Explore whether execution-scoped attribution can generalize from Codex network access to file writes, process trees, browser actions, and MCP/tool calls.
+- 2026-07-07: Decide whether advisory workflow-size settings are enough for unattended cron use, or whether scheduled agents should require enforced caps on spawned agents, tool calls, and cost.
+- 2026-07-07: Explore whether canonical command items should become the common join point for network attribution, file-write attribution, sandbox policy decisions, and replayable agent transcripts.
+- 2026-07-07: Check whether scheduled-agent harnesses should include explicit concurrency tests for shared memory, credential, and tool-state stores before enabling multiple background workers.
+- 2026-07-07: Design how Markdown-first agent memories should distinguish lossy compaction summaries from confirmed durable facts and auditable source records.
+- 2026-07-07: Decide whether all gateway connectors should enforce self-contained plain-text fallbacks for approval prompts before enabling high-impact unattended actions.

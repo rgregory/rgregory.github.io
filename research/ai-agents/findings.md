@@ -433,3 +433,139 @@ Network access is one of the highest-impact tool permissions for coding agents. 
 ### Follow-up questions
 
 - Can this execution-scoped attribution pattern generalize to file writes, process trees, browser actions, and MCP/tool calls in other agent runtimes?
+
+
+## 2026-07-07 — Claude Code adds workflow sizing controls and workflow-run telemetry
+
+Source: https://github.com/anthropics/claude-code/releases/tag/v2.1.202  
+Type: release  
+Importance: high  
+Confidence: high  
+Entities: [[Claude Code]], [[Anthropic]], [[Automated Research Loops]]  
+Tags: #agents #coding-agents #long-running #telemetry #multi-agent
+
+### Summary
+
+Claude Code v2.1.202 added a configurable “Dynamic workflow size” setting that advises how many agents dynamic workflows should create, plus `workflow.run_id` and `workflow.name` OpenTelemetry attributes for agents spawned by workflows. The release also fixes several background/remote-control reliability issues, including background-session rename persistence, opening background chats that could crash/respawn loop, remote commands failing in interactive sessions, dropped captionless files/images, and slow/high-memory session resume in repositories with many worktrees.
+
+### Why it matters
+
+As coding-agent products move toward asynchronous workflows, two practical needs recur: policy knobs that bound fan-out and telemetry that reconstructs what happened after the fact. Workflow-run OTel attributes are especially relevant to scheduled/background agents because they make multi-agent activity easier to trace across a long-running run.
+
+### Evidence
+
+- Release notes state that Dynamic workflow size controls how large Claude generally makes dynamic workflows, as an advisory small/medium/large agent-count guideline.
+- Release notes add `workflow.run_id` and `workflow.name` OpenTelemetry attributes to telemetry emitted by workflow-spawned agents.
+- Release notes include background/remote-control fixes for renamed background sessions, crash/respawn loops when opening chats from `claude agents`, and command/file handling from Remote Control.
+
+### Follow-up questions
+
+- Are advisory workflow-size settings enough for unattended cron use, or should scheduled agents require enforced caps on spawned agents, tool calls, and cost?
+
+## 2026-07-07 — OpenAI Codex migrates shell execution onto canonical command lifecycle items
+
+Source: https://github.com/openai/codex/commit/cca16a10878202cb2f6e9666b6b4330329ea7e65  
+Type: release  
+Importance: high  
+Confidence: high  
+Entities: [[OpenAI Codex]], [[OpenAI]], [[Canonical Command Execution Items]], [[Tool-Use Governance]]  
+Tags: #agents #coding-agents #tool-use #observability #state
+
+### Summary
+
+OpenAI Codex now emits canonical `TurnItem::CommandExecution` lifecycle items from both the shell tool path and user `/shell` commands. The change keeps compatibility events for older clients while moving app-server deduplication and completion bookkeeping onto canonical command-item events, with a deliberate carveout for unified exec interactions that still need their legacy stdin/poll surface.
+
+### Why it matters
+
+Canonical tool-execution records are foundational for durable agent state, UI replay, audit logs, and cross-client compatibility. For long-running coding agents, command lifecycle events need to be represented once, consistently, and with enough structure to avoid duplicate waits or inconsistent completion state.
+
+### Evidence
+
+- Commit description says shell tool events and user shell commands now emit `TurnItem::CommandExecution` lifecycle items.
+- App-server v2 consumes canonical command items directly and ignores mapped compatibility events so clients still receive one command lifecycle.
+- The change moves command deduplication and completion bookkeeping onto canonical item events and adds coverage for completed command items.
+
+### Follow-up questions
+
+- Should canonical command items become the common join point for network attribution, file-write attribution, sandbox policy decisions, and replayable agent transcripts?
+
+## 2026-07-07 — OpenAI Codex serializes shared MCP OAuth credential stores
+
+Source: https://github.com/openai/codex/commit/6cf42cf16516ab3a125d853561ae3b8c77d6c13e  
+Type: release  
+Importance: high  
+Confidence: high  
+Entities: [[OpenAI Codex]], [[OpenAI]], [[MCP OAuth Credential Stores]], [[Tool-Use Governance]]  
+Tags: #agents #mcp #tool-use #security #state
+
+### Summary
+
+OpenAI Codex added a bounded cross-process lock around aggregate File and Secrets MCP OAuth credential-store loads, saves, and deletes. The commit explains that concurrent read-modify-write operations for different MCP servers could read the same snapshot and let the later write discard the earlier update; it also distinguishes lock failures from Secrets backend unavailability so fallback behavior cannot bypass serialization.
+
+### Why it matters
+
+MCP credentials are durable agent state. Background agents, multiple sessions, and tool servers can touch the same credential store concurrently, so lost updates or unsafe fallback paths can break tools or create confusing security state. This is a concrete example of agent runtimes needing database-like concurrency discipline even around “just config files.”
+
+### Evidence
+
+- Commit notes that File and Secrets stores share one aggregate map and concurrent read-modify-write operations can drop updates.
+- The change adds bounded cross-process locking around aggregate loads, saves, and deletes.
+- Tests cover contention using an observed `WouldBlock` and distinguish aggregate-lock failures from backend unavailability.
+
+### Follow-up questions
+
+- Should scheduled-agent harnesses include explicit concurrency tests for shared memory, credential, and tool-state stores before enabling multiple background workers?
+
+## 2026-07-07 — CompactionRL trains long-horizon agents to learn through context compaction
+
+Source: http://arxiv.org/abs/2607.05378v1  
+Type: paper  
+Importance: high  
+Confidence: medium  
+Entities: [[CompactionRL]], [[Agent Memory Systems]], [[SWE-bench]]  
+Tags: #agents #memory #state #coding-agents #evals
+
+### Summary
+
+The arXiv paper “CompactionRL: Reinforcement Learning with Context Compaction for Long-Horizon Agents” proposes training agentic LLMs to jointly optimize task execution and summary generation when long trajectories exceed the context window. The approach uses token-level loss normalization and cross-trajectory generalized advantage estimation so agents can learn from compacted long-horizon rollouts.
+
+### Why it matters
+
+Context compaction is the practical bridge between finite context windows and long-running agents. This paper is directly relevant to durable memory loops because it treats summarization/compaction as part of the learned agent trajectory, not just an external transcript-compression heuristic.
+
+### Evidence
+
+- The abstract says long-horizon agentic LLMs are limited by finite context windows and that compaction lets rollouts continue under compressed context.
+- It reports consistent gains on agentic coding tasks, including +7.0 Pass@1 on SWE-bench Verified and +3.1 on Terminal-Bench 2.0 for GLM-4.5-Air.
+- It says CompactionRL is deployed in the RL pipeline for training the open GLM-5.2 model.
+
+### Follow-up questions
+
+- How should Markdown-first agent memories distinguish lossy compaction summaries from confirmed durable facts and auditable source records?
+
+## 2026-07-07 — Hermes Agent mirrors Discord interactive prompts into plain message content
+
+Source: https://github.com/NousResearch/hermes-agent/commit/009b42d008b81c18af39414dded9ecdf06082d93  
+Type: release  
+Importance: medium  
+Confidence: high  
+Entities: [[Hermes Agent]], [[Nous Research]], [[Automated Research Loops]]  
+Tags: #agents #gateway #human-in-the-loop #reliability
+
+### Summary
+
+Hermes Agent extended its Discord approval-message hardening so all four interactive prompt surfaces — exec approval, slash confirmation, clarification, and update prompts — mirror their payload into plain message content next to buttons. The embed remains as progressive enhancement for clients that render it.
+
+### Why it matters
+
+Human-in-the-loop agent gateways cannot rely on rich embeds being visible or preserved across every client. Mirroring prompt payloads into plain content makes approvals, clarifications, and update prompts more robust for remote/scheduled workflows that may depend on a user responding asynchronously.
+
+### Evidence
+
+- Commit message says it extends the `send_exec_approval` embed-invisibility fix to `send_slash_confirm`, `send_clarify`, and `send_update_prompt`.
+- A shared `_self_contained_prompt_content()` helper carries payload text in plain content next to buttons.
+- Tests were added for the Discord prompt-content sibling surfaces.
+
+### Follow-up questions
+
+- Should all gateway connectors enforce self-contained plain-text fallbacks for approval prompts before enabling high-impact unattended actions?

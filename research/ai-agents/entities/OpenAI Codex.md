@@ -24,3 +24,4 @@ OpenAI's coding-agent project/repository. Watched by this research loop for auto
 
 - https://github.com/openai/codex
 - https://github.com/openai/codex/commit/1013295c2d326f3a4d54525a63b68fd1ee355cac
+- https://github.com/openai/codex/commit/cca16a10878202cb2f6e9666b6b4330329ea7e65

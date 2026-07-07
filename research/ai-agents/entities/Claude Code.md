@@ -26,3 +26,4 @@ Anthropic's coding-agent CLI/product with support for subagents, background agen
 
 - https://github.com/anthropics/claude-code/releases/tag/v2.1.198
 - https://github.com/anthropics/claude-code/releases/tag/v2.1.200
+- https://github.com/anthropics/claude-code/releases/tag/v2.1.202

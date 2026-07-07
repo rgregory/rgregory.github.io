@@ -34,20 +34,6 @@ pending -> active -> done
 
 ## Active
 
-### Agent memory systems
-
-- id: agent_memory_systems
-- priority: high
-- added: 2026-07-03
-- status: active
-- requested_by: Roger
-- notes: Focus on durable memory, episodic memory, retrieval, personal knowledge graphs, and how agent systems persist useful context across runs. 2026-07-04 update: added ContextSniper as one high-signal primary source. 2026-07-06 update: added Governed Evolving Memory / MemState as a second high-signal memory source; continue looking for at least one more implementation-oriented source before marking done.
-- queries:
-  - "AI agent memory systems" durable episodic retrieval
-  - "agent memory" knowledge graph SQLite Markdown
-  - "long term memory" autonomous agents evaluation
-- done_when: At least three high-signal primary sources are summarized, with implementation implications and open questions.
-
 ### Coding agent evaluation benchmarks
 
 - id: coding_agent_evals
@@ -67,3 +53,19 @@ pending -> active -> done
 ## Needs Review
 
 ## Done
+
+### Agent memory systems
+
+- id: agent_memory_systems
+- priority: high
+- added: 2026-07-03
+- completed: 2026-07-07
+- status: done
+- requested_by: Roger
+- notes: Completed with three high-signal primary sources: ContextSniper for code-memory evidence selection, Governed Evolving Memory / MemState for memory as governed evolving state, and CompactionRL for training long-horizon agents through context compaction. Follow-up questions remain in open-questions.md.
+- queries:
+  - "AI agent memory systems" durable episodic retrieval
+  - "agent memory" knowledge graph SQLite Markdown
+  - "long term memory" autonomous agents evaluation
+- done_when: At least three high-signal primary sources are summarized, with implementation implications and open questions.
+

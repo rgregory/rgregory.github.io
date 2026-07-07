@@ -118,6 +118,15 @@ Working memory is not literally the same as an ant pheromone directive, but both
 
 In humans, when that directive state is integrated with attention and globally broadcast, we call part of it consciousness. In ants, when a chemical directive coordinates action through the environment, we call it stigmergy. The research problem is whether these are deeply analogous mechanisms or just superficially similar control loops.
 
+## Pending Review Notes
+
+### 2026-07-07 — Directive salience refinement
+
+- Pending durable refinement: working memory and pheromone-guided ant behavior should not be treated as identical mechanisms, but as different implementations of a broader **directive salience** pattern: transient, feedback-sensitive states that bias next action without central command.
+- Supporting sources from the first weekly update include global neuronal workspace theory, active-inference accounts of working memory/attention/salience, salience-gated action-selection models, and ant studies where pheromone cues interact with private memory.
+- Main caveat: conscious working-memory content appears to involve global neural access/broadcast, while ant pheromone cues are external, shared, and not evidence by themselves of a unified first-person workspace.
+- See [[Working Memory Stigmergy Update 2026-07-07]].
+
 ## Related
 
 - [[Ant Colony Intelligence — Intentional or Functional?]]

@@ -569,3 +569,200 @@ Human-in-the-loop agent gateways cannot rely on rich embeds being visible or pre
 ### Follow-up questions
 
 - Should all gateway connectors enforce self-contained plain-text fallbacks for approval prompts before enabling high-impact unattended actions?
+
+## 2026-07-08 — Claude Code v2.1.203/204 focuses on background-session recovery and headless hooks
+
+Source: https://github.com/anthropics/claude-code/releases/tag/v2.1.203  
+Type: release  
+Importance: high  
+Confidence: high  
+Entities: [[Claude Code]], [[Anthropic]], [[Automated Research Loops]]  
+Tags: #agents #coding-agents #long-running #reliability #hooks
+
+### Summary
+
+Claude Code v2.1.203 shipped a large set of background-agent and daemon reliability fixes: stale session-token recovery, preserving subagent work when returning to `claude agents`, correct inherited `PATH` / `ANTHROPIC_BASE_URL`, worktree-isolation fixes, clearer invalid-working-directory failures, and auto-upgrade crash prevention. The next release, v2.1.204, fixed SessionStart hook events not streaming in headless sessions, which could cause remote workers to be idle-reaped mid-hook.
+
+### Why it matters
+
+This is a concentrated operational hardening release for asynchronous coding agents. The fixes map directly to scheduled/headless execution risks: stale daemons, lost environment, worktree isolation drift, hook streaming, and background sessions that become unresponsive or silently restart work.
+
+### Evidence
+
+- Release notes for v2.1.203 list automatic recovery for background sessions whose daemon session token went stale.
+- The same release says returning to `claude agents` no longer silently stops running subagents and reruns the prompt from scratch; work now carries over.
+- Release notes also include environment propagation, worktree isolation, invalid working directory, daemon auto-upgrade, and background task discovery fixes.
+- v2.1.204 specifically fixes SessionStart hook-event streaming in headless sessions to avoid remote workers being idle-reaped mid-hook.
+
+### Follow-up questions
+
+- Which of these background-agent failure classes should become regression checks for any scheduled coding-agent workflow before it is trusted unattended?
+
+## 2026-07-08 — Hermes Agent makes async delegation result drains session-owned and fail-closed
+
+Source: https://github.com/NousResearch/hermes-agent/commit/65372395eb2975152727013ad1df6977745f52f4  
+Type: release  
+Importance: high  
+Confidence: high  
+Entities: [[Hermes Agent]], [[Nous Research]], [[Automated Research Loops]]  
+Tags: #agents #multi-agent #long-running #state #reliability
+
+### Summary
+
+Hermes Agent fixed async `delegate_task` result routing so completion events return to the session that dispatched the subagent, not whichever session is active when the result is drained. A follow-up commit adds a positive-proof, compression-chain-aware ownership gate: the TUI post-turn drain consumes an async-delegation event only when ownership is proven; broken or unresolvable checks re-queue rather than leak or drop the event.
+
+### Why it matters
+
+Delegation result routing is core durable state for multi-agent systems. Long-running sessions, compressed sessions, and parallel sessions need fail-closed ownership checks so subagent output cannot be adopted by the wrong conversation or silently disappear.
+
+### Evidence
+
+- Commit f75f3cd7 states that the completion event already carried the dispatching session key, but the router ignored it and delivered results to the active-at-completion session.
+- The fix adds session-key filtering to `drain_notifications()`, re-queuing non-matching async-delegation events for the correct session drain.
+- Commit 65372395 extends this with an `owns_event` callback and says the TUI drain consumes only on positive proof of ownership, while compression-chain ownership still works after session compression.
+- Regression tests were added for session-scoped drain filtering and positive-proof ownership.
+
+### Follow-up questions
+
+- Can session-owned event drains be generalized as a standard pattern for all asynchronous tool results, notifications, and human approval replies in Hermes gateways?
+
+## 2026-07-08 — OpenAI Codex 0.143.0 broadens remote plugin, MCP, proxy, and remote-control surfaces
+
+Source: https://github.com/openai/codex/releases/tag/rust-v0.143.0  
+Type: release  
+Importance: high  
+Confidence: high  
+Entities: [[OpenAI Codex]], [[OpenAI]], [[Tool-Use Governance]]  
+Tags: #agents #coding-agents #mcp #remote-control #tool-use
+
+### Summary
+
+OpenAI Codex rust-v0.143.0 enables remote plugins by default, adds richer plugin catalog/version surfaces, routes authentication and Responses API traffic through macOS/Windows system proxies, adds `codex remote-control pair` for manual daemon pairing codes, and changes MCP tools to use tool search by default while allowing ChatGPT-hosted MCP servers to explicitly use session authentication.
+
+### Why it matters
+
+The release expands the surfaces through which coding agents discover tools, authenticate, pair remote controllers, and connect through enterprise network policy. These are high-impact areas for unattended agents because they combine capability discovery, credential/session state, and remote execution control.
+
+### Evidence
+
+- Release notes list remote plugins enabled by default, with richer catalog rows, npm marketplace sources, and visible remote/local versions.
+- Release notes add macOS and Windows system proxy support for authentication and Responses API traffic, including PAC and WPAD configurations.
+- Release notes add `codex remote-control pair` for manual pairing codes from a running daemon.
+- Release notes say MCP tools use tool search by default and ChatGPT-hosted MCP servers can explicitly use session authentication.
+
+### Follow-up questions
+
+- What policy and audit boundaries are needed when remote plugins are enabled by default and MCP tool discovery/search becomes the default path?
+
+## 2026-07-08 — OpenAI Codex introduces extension-owned turn items
+
+Source: https://github.com/openai/codex/commit/f1affbac5e5164b2bae825e9b39e9868bc4e0be2  
+Type: release  
+Importance: medium  
+Confidence: high  
+Entities: [[OpenAI Codex]], [[OpenAI]], [[Extension-Owned Turn Items]]  
+Tags: #agents #state #tool-use #observability #extensions
+
+### Summary
+
+OpenAI Codex added a `codex-extension-items` crate and generic `TurnItem::Extension` / `ExtensionTurnItem::Extension` paths so standalone image generation can persist and replay an extension-owned typed item without forcing core protocol code to know every extension schema. Core still emits canonical lifecycle ordering around extension-provided legacy events.
+
+### Why it matters
+
+Agent runtimes are moving toward extensible tool/plugin ecosystems. Extension-owned turn items offer a cleaner state boundary: core can transport, persist, serialize, and replay extension work generically, while extension schemas remain typed and reusable by app-server APIs.
+
+### Evidence
+
+- The commit explains that the prior standalone image-generation path made core aware of all extension items, setting an unwanted precedent.
+- The new crate is shared by the extension implementation, codex tools/core, codex protocol, and app-server protocol.
+- The change keeps hosted Responses API image generation as a core-owned item but moves standalone image generation to an extension-owned item.
+- The commit states that core emits `ItemStarted` / `ItemCompleted` before extension-provided legacy events.
+
+### Follow-up questions
+
+- Should extension-owned turn-item schemas become part of an agent bill of materials so durable transcripts can be validated after plugin upgrades?
+
+## 2026-07-08 — AgentTether proposes graph-guided runtime repair for stateful tool-use agents
+
+Source: http://arxiv.org/abs/2607.06273v1  
+Type: paper  
+Importance: high  
+Confidence: medium  
+Entities: [[AgentTether]], [[Agent Evaluation]], [[Tool-Use Governance]]  
+Tags: #agents #tool-use #reliability #evals #state
+
+### Summary
+
+The arXiv paper “AgentTether: Graph-Guided Diagnosis and Runtime Intervention for Reliable LLM Agent Operation” proposes a runtime repair layer for multi-step, stateful tool-use agents. It abstracts runs into Transition Units, links them in a Critical Transition Graph, localizes failure-critical subtrajectories, turns localized causes into behavior-scoped guidance backed by Repair Memory, and can optionally apply guarded runtime intervention during re-execution.
+
+### Why it matters
+
+This is directly relevant to long-running and scheduled agents because retries without diagnosis can repeat costly mistakes or worsen external state. AgentTether points toward a wrapper pattern that can diagnose failed trajectories, remember repair guidance, and intervene without changing the underlying agent or environment.
+
+### Evidence
+
+- The abstract says production reliability remains limited for multi-step, stateful tool-use tasks because early decisions can propagate into later errors and external state changes.
+- The paper evaluates on 261 tau-bench tasks across three domains with Qwen3.7-max and tests cross-model transfer on Banking with GPT-5.4.
+- It reports repairing 59.04% of initially failed Qwen3.7-max Banking tasks and 65.12% of initially failed GPT-5.4 Banking tasks.
+- The abstract says AgentTether can run as an offline diagnostic-and-guidance tool or an online repair layer.
+
+### Follow-up questions
+
+- Could a scheduled research loop store Transition Units and repair guidance in Markdown/SQLite so failed runs become inspectable and reusable rather than just retried?
+
+## 2026-07-08 — SWE-Together evaluates coding agents in multi-turn user sessions
+
+Source: http://arxiv.org/abs/2606.29957v1  
+Type: benchmark  
+Importance: high  
+Confidence: medium  
+Entities: [[SWE-Together]], [[SWE-bench]], [[Agent Evaluation]]  
+Tags: #agents #coding-agents #evals #benchmarks #multi-turn
+
+### Summary
+
+The arXiv paper “SWE-Together: Evaluating Coding Agents in Interactive User Sessions” argues that static coding-agent benchmarks miss how real coding help unfolds through clarifications, constraints, and corrections. It curates 109 repository-level tasks from 11,260 recorded user-agent coding sessions, reconstructs verifiable repository states and outcomes, and uses a reactive LLM-based user simulator to replay interactions while measuring both final correctness and corrective feedback turns.
+
+### Why it matters
+
+This directly advances the active coding-agent evaluation topic. It complements SWE-bench-style final-patch scoring with collaboration cost: how many user interventions are needed before the agent succeeds. That dimension is highly relevant to background agents that may need escalation or human input during long-running work.
+
+### Evidence
+
+- The abstract contrasts static complete-up-front tasks with real interactive coding assistance.
+- It reports curating 109 repository-level tasks from 11,260 recorded sessions with recoverable repository states, clear goals, and observable outcomes.
+- The benchmark replays interactions with a reactive LLM-based user simulator that preserves original user intent and provides feedback when needed.
+- The evaluation measures both final repository correctness and number of corrective feedback turns.
+
+### Follow-up questions
+
+- How should SWE-Together’s corrective-feedback-turn metric be adapted for asynchronous background agents where user feedback may arrive hours later?
+
+## 2026-07-08 — Context-to-Execution Integrity separates context evidence from tool-execution authority
+
+Source: http://arxiv.org/abs/2607.06000v1  
+Type: paper  
+Importance: high  
+Confidence: medium  
+Entities: [[Context-to-Execution Integrity]], [[Tool-Use Governance]], [[Coding Agent Security]]  
+Tags: #agents #tool-use #security #sandboxing #evals
+
+### Summary
+
+The arXiv paper “Context-to-Execution Integrity for LLM Agents” proposes CXI, an execution-boundary system for agents that read attacker-writable context but must safely call tools. CXI uses policies for protected sink fields, typed releases from writable context to specific destinations, opaque data slots, and a deterministic gate that admits a call only when field authority, exact-effect authorization, and invocation authority bind to the same action manifest.
+
+### Why it matters
+
+This provides a concrete safety model for tool-use agents beyond prompt-level instruction hierarchy. It is especially relevant to coding and browser agents where untrusted repository/web context can influence protected sink fields, command payloads, credential-bearing requests, or external side effects.
+
+### Evidence
+
+- The abstract says tool execution needs separate authority checks for protected sink fields, sink-interpreted payloads, and the invocation event.
+- It reports evaluations on AgentDojo live episodes, a code-agent exact-effect benchmark, manifest-bound ledger faults, proposal-pressure controls, and compatibility traces.
+- The code-agent benchmark covers 400 repository episodes with exact-effect authorization and lease-bound execution, yielding 231 safe task completions and zero observed field, effect, or invocation escapes.
+- The admission rule requires field, effect, and invocation authority to bind to the same action manifest.
+
+### Follow-up questions
+
+- Can CXI-style action manifests be represented as typed YAML frontmatter or SQLite rows in a Markdown-first agent audit log?
+

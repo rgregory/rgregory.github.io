@@ -22,3 +22,10 @@ Use this file for uncertain claims, review candidates, and follow-up research th
 - 2026-07-07: Check whether scheduled-agent harnesses should include explicit concurrency tests for shared memory, credential, and tool-state stores before enabling multiple background workers.
 - 2026-07-07: Design how Markdown-first agent memories should distinguish lossy compaction summaries from confirmed durable facts and auditable source records.
 - 2026-07-07: Decide whether all gateway connectors should enforce self-contained plain-text fallbacks for approval prompts before enabling high-impact unattended actions.
+- 2026-07-08: Decide which Claude Code background-agent failure classes should become regression checks for scheduled coding-agent workflows.
+- 2026-07-08: Explore whether Hermes session-owned event drains should be generalized for all async tool results, notifications, and approval replies.
+- 2026-07-08: Define policy/audit boundaries for Codex-style remote plugins enabled by default and MCP tool search as the default discovery path.
+- 2026-07-08: Evaluate whether extension-owned turn-item schemas belong in an agent bill of materials for durable transcript validation after plugin upgrades.
+- 2026-07-08: Prototype whether scheduled research loops can store AgentTether-like Transition Units and repair guidance in Markdown/SQLite.
+- 2026-07-08: Adapt SWE-Together’s corrective-feedback-turn metric for asynchronous background agents where human feedback is delayed.
+- 2026-07-08: Test whether CXI-style action manifests can be represented as YAML frontmatter or SQLite rows in Markdown-first agent audit logs.

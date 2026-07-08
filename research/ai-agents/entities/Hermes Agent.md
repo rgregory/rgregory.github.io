@@ -27,3 +27,5 @@ Open-source AI agent framework by Nous Research with tools, skills, memory, cron
 - https://hermes-agent.nousresearch.com/docs
 - https://github.com/NousResearch/hermes-agent
 - https://github.com/NousResearch/hermes-agent/commit/009b42d008b81c18af39414dded9ecdf06082d93
+- https://github.com/NousResearch/hermes-agent/commit/f75f3cd713995f7a242665fbcc80c8d34ba71957
+- https://github.com/NousResearch/hermes-agent/commit/65372395eb2975152727013ad1df6977745f52f4

@@ -1,5 +1,5 @@
 {
-  "last_run_utc": "2026-07-07T14:07:35Z",
+  "last_run_utc": "2026-07-08T14:40:02Z",
   "seen_urls": [
     "https://github.com/NousResearch/hermes-agent/commit/19d4174454624a1ca91bc47b8f2a7ae8c3b4b5d3",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.200",
@@ -21,9 +21,18 @@
     "https://github.com/openai/codex/commit/cca16a10878202cb2f6e9666b6b4330329ea7e65",
     "https://github.com/openai/codex/commit/6cf42cf16516ab3a125d853561ae3b8c77d6c13e",
     "http://arxiv.org/abs/2607.05378v1",
-    "https://github.com/NousResearch/hermes-agent/commit/009b42d008b81c18af39414dded9ecdf06082d93"
+    "https://github.com/NousResearch/hermes-agent/commit/009b42d008b81c18af39414dded9ecdf06082d93",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.203",
+    "https://github.com/NousResearch/hermes-agent/commit/65372395eb2975152727013ad1df6977745f52f4",
+    "https://github.com/openai/codex/releases/tag/rust-v0.143.0",
+    "https://github.com/openai/codex/commit/f1affbac5e5164b2bae825e9b39e9868bc4e0be2",
+    "http://arxiv.org/abs/2607.06273v1",
+    "http://arxiv.org/abs/2606.29957v1",
+    "http://arxiv.org/abs/2607.06000v1",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.204",
+    "https://github.com/NousResearch/hermes-agent/commit/f75f3cd713995f7a242665fbcc80c8d34ba71957"
   ],
-  "last_briefing": "briefings/2026-07-07.md",
+  "last_briefing": "briefings/2026-07-08.md",
   "active_topics": [
     "coding_agent_evals"
   ],
@@ -31,5 +40,5 @@
     "agent_memory_systems"
   ],
   "blocked_topics": [],
-  "notes": "Added 5 high-signal findings on Claude Code workflow telemetry/sizing, Codex canonical command items, Codex MCP OAuth credential-store serialization, CompactionRL context compaction for long-horizon agents, and Hermes Discord prompt content fallback. Moved agent_memory_systems to done. Rebuilt graph.sqlite from Markdown."
+  "notes": "Added 7 high-signal findings on Claude Code background/headless reliability, Hermes async delegation ownership, Codex 0.143.0 remote plugin/MCP surfaces, Codex extension-owned turn items, AgentTether runtime repair, SWE-Together multi-turn coding-agent evals, and CXI tool-execution authority. Rebuilt graph.sqlite from Markdown."
 }

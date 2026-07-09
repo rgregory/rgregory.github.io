@@ -29,3 +29,9 @@ Use this file for uncertain claims, review candidates, and follow-up research th
 - 2026-07-08: Prototype whether scheduled research loops can store AgentTether-like Transition Units and repair guidance in Markdown/SQLite.
 - 2026-07-08: Adapt SWE-Together’s corrective-feedback-turn metric for asynchronous background agents where human feedback is delayed.
 - 2026-07-08: Test whether CXI-style action manifests can be represented as YAML frontmatter or SQLite rows in Markdown-first agent audit logs.
+- 2026-07-09: Decide whether scheduled coding-agent harnesses should treat transcript files as protected state and validate approval provenance separately from model-visible text.
+- 2026-07-09: Check whether Hermes skill discovery and other scheduled-agent catalog reads should enforce a no-start/no-reconnect passive-read contract by default.
+- 2026-07-09: Define retention and summarization policies for high-frequency normal-path MCP/tool telemetry in Markdown/SQLite agent loops.
+- 2026-07-09: Combine AgentLens-style trajectory reviews with SWE-Together-style corrective-feedback turns for asynchronous background-agent evaluation.
+- 2026-07-09: Test whether SkillCenter-style source-grounded skills can be represented as Markdown-first notes with SQLite FTS as the derived search layer.
+- 2026-07-09: Identify which multi-agent orchestration rules in coding/research-agent systems should be evaluated as causal deployment-rule variables.

@@ -1,5 +1,5 @@
 {
-  "last_run_utc": "2026-07-08T14:40:02Z",
+  "last_run_utc": "2026-07-09T14:00:38Z",
   "seen_urls": [
     "https://github.com/NousResearch/hermes-agent/commit/19d4174454624a1ca91bc47b8f2a7ae8c3b4b5d3",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.200",
@@ -30,9 +30,15 @@
     "http://arxiv.org/abs/2606.29957v1",
     "http://arxiv.org/abs/2607.06000v1",
     "https://github.com/anthropics/claude-code/releases/tag/v2.1.204",
-    "https://github.com/NousResearch/hermes-agent/commit/f75f3cd713995f7a242665fbcc80c8d34ba71957"
+    "https://github.com/NousResearch/hermes-agent/commit/f75f3cd713995f7a242665fbcc80c8d34ba71957",
+    "https://github.com/anthropics/claude-code/releases/tag/v2.1.205",
+    "https://github.com/openai/codex/commit/13ba8058f294723c47dba5c47ca58cf090f04781",
+    "https://github.com/openai/codex/commit/c8d2db9cc06f6d972757973a9224eeaefb56c755",
+    "http://arxiv.org/abs/2607.06624v1",
+    "http://arxiv.org/abs/2607.07676v1",
+    "http://arxiv.org/abs/2607.07695v1"
   ],
-  "last_briefing": "briefings/2026-07-08.md",
+  "last_briefing": "briefings/2026-07-09.md",
   "active_topics": [
     "coding_agent_evals"
   ],
@@ -40,5 +46,5 @@
     "agent_memory_systems"
   ],
   "blocked_topics": [],
-  "notes": "Added 7 high-signal findings on Claude Code background/headless reliability, Hermes async delegation ownership, Codex 0.143.0 remote plugin/MCP surfaces, Codex extension-owned turn items, AgentTether runtime repair, SWE-Together multi-turn coding-agent evals, and CXI tool-execution authority. Rebuilt graph.sqlite from Markdown."
+  "notes": "Added 6 high-signal findings: Claude Code v2.1.205 transcript/background hardening, Codex passive fail-fast skill-root discovery, Codex bounded MCP tool-list tracing, AgentLens trajectory evaluation, SkillCenter source-grounded SQLite FTS skill bundles, and institutional red-teaming for multi-agent deployment rules. Rebuilt graph.sqlite from Markdown."
 }

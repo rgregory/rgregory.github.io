@@ -766,3 +766,165 @@ This provides a concrete safety model for tool-use agents beyond prompt-level in
 
 - Can CXI-style action manifests be represented as typed YAML frontmatter or SQLite rows in a Markdown-first agent audit log?
 
+## 2026-07-09 — Claude Code v2.1.205 hardens auto mode, background status, and transcript tamper resistance
+
+Source: https://github.com/anthropics/claude-code/releases/tag/v2.1.205  
+Type: release  
+Importance: high  
+Confidence: high  
+Entities: [[Claude Code]], [[Anthropic]], [[Automated Research Loops]]  
+Tags: #agents #coding-agents #long-running #permissions #reliability
+
+### Summary
+
+Claude Code v2.1.205 adds an auto-mode rule blocking tampering with session transcript files, improves auto mode's handling of unresolved dangerous `rm -rf` variables, and fixes multiple unattended/background-agent status and recovery defects. It also makes background task notifications explicitly state that no human input has occurred, reducing the risk that fabricated in-transcript approvals are acted on.
+
+### Why it matters
+
+The release is directly relevant to scheduled and background coding agents: transcript integrity, approval provenance, accurate blocked/running/completed status, safe destructive-command handling, and attach/resume behavior are all operational prerequisites for unattended work.
+
+### Evidence
+
+- Release notes say auto mode now blocks tampering with session transcript files and asks before running `rm -rf` on a variable it cannot resolve from context.
+- Background-agent fixes cover stale failed/completed status after `SendMessage`, jobs flipping from needs-input back to working when no readable text appears, `claude attach` during mid-upgrade restarts, and stale Remote Control panel task status.
+- Background task notifications now explicitly state that no human input has occurred, so fabricated transcript approvals are not treated as real approvals.
+
+### Follow-up questions
+
+- Should scheduled coding-agent harnesses treat transcript files as protected state and validate approval provenance separately from model-visible text?
+
+## 2026-07-09 — OpenAI Codex makes skill-root catalog reads passive and fail-fast
+
+Source: https://github.com/openai/codex/commit/13ba8058f294723c47dba5c47ca58cf090f04781  
+Type: release  
+Importance: high  
+Confidence: high  
+Entities: [[OpenAI Codex]], [[Passive Capability Roots]], [[Tool-Use Governance]]  
+Tags: #agents #coding-agents #skills #tool-use #reliability
+
+### Summary
+
+OpenAI Codex changed selected capability-root resolution so `skills/list` can take a passive snapshot of executor-backed skill roots without starting an executor, waiting for recovery, or reconnecting a failed environment. The new path inspects current exec-server connection readiness, omits starting/recovering environments, warns on missing or terminal failures, and uses a fail-fast filesystem view.
+
+### Why it matters
+
+Read-only capability discovery should not have side effects. For long-running coding agents, a catalog request that can awaken executors or block on recovery blurs the boundary between introspection and execution; Codex's passive snapshot pattern is a useful design for scheduler-safe tool/skill inventory.
+
+### Evidence
+
+- Commit rationale says `skills/list` needs a passive snapshot and must not start an executor, wait for recovery, or reconnect a failed environment.
+- The change returns roots only while the environment can serve immediately and omits connecting/recovering environments so callers can retry later.
+- Coverage includes lazy stdio environments staying unstarted during passive inspection, terminal failures surfacing warnings, and disconnects failing promptly instead of entering normal recovery.
+
+### Follow-up questions
+
+- Should Hermes skill discovery and other scheduled-agent catalog reads enforce the same no-start/no-reconnect contract by default?
+
+## 2026-07-09 — OpenAI Codex bounds MCP tool-list traces to reduce SQLite log noise
+
+Source: https://github.com/openai/codex/commit/c8d2db9cc06f6d972757973a9224eeaefb56c755  
+Type: release  
+Importance: medium  
+Confidence: high  
+Entities: [[OpenAI Codex]], [[MCP Tool-List Tracing]], [[Tool-Use Governance]]  
+Tags: #agents #mcp #observability #sqlite #reliability
+
+### Summary
+
+OpenAI Codex reduced MCP tool-list trace volume by removing two normal-path per-server TRACE events, keeping span timing/remote trace context, emitting per-server details only for unavailable servers, and writing one bounded summary per tool-list build with available-server, unavailable-server, and tool counts.
+
+### Why it matters
+
+Durable agent observability often lands in SQLite or transcript stores. Normal-path trace spam can bury useful state and inflate logs during active sessions; bounded summaries preserve the operational signal needed for tool availability without making the derived event store noisy.
+
+### Evidence
+
+- Commit rationale says active sessions produced thousands of nearly identical SQLite rows from MCP tool-list builds.
+- The change keeps aggregate server/tool counts and detailed unavailable-server information.
+- Successful builds retain a summary while dropping repeated per-server normal-path rows.
+
+### Follow-up questions
+
+- What retention and summarization policy should Markdown/SQLite agent loops use for high-frequency normal-path tool telemetry?
+
+## 2026-07-09 — AgentLens evaluates full coding-agent trajectories, not just final pass/fail
+
+Source: http://arxiv.org/abs/2607.06624v1  
+Type: benchmark  
+Importance: high  
+Confidence: medium  
+Entities: [[AgentLens]], [[Agent Evaluation]], [[SWE-bench]]  
+Tags: #agents #coding-agents #evals #benchmarks #tool-use
+
+### Summary
+
+The AgentLens paper introduces a production-assessed benchmark for interactive coding agents that evaluates the entire trajectory: instruction following, tool use, self-verification, recovery from mistakes, and communication. It pairs formal verification where objective checks exist with LLM-written trajectory reviews and side-by-side comparisons, and the authors release the benchmark at `agent-lens/agent-lens-bench`.
+
+### Why it matters
+
+This advances the active coding-agent evaluation topic beyond binary task success. Background and scheduled agents need regression signals for behavior quality across the run, especially whether they verify work, recover from errors, and produce inspectable explanations before a human reviews the final patch.
+
+### Evidence
+
+- The abstract says most code-agent benchmarks reduce a run to a single pass/fail bit, while AgentLens scores the whole trajectory.
+- It combines formal verification, LLM-written trajectory reviews, and side-by-side comparisons into readable score explanations.
+- The authors report using it to diagnose model behavior, compare successive versions of their own agent, and catch product regressions in a nightly evaluation pipeline.
+
+### Follow-up questions
+
+- How should AgentLens-style trajectory reviews be combined with SWE-Together-style corrective-feedback turns for asynchronous background agents?
+
+## 2026-07-09 — SkillCenter packages source-grounded agent skills as offline SQLite FTS bundles
+
+Source: http://arxiv.org/abs/2607.07676v1  
+Type: paper  
+Importance: high  
+Confidence: medium  
+Entities: [[SkillCenter]], [[Agent Memory Systems]], [[Automated Research Loops]]  
+Tags: #agents #skills #memory #sqlite #knowledge-base
+
+### Summary
+
+SkillCenter proposes a large source-grounded skill library for autonomous AI agents: 216,938 structured skills across 24 domain bundles, including 114,565 skills from peer-reviewed journals, arXiv, and more than 24,000 technical sources plus 102,373 community skills. The pipeline uses a SkillGate quality filter, iterative source grounding, and publishes offline-searchable SQLite FTS5 bundles where retained claims map to exact source quotations.
+
+### Why it matters
+
+This is unusually relevant to Markdown/SQLite agent memory design because it treats skills as auditable, source-grounded, offline-searchable knowledge bundles rather than ephemeral prompt snippets. It suggests a practical pattern for local-first agent skill libraries: keep provenance, use FTS for retrieval, and gate generated skills before publishing.
+
+### Evidence
+
+- The abstract reports 216,938 structured skills across 24 domain bundles.
+- It describes a pipeline with multi-source acquisition, LLM-based SkillGate filtering, template-driven generation, iterative source grounding, and quality-controlled publishing.
+- It says source grounding maps retained claims to exact quotations and ships all skills as offline-searchable SQLite FTS5 bundles.
+
+### Follow-up questions
+
+- Can SkillCenter-style source-grounded skills be represented as Markdown-first notes with SQLite FTS as the derived search layer?
+
+## 2026-07-09 — Institutional red-teaming tests deployment rules as causal variables in multi-agent safety
+
+Source: http://arxiv.org/abs/2607.07695v1  
+Type: paper  
+Importance: medium  
+Confidence: medium  
+Entities: [[Institutional Red-Teaming]], [[IABench-CA]], [[Agent Evaluation]]  
+Tags: #agents #multi-agent #evals #safety #governance
+
+### Summary
+
+The institutional red-teaming paper proposes evaluating multi-agent deployment rules by holding agents, objectives, and task state fixed while varying one rule and attributing behavior changes to that rule. Its IABench-CA benchmark spans 228 contexts, five rules, and seven model populations, with findings that consequence rules can move mean fatality rates by 22 to 58 percentage points and that identity-targeting hazards appear across populations.
+
+### Why it matters
+
+Multi-agent safety depends on deployment policy, not only model capability. This methodology is a useful complement to tool-use and coding-agent evals because it asks whether scheduler/orchestrator rules, escalation policies, and consequence rules causally change group behavior under the same task state.
+
+### Evidence
+
+- The abstract defines institutional red-teaming as varying one deployment rule while keeping agents, objectives, and state fixed.
+- It reports IABench-CA with 33,924 games over 228 contexts, five canonical rules, and seven model populations.
+- The paper reports that rule changes move mean fatality by 22 to 58 percentage points and that identity salience can drive targeted elimination.
+
+### Follow-up questions
+
+- Which multi-agent orchestration rules in coding/research-agent systems should be evaluated as causal deployment-rule variables rather than treated as implementation details?
+

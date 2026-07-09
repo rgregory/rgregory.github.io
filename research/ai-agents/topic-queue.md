@@ -41,7 +41,7 @@ pending -> active -> done
 - added: 2026-07-03
 - status: active
 - requested_by: Roger
-- notes: Compare SWE-bench, terminal/tool-use benchmarks, background-agent reliability, and evals for long-running coding agents. 2026-07-04 update: added Distributed Attacks in Persistent-State AI Control and PACE as high-signal sources. 2026-07-06 update: added Infinite Agentic Loops and AgentFlow as static-analysis/governance sources; 2026-07-08 update: added SWE-Together as a multi-turn interactive coding-agent benchmark; continue toward a comparison briefing before marking done.
+- notes: Compare SWE-bench, terminal/tool-use benchmarks, background-agent reliability, and evals for long-running coding agents. 2026-07-04 update: added Distributed Attacks in Persistent-State AI Control and PACE as high-signal sources. 2026-07-06 update: added Infinite Agentic Loops and AgentFlow as static-analysis/governance sources; 2026-07-08 update: added SWE-Together as a multi-turn interactive coding-agent benchmark; 2026-07-09 update: added AgentLens as a trajectory-review/nightly-regression benchmark and institutional red-teaming as a causal deployment-rule evaluation method. Continue toward a comparison briefing before marking done.
 - queries:
   - "coding agent benchmark" SWE-bench terminal-bench
   - "tool use evaluation" coding agents benchmark

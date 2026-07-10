@@ -11,6 +11,7 @@ import argparse
 import datetime as dt
 import html
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -19,7 +20,7 @@ import tempfile
 from pathlib import Path
 from urllib.parse import quote
 
-VAULT = Path("/Users/rgregory/.hermes/akira")
+VAULT = Path(os.environ.get("AKIRA_VAULT", Path(__file__).resolve().parents[1]))
 PUBLISH_DIR = VAULT / "akira"
 REMOTE = "https://github.com/rgregory/rgregory.github.io.git"
 BRANCHES = ("public", "master")
@@ -27,9 +28,13 @@ CALENDAR_SCRIPT = Path("/Users/rgregory/.hermes/scripts/apple_calendar_today.py"
 DIGEST_SCRIPT = Path("/Users/rgregory/.hermes/scripts/akira_daily_digest.py")
 BIRTHDAY_SCRIPT = Path("/Users/rgregory/.hermes/scripts/akira_birthday_telegram_reminders.py")
 
+TABLER_CSS = "https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css"
+TABLER_JS = "https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"
+ALPINE_JS = "https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+
 CSS = """
-:root{color-scheme:light;--bg:#f8fafc;--panel:#fff;--text:#0f172a;--muted:#64748b;--line:#dbeafe;--link:#0369a1}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f8fafc,#e0f2fe);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}main{max-width:1040px;margin:0 auto;padding:32px 20px 56px}a{color:var(--link)}h1{font-size:clamp(2rem,6vw,4rem);line-height:1;margin:.2em 0}.meta{color:var(--muted);font-size:1.05rem}.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 50px rgba(15,23,42,.08);padding:22px;margin:18px 0}pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;padding:16px;border-radius:16px;overflow:auto}.table-wrap{overflow:auto;margin:1rem 0;border-radius:16px;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;background:var(--panel);overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e0f2fe;color:#0f172a}ul{padding-left:1.3rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.tile{display:block;text-decoration:none;color:inherit}.tile .card{height:100%;margin:0}.small{font-size:.92rem;color:var(--muted)}footer{margin-top:30px;color:var(--muted);font-size:.9rem}
+:root{color-scheme:light;--akira-bg:#f3f6fb;--akira-muted:#667085;--akira-line:#d9e2ef}
+body{background:radial-gradient(circle at top left,rgba(32,107,196,.14),transparent 32rem),linear-gradient(180deg,#f8fafc,var(--akira-bg));min-height:100vh}.navbar-brand{letter-spacing:.02em}.page-wrapper{min-height:calc(100vh - 56px)}.page-body{margin-top:1rem}.akira-eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.74rem;color:var(--akira-muted);font-weight:700}.akira-hero{border:1px solid rgba(32,107,196,.18);box-shadow:0 1.5rem 3.5rem rgba(15,23,42,.08)}.akira-card{height:100%;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}.akira-card:hover{transform:translateY(-2px);box-shadow:0 1rem 2.5rem rgba(15,23,42,.1);border-color:rgba(32,107,196,.35)}.tile{display:block;text-decoration:none;color:inherit}.tile:hover{color:inherit}.meta,.small{color:var(--akira-muted)}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4{margin-top:1.25rem}.markdown-body h1:first-child,.markdown-body h2:first-child,.markdown-body h3:first-child{margin-top:0}.markdown-body pre,pre.akira-pre{white-space:pre-wrap;background:#111827;color:#e5e7eb;padding:1rem;border-radius:var(--tblr-border-radius-lg);overflow:auto}.markdown-body code:not(pre code){background:rgba(32,107,196,.08);border-radius:.25rem;padding:.05rem .25rem}.table-wrap{overflow:auto;margin:1rem 0;border:1px solid var(--akira-line);border-radius:var(--tblr-border-radius-lg)}.table-wrap table{margin-bottom:0}.table-wrap th,.table-wrap td{vertical-align:top}.legacy-html .top{display:flex;justify-content:space-between;gap:1rem;align-items:end;flex-wrap:wrap}.legacy-html .sub,.legacy-html .label,.legacy-html .why,.legacy-html .source p,.legacy-html footer{color:var(--akira-muted)}.legacy-html .cards,.legacy-html .sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1rem 0}.legacy-html .card,.legacy-html .source{padding:1rem}.legacy-html .num{font-size:2rem;font-weight:800}.legacy-html table{width:100%;margin:1rem 0}.legacy-html .flag,.legacy-html .ok{display:inline-block;border-radius:999px;padding:.15rem .5rem;margin:.1rem;font-size:.75rem}.legacy-html .flag{background:#fff7e6;color:#b45309}.legacy-html .ok{background:#ecfdf3;color:#027a48}.footer{color:var(--akira-muted)}[x-cloak]{display:none!important}
 """.strip()
 
 
@@ -108,7 +113,7 @@ def md_to_html(markdown: str) -> str:
         def attrs(index: int) -> str:
             return f' style="text-align:{aligns[index]}"' if index < len(aligns) and aligns[index] else ""
 
-        parts = ["<div class=\"table-wrap\"><table>", "<thead><tr>"]
+        parts = ["<div class=\"table-wrap\"><table class=\"table table-vcenter table-striped\">", "<thead><tr>"]
         for i, cell in enumerate(header):
             parts.append(f"<th{attrs(i)}>{inline_md(cell)}</th>")
         parts.append("</tr></thead><tbody>")
@@ -199,23 +204,31 @@ def inline_md(text: str) -> str:
     return escaped
 
 
+def html_body_fragment(path: Path) -> str:
+    text = path.read_text(encoding="utf-8", errors="replace")
+    match = re.search(r"<main[^>]*>(.*?)</main>", text, flags=re.IGNORECASE | re.DOTALL)
+    if not match:
+        match = re.search(r"<body[^>]*>(.*?)</body>", text, flags=re.IGNORECASE | re.DOTALL)
+    return match.group(1) if match else f"<pre class=\"akira-pre\">{html.escape(text.strip())}</pre>"
+
+
 def page(title: str, body: str, generated: dt.datetime | None = None) -> str:
     generated = generated or dt.datetime.now().astimezone()
     return f"""<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title><style>{CSS}</style></head>
-<body><main><h1>{html.escape(title)}</h1><p class="meta">Generated {generated.isoformat(timespec='seconds')}</p>{body}<footer>Akira HTML artifact published for rgregory.github.io/akira/.</footer></main></body></html>
+<html lang="en" x-data="{{ sidebarOpen: false }}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title><link rel="stylesheet" href="{TABLER_CSS}"><style>{CSS}</style><script defer src="{ALPINE_JS}"></script></head>
+<body><div class="page"><header class="navbar navbar-expand-md d-print-none"><div class="container-xl"><a class="navbar-brand" href="index.html"><span class="avatar avatar-sm bg-primary-lt me-2">A</span>Akira</a><button class="navbar-toggler" type="button" aria-label="Toggle navigation" @click="sidebarOpen = !sidebarOpen"><span class="navbar-toggler-icon"></span></button><div class="navbar-nav flex-row order-md-last"><div class="nav-item"><span class="badge bg-blue-lt">HTML artifacts</span></div></div></div></header><div class="page-wrapper"><main class="page-body"><div class="container-xl"><div class="card akira-hero mb-4"><div class="card-body"><div class="akira-eyebrow">r gregory / akira</div><div class="d-flex flex-column flex-md-row justify-content-between gap-3"><div><h1 class="display-5 mb-2">{html.escape(title)}</h1><p class="meta mb-0">Generated {generated.isoformat(timespec='seconds')}</p></div><div class="align-self-md-center"><a class="btn btn-primary" href="index.html">Index</a></div></div></div></div>{body}<footer class="footer footer-transparent d-print-none mt-4"><div class="container-xl px-0"><div class="text-secondary">Akira HTML artifact published for <a href="https://rgregory.github.io/akira/">rgregory.github.io/akira/</a>.</div></div></footer></div></main></div></div><script src="{TABLER_JS}"></script></body></html>
 """
 
 
 def text_page(title: str, text: str) -> str:
-    return page(title, f"<section class=\"card\"><pre>{html.escape(text.strip() or '(no output)')}</pre></section>")
+    return page(title, f"<section class=\"card\"><div class=\"card-body\"><pre class=\"akira-pre\">{html.escape(text.strip() or '(no output)')}</pre></div></section>")
 
 
 def markdown_page(title: str, path: Path | None) -> tuple[str, str]:
     if not path or not path.exists():
-        return page(title, "<section class=\"card\"><p>No artifact found yet.</p></section>"), "missing"
+        return page(title, "<section class=\"card\"><div class=\"card-body\"><p>No artifact found yet.</p></div></section>"), "missing"
     text = path.read_text(encoding="utf-8", errors="replace")
-    body = f"<section class=\"card\"><p class=\"small\">Source: <code>{html.escape(rel_link(path))}</code></p>{md_to_html(text)}</section>"
+    body = f"<section class=\"card\"><div class=\"card-body markdown-body\"><p class=\"small\">Source: <code>{html.escape(rel_link(path))}</code></p>{md_to_html(text)}</div></section>"
     return page(title, body), rel_link(path)
 
 
@@ -233,10 +246,11 @@ def write_artifacts(date: dt.date) -> dict[str, str]:
 
     car_src = newest([VAULT / "daily" / "car_search.html", VAULT / "research" / "car-search" / "daily" / "car_search.html"])
     if car_src:
-        shutil.copy2(car_src, PUBLISH_DIR / "car_search.html")
+        car_body = f"<section class=\"card\"><div class=\"card-body legacy-html\"><p class=\"small\">Source: <code>{html.escape(rel_link(car_src))}</code></p>{html_body_fragment(car_src)}</div></section>"
+        (PUBLISH_DIR / "car_search.html").write_text(page("Used-Car Search Dashboard", car_body), encoding="utf-8")
         artifacts["car_search.html"] = rel_link(car_src)
     else:
-        (PUBLISH_DIR / "car_search.html").write_text(page("Used-Car Search Dashboard", "<section class=\"card\"><p>No car-search dashboard found yet.</p></section>"), encoding="utf-8")
+        (PUBLISH_DIR / "car_search.html").write_text(page("Used-Car Search Dashboard", "<section class=\"card\"><div class=\"card-body\"><p>No car-search dashboard found yet.</p></div></section>"), encoding="utf-8")
         artifacts["car_search.html"] = "missing"
 
     philosophy_html, philosophy_src = markdown_page("Daily Philosophy Feed", VAULT / "briefings" / "philosophy" / f"{date.isoformat()} — Philosophy Feed.md")
@@ -260,7 +274,7 @@ def write_artifacts(date: dt.date) -> dict[str, str]:
     if CALENDAR_SCRIPT.exists():
         calendar_html, calendar_src = command_page("Apple Calendar Agenda", [sys.executable, str(CALENDAR_SCRIPT)], timeout=120)
     else:
-        calendar_html, calendar_src = page("Apple Calendar Agenda", "<section class=\"card\"><p>Calendar script not found.</p></section>"), "missing"
+        calendar_html, calendar_src = page("Apple Calendar Agenda", "<section class=\"card\"><div class=\"card-body\"><p>Calendar script not found.</p></div></section>"), "missing"
     (PUBLISH_DIR / "calendar.html").write_text(calendar_html, encoding="utf-8")
     artifacts["calendar.html"] = calendar_src
 
@@ -272,7 +286,7 @@ def write_artifacts(date: dt.date) -> dict[str, str]:
     if BIRTHDAY_SCRIPT.exists():
         birthday_html, birthday_src = command_page("Birthday Reminders", [sys.executable, str(BIRTHDAY_SCRIPT)], timeout=120)
     else:
-        birthday_html, birthday_src = page("Birthday Reminders", "<section class=\"card\"><p>Birthday reminder script not found.</p></section>"), "missing"
+        birthday_html, birthday_src = page("Birthday Reminders", "<section class=\"card\"><div class=\"card-body\"><p>Birthday reminder script not found.</p></div></section>"), "missing"
     (PUBLISH_DIR / "birthdays.html").write_text(birthday_html, encoding="utf-8")
     artifacts["birthdays.html"] = birthday_src
 
@@ -302,8 +316,8 @@ def write_index(artifacts: dict[str, str], date: dt.date) -> None:
     }
     for filename, label in labels.items():
         src = artifacts.get(filename, "missing")
-        rows.append(f'<a class="tile" href="{quote(filename)}"><section class="card"><h2>{html.escape(label)}</h2><p class="small"><code>{html.escape(filename)}</code></p><p class="small">Source: {html.escape(src)}</p></section></a>')
-    body = f"<p class=\"meta\">Daily Akira job outputs for {date.isoformat()}.</p><div class=\"grid\">{''.join(rows)}</div>"
+        rows.append(f'<div class="col-sm-6 col-lg-4"><a class="tile" href="{quote(filename)}"><section class="card akira-card"><div class="card-body"><div class="subheader">{html.escape(filename)}</div><h2 class="card-title h3">{html.escape(label)}</h2><p class="small mb-0">Source: {html.escape(src)}</p></div></section></a></div>')
+    body = f"<p class=\"meta\">Daily Akira job outputs for {date.isoformat()}.</p><div class=\"row row-cards\">{''.join(rows)}</div>"
     (PUBLISH_DIR / "index.html").write_text(page("Akira HTML Job Outputs", body), encoding="utf-8")
 
 

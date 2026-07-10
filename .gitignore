@@ -21,6 +21,9 @@
 .smart-env/
 .recall/
 
+# Desktop app attachments (local-only)
+.hermes/desktop-attachments/
+
 # Derived SQLite indexes; rebuild from Markdown
 *.sqlite
 *.sqlite-shm

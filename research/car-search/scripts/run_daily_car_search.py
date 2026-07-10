@@ -13,6 +13,7 @@ CL_URL='https://norfolk.craigslist.org/search/cta?max_price=10000&postal=23462&s
 AT_URL='https://www.autotempest.com/results?zip=23462&radius=50&maxprice=10000&maxmiles=150000'
 HEADERS={'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/126 Safari/537.36','Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8','Accept-Language':'en-US,en;q=0.9'}
 PICKUPS=[('Toyota','Tacoma'),('Ford','Ranger'),('Chevrolet','Colorado'),('Chevy','Colorado'),('GMC','Canyon'),('Nissan','Frontier'),('Mazda','B')]
+BMW_TARGET_YEARS={1984,1985,1986}
 EMAIL_TO=os.getenv('AKIRA_CAR_SEARCH_EMAIL_TO','roger.gregory@xerox.com')
 EMAIL_FROM=os.getenv('AKIRA_CAR_SEARCH_EMAIL_FROM','rtgregory@gmail.com')
 EMAIL_DISABLED=os.getenv('AKIRA_CAR_SEARCH_EMAIL_DISABLED','').lower() in {'1','true','yes'}
@@ -32,7 +33,7 @@ def as_int(s):
 
 def parse_year_make_model(title):
     year=as_int(re.search(r'\b(19\d{2}|20\d{2})\b',title).group(1)) if re.search(r'\b(19\d{2}|20\d{2})\b',title) else None
-    makes=['Toyota','Honda','Ford','Chevrolet','Chevy','GMC','Nissan','Mazda','Scion','Hyundai','Kia','Subaru','Dodge','Jeep','Buick','Lincoln','Mercury','Cadillac','Mitsubishi','Ram']
+    makes=['Toyota','Honda','BMW','Ford','Chevrolet','Chevy','GMC','Nissan','Mazda','Scion','Hyundai','Kia','Subaru','Dodge','Jeep','Buick','Lincoln','Mercury','Cadillac','Mitsubishi','Ram']
     make=None
     for mk in makes:
         if re.search(r'\b'+re.escape(mk)+r'\b',title,re.I): make=mk; break
@@ -41,6 +42,11 @@ def parse_year_make_model(title):
         rest=re.split(re.escape(make),title,flags=re.I,maxsplit=1)[-1].strip(' -')
         if rest: model=rest.split()[0].strip(' ,-/')
     return year,make,model
+
+def is_target_bmw_325i(title):
+    m=re.search(r'\b(1984|1985|1986)\b',title)
+    year=as_int(m.group(1)) if m else None
+    return year in BMW_TARGET_YEARS and re.search(r'\bbmw\b',title,re.I) and re.search(r'\b325i\b',title,re.I)
 
 def mileage_from_text(text):
     pats=[r'\b(\d{2,3},\d{3})\s*(?:mi|miles|mile|k miles)', r'\b(\d{2,3})k\s*(?:mi|miles)?\b', r'\bmileage\D{0,20}(\d{2,3},?\d{3})\b', r'\bodometer\D{0,20}(\d{2,3},?\d{3})\b']
@@ -69,8 +75,13 @@ def wanted(row):
     t=row['title'].lower(); p=row.get('price') or 999999
     if any(x in t for x in ['toyota','honda','tacoma','ranger','colorado','canyon','frontier']): return True
     if 'mazda b' in t or 'b-series' in t: return True
+    if is_target_bmw_325i(row['title']): return True
     if p<=3500: return True
     return False
+
+def posted_at_from_text(text):
+    m=re.search(r'id="display-date"[^>]*>\s*Posted\s*<time[^>]*datetime="([^"]+)"',text,re.S)
+    return m.group(1) if m else None
 
 def detail(row):
     text=fetch(row['url'])
@@ -87,7 +98,8 @@ def detail(row):
     year,make,model=parse_year_make_model(title)
     is_pick= any(mk.lower() in title.lower() and md.lower() in title.lower() for mk,md in PICKUPS)
     title_status='clean' if re.search(r'clean title',body+' '+attrs,re.I) else 'unknown'
-    return {**row,'title':title,'price':price,'location':loc,'body':body,'attrs':attrs,'mileage':mileage,'year':year,'make':make,'model':model,'is_small_pickup':is_pick,'title_status':title_status}
+    posted_at=posted_at_from_text(text)
+    return {**row,'title':title,'price':price,'location':loc,'body':body,'attrs':attrs,'mileage':mileage,'year':year,'make':make,'model':model,'is_small_pickup':is_pick,'title_status':title_status,'posted_at':posted_at}
 
 def make_listing(r):
     notes=[]
@@ -99,11 +111,12 @@ def make_listing(r):
     mk=(r.get('make') or '').lower(); price=r.get('price'); mil=r.get('mileage')
     if mk=='toyota': reason.append('Toyota preference')
     elif mk=='honda': reason.append('Honda preference')
+    if is_target_bmw_325i(r.get('title') or ''): reason.append('1984-1986 BMW 325i target')
     if r.get('is_small_pickup'): reason.append('small/midsize pickup preference')
     if price is not None: reason.append('under $10,000')
     if mil is not None: reason.append('under 150,000 visible miles')
     else: reason.append('mileage not visible')
-    return {'source':'Craigslist Hampton Roads','url':r['url'],'vehicle':r['title'],'year':r.get('year'),'make':r.get('make'),'model':r.get('model'),'trim':None,'price':r.get('price'),'mileage':r.get('mileage'),'location':r.get('location'),'distance_miles':None,'dealer':'unknown Craigslist seller','vin':None,'title_status':r.get('title_status'),'notes':' '.join(notes),'is_small_pickup':bool(r.get('is_small_pickup')),'match_reason':'; '.join(reason)}
+    return {'source':'Craigslist Hampton Roads','url':r['url'],'vehicle':r['title'],'year':r.get('year'),'make':r.get('make'),'model':r.get('model'),'trim':None,'price':r.get('price'),'mileage':r.get('mileage'),'location':r.get('location'),'distance_miles':None,'dealer':'unknown Craigslist seller','vin':None,'title_status':r.get('title_status'),'notes':' '.join(notes),'is_small_pickup':bool(r.get('is_small_pickup')),'match_reason':'; '.join(reason),'posted_at':r.get('posted_at')}
 
 def score(item):
     mk=(item.get('make') or '').lower(); sc={'toyota':100,'honda':86}.get(mk,72 if item.get('is_small_pickup') else 20)
@@ -120,6 +133,10 @@ def render_dashboard(listings, source_notes, counts, report_path, json_path):
     def esc(x): return html.escape('' if x is None else str(x), quote=True)
     def money(x): return '—' if x is None else f"${int(x):,}"
     def miles(x): return '<span class="reliability reliability-bad">unknown</span>' if x is None else f"{int(x):,}"
+    def posted(x):
+        if not x: return '—'
+        try: return dt.datetime.fromisoformat(x).date().isoformat()
+        except ValueError: return esc(x)
     def reliability(l):
         status=(l.get('maintenance_reliability') or 'neutral').lower()
         label=status if status in {'bad','neutral','good'} else 'neutral'
@@ -133,7 +150,7 @@ def render_dashboard(listings, source_notes, counts, report_path, json_path):
     rows=[]
     for i,l in enumerate(listings[:30],1):
         make=(l.get('make') or '').lower(); is_pickup='true' if l.get('is_small_pickup') else 'false'
-        rows.append(f"""<tr data-make=\"{esc(make)}\" data-pickup=\"{is_pickup}\"><td>{i}</td><td><a href=\"{esc(l.get('url'))}\">{esc(l.get('vehicle'))}</a><div class=\"why\">{esc(l.get('match_reason'))}</div></td><td>{esc(l.get('year'))}</td><td>{money(l.get('price'))}</td><td>{miles(l.get('mileage'))}</td><td>{reliability(l)}</td></tr>""")
+        rows.append(f"""<tr data-make=\"{esc(make)}\" data-pickup=\"{is_pickup}\"><td>{i}</td><td><a href=\"{esc(l.get('url'))}\">{esc(l.get('vehicle'))}</a><div class=\"why\">{esc(l.get('match_reason'))}</div></td><td>{esc(l.get('year'))}</td><td>{money(l.get('price'))}</td><td>{miles(l.get('mileage'))}</td><td>{posted(l.get('posted_at'))}</td><td>{reliability(l)}</td></tr>""")
     html_doc=f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Car Search Dashboard</title>
 <style>
@@ -141,7 +158,7 @@ def render_dashboard(listings, source_notes, counts, report_path, json_path):
 .cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0}}.card{{cursor:pointer;text-align:left;font:inherit;color:inherit;transition:box-shadow .15s ease}}.card:hover{{box-shadow:0 4px 12px rgba(0,0,0,.1)}}.card.active{{box-shadow:0 0 0 1.5px var(--accent)}}
 </style></head><body><main><div class="top"><div><h1><span class="brand">Used-Car</span> Search Dashboard</h1><div class="sub">Generated {TODAY} · ZIP 23462 · under $10k · under 150k visible miles · active sources only</div></div><div class="sub"><a href="../{esc(str(report_path.relative_to(vault_root)).replace(' ', '%20'))}">Markdown report</a> · <a href="../{esc(str(json_path.relative_to(vault_root)).replace(' ', '%20'))}">JSON data</a></div></div>
 <section class="cards" id="car-search-filters"><button type="button" class="card active" data-filter="all" style="border-left-color:#3366FF;"><div class="num">{total}</div><div class="label">verified leads</div></button><button type="button" class="card" data-filter="make:toyota" style="border-left-color:#dc2626;"><div class="num">{toyotas}</div><div class="label">Toyotas</div></button><button type="button" class="card" data-filter="make:honda" style="border-left-color:#0ea5e9;"><div class="num">{hondas}</div><div class="label">Hondas</div></button><button type="button" class="card" data-filter="pickup" style="border-left-color:#16a34a;"><div class="num">{pickups}</div><div class="label">small/midsize pickups</div></button></section>
-<div class="table-wrap"><table id="car-search-table"><thead><tr><th data-key="rank" data-type="num">#</th><th data-key="vehicle" data-type="text">Vehicle</th><th data-key="year" data-type="num">Year</th><th data-key="price" data-type="money">Price/Bid</th><th data-key="mileage" data-type="num">Mileage</th><th data-key="reliability" data-type="text">Reliability</th></tr></thead><tbody>{''.join(rows) if rows else '<tr><td colspan="6">No verified active-source leads today.</td></tr>'}</tbody></table></div>
+<div class="table-wrap"><table id="car-search-table"><thead><tr><th data-key="rank" data-type="num">#</th><th data-key="vehicle" data-type="text">Vehicle</th><th data-key="year" data-type="num">Year</th><th data-key="price" data-type="money">Price/Bid</th><th data-key="mileage" data-type="num">Mileage</th><th data-key="posted" data-type="text">Posted</th><th data-key="reliability" data-type="text">Reliability</th></tr></thead><tbody>{''.join(rows) if rows else '<tr><td colspan="7">No verified active-source leads today.</td></tr>'}</tbody></table></div>
 <script>
 (function(){{
   const table = document.getElementById('car-search-table');
@@ -245,7 +262,7 @@ def main():
     try:
         cl=fetch(CL_URL); (data_dir/f'{TODAY}-cl.html').write_text(cl,encoding='utf-8')
         rows=parse_cl_static(cl)
-        source_notes['Craigslist Hampton Roads']={'note':f'Accessible. Parsed {len(rows)} static search rows from Craigslist; detail pages fetched for Toyota/Honda/small-pickup/very-low-price candidates only.','attempted_url':CL_URL}
+        source_notes['Craigslist Hampton Roads']={'note':f'Accessible. Parsed {len(rows)} static search rows from Craigslist; detail pages fetched for Toyota/Honda/small-pickup/1984-1986 BMW 325i/very-low-price candidates only.','attempted_url':CL_URL}
         for row in [x for x in rows if wanted(x)][:80]:
             try:
                 r=detail(row)
@@ -317,20 +334,24 @@ def main():
     for l in listings: counts[l['source']]=counts.get(l['source'],0)+1
     def money(x): return 'unknown' if x is None else f"${int(x):,}"
     def miles(x): return 'not visible' if x is None else f"{int(x):,}"
+    def posted(x):
+        if not x: return 'unknown'
+        try: return dt.datetime.fromisoformat(x).date().isoformat()
+        except ValueError: return x
     def reliability_text(l):
         q=l.get('maintenance_reliability_query')
         suffix=f" Search: {q}" if q else ''
         return f"{l.get('maintenance_reliability') or 'neutral'} — {l.get('maintenance_reliability_reason') or 'No clear reliability trend observed.'}{suffix}"
-    lines=[f'# Used-Car Daily Search — {TODAY}','', '## Date searched and criteria','',f'- Date searched: {TODAY}','- ZIP: 23462','- Radius: 50 miles','- Price/current bid/sold amount: under $10,000 when available','- Mileage: under 150,000 miles when visible','- Active automated sources only: AutoTempest, Craigslist Hampton Roads, Auction757 / BidWrangler, Eggleston Automotive PDFs','', '## Counts by active source','','| Source | Verified listings/lots captured |','|---|---:|']
+    lines=[f'# Used-Car Daily Search — {TODAY}','', '## Date searched and criteria','',f'- Date searched: {TODAY}','- ZIP: 23462','- Radius: 50 miles','- Price/current bid/sold amount: under $10,000 when available','- Mileage: under 150,000 miles when visible','- Target classic: 1984-1986 BMW 325i','- Active automated sources only: AutoTempest, Craigslist Hampton Roads, Auction757 / BidWrangler, Eggleston Automotive PDFs','', '## Counts by active source','','| Source | Verified listings/lots captured |','|---|---:|']
     for src in ['AutoTempest','Craigslist Hampton Roads','Auction757 / BidWrangler','Eggleston Automotive']:
         lines.append(f'| {src} | {counts.get(src,0)} |')
     lines.append(f'| **Total in today\'s JSON** | **{len(listings)}** |')
     lines += ['', '## Active-source status','','| Source | Status / notes | URL |','|---|---|---|']
     for src,n in source_notes.items(): lines.append(f"| {src} | {n['note']} | <{n['attempted_url']}> |")
-    lines += ['', '## Top ranked verified matches','','| Rank | Source | Vehicle | Year | Price/current bid | Mileage | Reliability | Location | Why it fits | Link |','|---:|---|---|---:|---:|---:|---|---|---|---|']
+    lines += ['', '## Top ranked verified matches','','| Rank | Source | Vehicle | Year | Price/current bid | Mileage | Posted | Reliability | Location | Why it fits | Link |','|---:|---|---|---:|---:|---:|---|---|---|---|---|']
     for i,l in enumerate(listings[:15],1):
-        lines.append(f"| {i} | {l['source']} | {l.get('vehicle') or ''} | {l.get('year') or ''} | {money(l.get('price'))} | {miles(l.get('mileage'))} | {reliability_text(l)} | {l.get('location') or ''} | {l.get('match_reason') or ''} | [link]({l.get('url')}) |")
-    if not listings: lines.append('| — | — | No verified current listings/lots accessible from active sources today. | — | — | — | — | — | — | — |')
+        lines.append(f"| {i} | {l['source']} | {l.get('vehicle') or ''} | {l.get('year') or ''} | {money(l.get('price'))} | {miles(l.get('mileage'))} | {posted(l.get('posted_at'))} | {reliability_text(l)} | {l.get('location') or ''} | {l.get('match_reason') or ''} | [link]({l.get('url')}) |")
+    if not listings: lines.append('| — | — | No verified current listings/lots accessible from active sources today. | — | — | — | — | — | — | — | — |')
     lines += ['', '## Auction-lot section','']
     lines.append(f"- Auction757/BidWrangler: {len(auc_lots)} qualifying active vehicle lots found. Discovered auctions include: " + '; '.join(f"{a.get('title')} ({a.get('date') or 'date unknown'})" for a in (auc.get('auctions_discovered') or [])) + '.')
     if stale_egg:

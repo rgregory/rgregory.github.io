@@ -98,6 +98,7 @@ CREATE TABLE IF NOT EXISTS listings (
   dealer TEXT,
   location TEXT,
   distance_miles REAL,
+  posted_at TEXT,
   preference_bucket TEXT,
   score INTEGER NOT NULL DEFAULT 0
 );
@@ -156,6 +157,7 @@ SELECT
   l.vin,
   l.title_status,
   l.is_small_pickup,
+  l.posted_at,
   l.preference_bucket,
   l.score,
   l.first_seen,
@@ -296,6 +298,9 @@ def init_db(conn: sqlite3.Connection) -> None:
     for column, statement in migrations.items():
         if column not in existing:
             conn.execute(statement)
+    existing_listings = {row[1] for row in conn.execute("PRAGMA table_info(listings)").fetchall()}
+    if "posted_at" not in existing_listings:
+        conn.execute("ALTER TABLE listings ADD COLUMN posted_at TEXT")
     conn.commit()
 
 
@@ -348,13 +353,14 @@ def ingest(conn: sqlite3.Connection, payload: dict[str, Any], report_path: str |
         price = as_int(raw.get("price"))
         mileage = as_int(raw.get("mileage"))
         distance = as_float(raw.get("distance_miles"))
+        posted_at = str(raw.get("posted_at") or "").strip() or None
         conn.execute(
             """
             INSERT INTO listings(
               identity_key, first_seen, last_seen, source_first_seen, vin, url, canonical_url, source,
               vehicle, year, make, model, trim, body_style, is_small_pickup, title_status,
-              dealer, location, distance_miles, preference_bucket, score
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+              dealer, location, distance_miles, posted_at, preference_bucket, score
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(identity_key) DO UPDATE SET
               last_seen=excluded.last_seen,
               url=COALESCE(NULLIF(excluded.url, ''), listings.url),
@@ -370,6 +376,7 @@ def ingest(conn: sqlite3.Connection, payload: dict[str, Any], report_path: str |
               dealer=COALESCE(excluded.dealer, listings.dealer),
               location=COALESCE(excluded.location, listings.location),
               distance_miles=COALESCE(excluded.distance_miles, listings.distance_miles),
+              posted_at=COALESCE(excluded.posted_at, listings.posted_at),
               preference_bucket=excluded.preference_bucket,
               score=excluded.score
             """,
@@ -383,7 +390,7 @@ def ingest(conn: sqlite3.Connection, payload: dict[str, Any], report_path: str |
                 int(pickup), str(raw.get("title_status") or "").strip() or None,
                 str(raw.get("dealer") or "").strip() or None,
                 str(raw.get("location") or "").strip() or None,
-                distance, bucket, score,
+                distance, posted_at, bucket, score,
             ),
         )
         listing_id = int(conn.execute("SELECT listing_id FROM listings WHERE identity_key=?", (key,)).fetchone()[0])
@@ -436,7 +443,7 @@ def top_summary(conn: sqlite3.Connection, limit: int = 10) -> list[dict[str, Any
     rows = conn.execute(
         """
         SELECT source, vehicle, year, make, model, price, mileage, maintenance_reliability,
-               maintenance_reliability_reason, location, distance_miles,
+               maintenance_reliability_reason, location, distance_miles, posted_at,
                preference_bucket, score, url
         FROM current_listings
         ORDER BY score DESC, price ASC, mileage ASC
@@ -445,7 +452,7 @@ def top_summary(conn: sqlite3.Connection, limit: int = 10) -> list[dict[str, Any
         (limit,),
     ).fetchall()
     cols = [d[0] for d in conn.execute(
-        "SELECT source, vehicle, year, make, model, price, mileage, maintenance_reliability, maintenance_reliability_reason, location, distance_miles, preference_bucket, score, url FROM current_listings LIMIT 0"
+        "SELECT source, vehicle, year, make, model, price, mileage, maintenance_reliability, maintenance_reliability_reason, location, distance_miles, posted_at, preference_bucket, score, url FROM current_listings LIMIT 0"
     ).description]
     return [dict(zip(cols, row)) for row in rows]
 

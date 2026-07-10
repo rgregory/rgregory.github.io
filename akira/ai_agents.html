@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI Agents Research</title><style>:root{color-scheme:light;--bg:#f8fafc;--panel:#fff;--text:#0f172a;--muted:#64748b;--line:#dbeafe;--link:#0369a1}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f8fafc,#e0f2fe);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}main{max-width:1040px;margin:0 auto;padding:32px 20px 56px}a{color:var(--link)}h1{font-size:clamp(2rem,6vw,4rem);line-height:1;margin:.2em 0}.meta{color:var(--muted);font-size:1.05rem}.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 50px rgba(15,23,42,.08);padding:22px;margin:18px 0}pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;padding:16px;border-radius:16px;overflow:auto}table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:16px;overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e0f2fe;color:#0f172a}ul{padding-left:1.3rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.tile{display:block;text-decoration:none;color:inherit}.tile .card{height:100%;margin:0}.small{font-size:.92rem;color:var(--muted)}footer{margin-top:30px;color:var(--muted);font-size:.9rem}</style></head>
+<body><main><h1>AI Agents Research</h1><p class="meta">Generated 2026-07-10T11:02:35-04:00</p><section class="card"><p class="small">Source: <code>research/ai-agents/briefings/2026-07-09.md</code></p><h1>AI Agents Briefing — 2026-07-09</h1>
+<h2>Summary</h2>
+<p>Found 6 high-signal updates since the previous run. The strongest themes were operational hardening for unattended coding agents, passive/side-effect-free capability discovery, bounded observability for durable SQLite logs, and richer evaluation methods for coding and multi-agent systems.</p>
+<h2>Top findings</h2>
+<p>1. <strong>Claude Code v2.1.205 hardens background/auto-mode operation.</strong> It blocks session transcript tampering in auto mode, asks before unresolved dangerous <code>rm -rf</code> variables, improves background task status/resume behavior, and states explicitly when no human input occurred so fabricated transcript approvals are not acted on. 2. <strong>OpenAI Codex makes skill-root discovery passive and fail-fast.</strong> <code>skills/list</code> now avoids starting executors, waiting for recovery, or reconnecting failed environments when taking a read-only selected-root snapshot. 3. <strong>AgentLens evaluates whole coding-agent trajectories.</strong> It adds production-assessed trajectory reviews and side-by-side comparisons to catch behavior/product regressions beyond final pass/fail. 4. <strong>SkillCenter packages source-grounded skills as SQLite FTS bundles.</strong> Its reported 216,938 structured skills use source grounding and offline-searchable SQLite FTS5 bundles, directly relevant to local-first agent memory and skill libraries. 5. <strong>Institutional red-teaming treats deployment rules as causal variables.</strong> IABench-CA shows multi-agent safety changes materially when only deployment/consequence rules vary.</p>
+<h2>What changed since last run</h2>
+<ul>
+<li>Added 6 findings to <code>findings.md</code>.</li>
+<li>Updated the active <code>coding_agent_evals</code> topic with AgentLens and institutional red-teaming as relevant evaluation sources.</li>
+<li>Added new entity notes for AgentLens, SkillCenter, Institutional Red-Teaming, IABench-CA, Passive Capability Roots, and MCP Tool-List Tracing.</li>
+<li>Added 6 follow-up questions to <code>open-questions.md</code>.</li>
+<li>Updated <code>state.json</code> and rebuilt the derived SQLite graph index.</li>
+</ul>
+<h2>Open questions to revisit</h2>
+<ul>
+<li>Should scheduled coding-agent harnesses protect transcript files and validate approval provenance separately from model-visible text?</li>
+<li>Should Hermes and other agent systems enforce passive/no-start/no-reconnect contracts for catalog reads by default?</li>
+<li>What retention/summarization policy is appropriate for high-frequency normal-path MCP/tool telemetry in Markdown/SQLite agent loops?</li>
+<li>How should AgentLens trajectory reviews combine with SWE-Together corrective-feedback-turn metrics for asynchronous background agents?</li>
+<li>Can SkillCenter-style source-grounded skills be represented cleanly as Markdown-first notes with SQLite FTS as the derived search layer?</li>
+<li>Which multi-agent orchestration rules should be evaluated as causal deployment-rule variables?</li>
+</ul>
+<h2>Files updated</h2>
+<ul>
+<li><code>findings.md</code></li>
+<li><code>open-questions.md</code></li>
+<li><code>topic-queue.md</code></li>
+<li><code>state.json</code></li>
+<li><code>briefings/2026-07-09.md</code></li>
+<li><code>entities/AgentLens.md</code></li>
+<li><code>entities/SkillCenter.md</code></li>
+<li><code>entities/Institutional Red-Teaming.md</code></li>
+<li><code>entities/IABench-CA.md</code></li>
+<li><code>entities/Passive Capability Roots.md</code></li>
+<li><code>entities/MCP Tool-List Tracing.md</code></li>
+<li><code>graph.sqlite</code> (derived, rebuilt)</li>
+</ul></section><footer>Akira HTML artifact published for rgregory.github.io/akira/.</footer></main></body></html>

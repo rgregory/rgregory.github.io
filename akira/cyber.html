@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cyber Threat Briefing</title><style>:root{color-scheme:light;--bg:#f8fafc;--panel:#fff;--text:#0f172a;--muted:#64748b;--line:#dbeafe;--link:#0369a1}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f8fafc,#e0f2fe);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}main{max-width:1040px;margin:0 auto;padding:32px 20px 56px}a{color:var(--link)}h1{font-size:clamp(2rem,6vw,4rem);line-height:1;margin:.2em 0}.meta{color:var(--muted);font-size:1.05rem}.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 50px rgba(15,23,42,.08);padding:22px;margin:18px 0}pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;padding:16px;border-radius:16px;overflow:auto}table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:16px;overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e0f2fe;color:#0f172a}ul{padding-left:1.3rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.tile{display:block;text-decoration:none;color:inherit}.tile .card{height:100%;margin:0}.small{font-size:.92rem;color:var(--muted)}footer{margin-top:30px;color:var(--muted);font-size:.9rem}</style></head>
+<body><main><h1>Cyber Threat Briefing</h1><p class="meta">Generated 2026-07-10T11:02:01-04:00</p><section class="card"><p class="small">Source: <code>briefings/cyber/2026-07-10 — Cyber Threat Briefing.md</code></p><p>type: cyber-threat-briefing date: 2026-07-10 tags: - briefing/cyber - cybersecurity - cyberinsurance - ransomware sources_checked: 12 new_items: 26 high_signal_items: 6 status: draft ---</p>
+<h1>2026-07-10 — Cyber Threat Briefing</h1>
+<h2>Executive Summary</h2>
+<ul>
+<li>26 new item(s) ingested.</li>
+<li>6 high-signal item(s) flagged for review.</li>
+<li>18 actively exploited vulnerabilities added to CISA KEV in the last 30 days.</li>
+<li>Top pattern: cyberinsurance</li>
+</ul>
+<h2>Fast-Moving Patterns</h2>
+<p>| Pattern | Signal | Confidence | |---|---:|---| | cyberinsurance | 6 | High | | identity | 5 | High | | vulnerability_exploitation | 4 | Medium | | ransomware | 2 | Medium |</p>
+<h2>High-Signal Items Today</h2>
+<h3>1. Schneider Electric PowerChute Serial Shutdown</h3>
+<ul>
+<li><strong>Source:</strong> CISA Alerts</li>
+<li><strong>Published:</strong> Thu, 09 Jul 26 12:00:00 +0000</li>
+<li><strong>URL:</strong> https://www.cisa.gov/news-events/ics-advisories/icsa-26-190-02</li>
+<li><strong>Score:</strong> 60</li>
+<li><strong>Mapped pattern:</strong> vulnerability_exploitation, identity</li>
+<li><strong>Potential mitigations:</strong> identity_hardening: Phishing-resistant MFA, Conditional access, Privileged access management</li>
+</ul>
+<h3>2. OpenPLC v3</h3>
+<ul>
+<li><strong>Source:</strong> CISA Alerts</li>
+<li><strong>Published:</strong> Thu, 09 Jul 26 12:00:00 +0000</li>
+<li><strong>URL:</strong> https://www.cisa.gov/news-events/ics-advisories/icsa-26-190-01</li>
+<li><strong>Score:</strong> 60</li>
+<li><strong>Mapped pattern:</strong> vulnerability_exploitation, identity</li>
+<li><strong>Potential mitigations:</strong> identity_hardening: Phishing-resistant MFA, Conditional access, Privileged access management</li>
+</ul>
+<h3>3. Schneider Electric Easergy MiCOM Px40 Series</h3>
+<ul>
+<li><strong>Source:</strong> CISA Alerts</li>
+<li><strong>Published:</strong> Thu, 09 Jul 26 12:00:00 +0000</li>
+<li><strong>URL:</strong> https://www.cisa.gov/news-events/ics-advisories/icsa-26-190-03</li>
+<li><strong>Score:</strong> 60</li>
+<li><strong>Mapped pattern:</strong> vulnerability_exploitation, identity, cyberinsurance</li>
+<li><strong>Potential mitigations:</strong> identity_hardening: Phishing-resistant MFA, Conditional access, Privileged access management</li>
+</ul>
+<h3>4. New Helix vishing group emerges in SharePoint data theft attacks</h3>
+<ul>
+<li><strong>Source:</strong> BleepingComputer</li>
+<li><strong>Published:</strong> Thu, 09 Jul 2026 13:08:29 -0400</li>
+<li><strong>URL:</strong> https://www.bleepingcomputer.com/news/security/new-helix-vishing-group-emerges-in-sharepoint-data-theft-attacks/</li>
+<li><strong>Score:</strong> 50</li>
+<li><strong>Mapped pattern:</strong> ransomware, identity</li>
+<li><strong>Potential mitigations:</strong> identity_hardening: Phishing-resistant MFA, Conditional access, Privileged access management; ransomware_resilience: Immutable backups, EDR/MDR, Segmentation</li>
+</ul>
+<h3>5. New GigaWiper Windows Backdoor Bundles Disk Wiping, Fake Ransomware, and Spyware</h3>
+<ul>
+<li><strong>Source:</strong> The Hacker News</li>
+<li><strong>Published:</strong> Thu, 09 Jul 2026 23:38:07 +0530</li>
+<li><strong>URL:</strong> https://thehackernews.com/2026/07/new-gigawiper-windows-backdoor-bundles.html</li>
+<li><strong>Score:</strong> 40</li>
+<li><strong>Mapped pattern:</strong> ransomware</li>
+<li><strong>Potential mitigations:</strong> ransomware_resilience: Immutable backups, EDR/MDR, Segmentation</li>
+</ul>
+<h3>6. Microsoft Reins in RoguePlanet Zero-Day Threat</h3>
+<ul>
+<li><strong>Source:</strong> Dark Reading</li>
+<li><strong>Published:</strong> Thu, 09 Jul 2026 20:21:19 GMT</li>
+<li><strong>URL:</strong> https://www.darkreading.com/vulnerabilities-threats/microsoft-rogueplanet-zero-day-threat</li>
+<li><strong>Score:</strong> 40</li>
+<li><strong>Mapped pattern:</strong> vulnerability_exploitation</li>
+</ul>
+<h2>Actively Exploited Vulnerabilities Added in Last 30 Days</h2>
+<p>CISA KEV entries are known actively exploited vulnerabilities. This section is shown every briefing even when no items were newly ingested today.</p>
+<p>| CVE | Vulnerability | Vendor/Product | Date Added | Due Date | Ransomware Use | |---|---|---|---|---|---| | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48282">CVE-2026-48282</a> | Adobe ColdFusion Path Traversal Vulnerability | Adobe / ColdFusion | 2026-07-07 | 2026-07-10 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48908">CVE-2026-48908</a> | JoomShaper SP Page Builder Unrestricted Upload of File with Dangerous Type Vulnerability | JoomShaper / SP Page Builder | 2026-07-07 | 2026-07-10 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56290">CVE-2026-56290</a> | Joomlack Page Builder Improper Access Control Vulnerability | Joomlack / Page Builder | 2026-07-07 | 2026-07-10 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-55255">CVE-2026-55255</a> | Langflow Authorization Bypass Through User-Controlled Key Vulnerability | Langflow / Langflow | 2026-07-07 | 2026-07-10 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45659">CVE-2026-45659</a> | Microsoft SharePoint Server Deserialization of Untrusted Data Vulnerability | Microsoft / SharePoint Server | 2026-07-01 | 2026-07-04 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48558">CVE-2026-48558</a> | SimpleHelp Authentication Bypass Vulnerability | SimpleHelp  / SimpleHelp | 2026-06-29 | 2026-07-02 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20230">CVE-2026-20230</a> | Cisco Unified Communications Manager Server-Side Request Forgery (SSRF) Vulnerability | Cisco / Unified Communications Manager | 2026-06-25 | 2026-06-28 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-12569">CVE-2026-12569</a> | PTC Windchill and FlexPLM Improper Input Validation Vulnerability | PTC / Windchill and FlexPLM | 2026-06-25 | 2026-06-28 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2025-67038">CVE-2025-67038</a> | Lantronix EDS5000 Code Injection Vulnerability | Lantronix / EDS5000 | 2026-06-23 | 2026-06-26 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34908">CVE-2026-34908</a> | Ubiquiti UniFi OS Improper Access Control Vulnerability | Ubiquiti / UniFi OS | 2026-06-23 | 2026-06-26 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34910">CVE-2026-34910</a> | Ubiquiti UniFi OS Improper Input Validation Vulnerability | Ubiquiti / UniFi OS | 2026-06-23 | 2026-06-26 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-34909">CVE-2026-34909</a> | Ubiquiti UniFi OS Path Traversal Vulnerability | Ubiquiti / UniFi OS | 2026-06-23 | 2026-06-26 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20253">CVE-2026-20253</a> | Splunk Enterprise Missing Authentication for Critical Function Vulnerability | Splunk / Enterprise | 2026-06-18 | 2026-06-21 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48907">CVE-2026-48907</a> | Widget Factory Joomla Content Editor Improper Access Control Vulnerability | Widget Factory / Joomla Content Editor  | 2026-06-16 | 2026-06-19 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20262">CVE-2026-20262</a> | Cisco Catalyst SD-WAN Manager Directory or Path Traversal Vulnerability | Cisco / Catalyst SD-WAN Manager | 2026-06-15 | 2026-06-29 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-54420">CVE-2026-54420</a> | LiteSpeed cPanel Plugin UNIX Symbolic Link (Symlink) Following Vulnerability | LiteSpeed / cPanel Plugin | 2026-06-15 | 2026-06-18 | Unknown | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-35273">CVE-2026-35273</a> | Oracle PeopleSoft Enterprise PeopleTools Missing Authentication for Critical Function Vulnerability | Oracle /  PeopleSoft Enterprise PeopleTools | 2026-06-12 | 2026-06-15 | Known | | <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-10520">CVE-2026-10520</a> | Ivanti Sentry OS Command Injection Vulnerability | Ivanti / Sentry | 2026-06-11 | 2026-06-14 | Unknown |</p>
+<h2>Solution Alignment</h2>
+<p>| Threat Pattern | Control Category | Candidate Solution Type | Why Now? | |---|---|---|---| | vulnerability_exploitation, identity | identity_hardening | Phishing-resistant MFA | Schneider Electric PowerChute Serial Shutdown | | vulnerability_exploitation, identity | identity_hardening | Conditional access | Schneider Electric PowerChute Serial Shutdown | | vulnerability_exploitation, identity | identity_hardening | Privileged access management | Schneider Electric PowerChute Serial Shutdown | | vulnerability_exploitation, identity | identity_hardening | Phishing-resistant MFA | OpenPLC v3 | | vulnerability_exploitation, identity | identity_hardening | Conditional access | OpenPLC v3 | | vulnerability_exploitation, identity | identity_hardening | Privileged access management | OpenPLC v3 | | vulnerability_exploitation, identity, cyberinsurance | identity_hardening | Phishing-resistant MFA | Schneider Electric Easergy MiCOM Px40 Series | | vulnerability_exploitation, identity, cyberinsurance | identity_hardening | Conditional access | Schneider Electric Easergy MiCOM Px40 Series | | vulnerability_exploitation, identity, cyberinsurance | identity_hardening | Privileged access management | Schneider Electric Easergy MiCOM Px40 Series | | ransomware, identity | identity_hardening | Phishing-resistant MFA | New Helix vishing group emerges in SharePoint data theft attacks | | ransomware, identity | identity_hardening | Conditional access | New Helix vishing group emerges in SharePoint data theft attacks | | ransomware, identity | identity_hardening | Privileged access management | New Helix vishing group emerges in SharePoint data theft attacks | | ransomware, identity | ransomware_resilience | Immutable backups | New Helix vishing group emerges in SharePoint data theft attacks | | ransomware, identity | ransomware_resilience | EDR/MDR | New Helix vishing group emerges in SharePoint data theft attacks | | ransomware, identity | ransomware_resilience | Segmentation | New Helix vishing group emerges in SharePoint data theft attacks | | identity | identity_hardening | Phishing-resistant MFA | New Forg365 phishing platform uses AI to target Microsoft 365 accounts | | identity | identity_hardening | Conditional access | New Forg365 phishing platform uses AI to target Microsoft 365 accounts | | identity | identity_hardening | Privileged access management | New Forg365 phishing platform uses AI to target Microsoft 365 accounts | | ransomware | ransomware_resilience | Immutable backups | New GigaWiper Windows Backdoor Bundles Disk Wiping, Fake Ransomware, and Spyware | | ransomware | ransomware_resilience | EDR/MDR | New GigaWiper Windows Backdoor Bundles Disk Wiping, Fake Ransomware, and Spyware |</p>
+<h2>Source Health</h2>
+<p>| Source | Status | New Items | Last Error | |---|---|---:|---| | CISA Alerts | ok | 3 |  | | CISA Known Exploited Vulnerabilities | ok | 0 |  | | SANS Internet Storm Center | ok | 1 |  | | Tenable News | ok | 0 |  | | BleepingComputer | ok | 6 |  | | The Hacker News | ok | 4 |  | | Dark Reading | ok | 4 |  | | Cybersecurity Hub News | ok | 0 |  | | Insurance Day All | ok | 4 |  | | DTCC Important Notices | ok | 4 |  | | The Actuary Magazine | ok | 0 |  | | SEC 8-K Cybersecurity Filings | ok | 0 |  |</p></section><footer>Akira HTML artifact published for rgregory.github.io/akira/.</footer></main></body></html>

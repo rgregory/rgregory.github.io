@@ -136,11 +136,50 @@ def render_dashboard(listings, source_notes, counts, report_path, json_path):
     for i,l in enumerate(listings[:30],1):
         rows.append(f"""<tr><td>{i}</td><td><a href=\"{esc(l.get('url'))}\">{esc(l.get('vehicle'))}</a><div class=\"why\">{esc(l.get('match_reason'))}</div></td><td>{esc(l.get('year'))}</td><td>{money(l.get('price'))}</td><td>{miles(l.get('mileage'))}</td><td>{reliability(l)}</td></tr>""")
     html_doc=f"""<!doctype html>
-<html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Car Search Dashboard</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Car Search Dashboard</title>
 <style>
-:root{{--bg:#f8fafc;--panel:#ffffff;--muted:#64748b;--text:#0f172a;--accent:#0284c7;--good:#16a34a;--warn:#d97706;--line:#cbd5e1}}*{{box-sizing:border-box}}body{{margin:0;background:linear-gradient(135deg,#f8fafc,#e0f2fe);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif}}main{{max-width:1180px;margin:0 auto;padding:28px}}a{{color:#0369a1}}.top{{display:flex;justify-content:space-between;gap:16px;align-items:end;flex-wrap:wrap}}h1{{margin:.2rem 0;font-size:2rem}}.sub{{color:var(--muted)}}.cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0}}.card,.source{{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 10px 30px rgba(15,23,42,.08)}}.num{{font-size:2rem;font-weight:800;color:#0f172a}}.label,.source span{{display:block;color:var(--muted);font-size:.85rem}}table{{width:100%;border-collapse:collapse;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,.08)}}th,td{{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}}th{{color:#075985;background:#f1f5f9;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}}tr:hover{{background:#f0f9ff}}.why{{color:var(--muted);font-size:.85rem;margin-top:4px}}.flag,.ok,.reliability{{display:inline-block;border-radius:999px;padding:3px 8px;margin:2px;font-size:.75rem}}.flag{{background:#fef3c7;color:#92400e;border:1px solid #fbbf24}}.ok,.reliability-good{{background:#dcfce7;color:#166534;border:1px solid #86efac}}.reliability-neutral{{background:#e0f2fe;color:#075985;border:1px solid #7dd3fc}}.reliability-bad{{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}}.sources{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:22px}}.source p{{color:var(--muted);font-size:.88rem}}footer{{margin-top:20px;color:var(--muted);font-size:.9rem}}
-</style></head><body><main><div class=\"top\"><div><h1>Used-Car Search Dashboard</h1><div class=\"sub\">Generated {TODAY} · ZIP 23462 · under $10k · under 150k visible miles · active sources only</div></div><div class=\"sub\"><a href=\"../{esc(str(report_path.relative_to(vault_root)).replace(' ', '%20'))}\">Markdown report</a> · <a href=\"../{esc(str(json_path.relative_to(vault_root)).replace(' ', '%20'))}\">JSON data</a></div></div>
-<table><thead><tr><th>#</th><th>Vehicle</th><th>Year</th><th>Price/Bid</th><th>Mileage</th><th>Reliability</th></tr></thead><tbody>{''.join(rows) if rows else '<tr><td colspan="6">No verified active-source leads today.</td></tr>'}</tbody></table>
+:root{{--bg:#f8fafc;--panel:#ffffff;--muted:#64748b;--text:#0f172a;--accent:#0284c7;--good:#16a34a;--warn:#d97706;--line:#cbd5e1}}*{{box-sizing:border-box}}body{{margin:0;background:linear-gradient(135deg,#f8fafc,#e0f2fe);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif}}main{{max-width:1180px;margin:0 auto;padding:28px}}a{{color:#0369a1}}.top{{display:flex;justify-content:space-between;gap:16px;align-items:end;flex-wrap:wrap}}h1{{margin:.2rem 0;font-size:2rem}}.sub{{color:var(--muted)}}.cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:22px 0}}.card,.source{{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 10px 30px rgba(15,23,42,.08)}}.num{{font-size:2rem;font-weight:800;color:#0f172a}}.label,.source span{{display:block;color:var(--muted);font-size:.85rem}}table{{width:100%;border-collapse:collapse;background:rgba(255,255,255,.96);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(15,23,42,.08)}}th,td{{padding:12px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}}th{{color:#075985;background:#f1f5f9;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}}th[data-sort]::after{{content:' ' attr(data-sort);font-size:.7rem;color:var(--muted)}}tr:hover{{background:#f0f9ff}}.why{{color:var(--muted);font-size:.85rem;margin-top:4px}}.flag,.ok,.reliability{{display:inline-block;border-radius:999px;padding:3px 8px;margin:2px;font-size:.75rem}}.flag{{background:#fef3c7;color:#92400e;border:1px solid #fbbf24}}.ok,.reliability-good{{background:#dcfce7;color:#166534;border:1px solid #86efac}}.reliability-neutral{{background:#e0f2fe;color:#075985;border:1px solid #7dd3fc}}.reliability-bad{{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}}.sources{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:22px}}.source p{{color:var(--muted);font-size:.88rem}}footer{{margin-top:20px;color:var(--muted);font-size:.9rem}}
+</style></head><body><main><div class="top"><div><h1>Used-Car Search Dashboard</h1><div class="sub">Generated {TODAY} · ZIP 23462 · under $10k · under 150k visible miles · active sources only</div></div><div class="sub"><a href="../{esc(str(report_path.relative_to(vault_root)).replace(' ', '%20'))}">Markdown report</a> · <a href="../{esc(str(json_path.relative_to(vault_root)).replace(' ', '%20'))}">JSON data</a></div></div>
+<table id="car-search-table"><thead><tr><th data-key="rank" data-type="num">#</th><th data-key="vehicle" data-type="text">Vehicle</th><th data-key="year" data-type="num">Year</th><th data-key="price" data-type="money">Price/Bid</th><th data-key="mileage" data-type="num">Mileage</th><th data-key="reliability" data-type="text">Reliability</th></tr></thead><tbody>{''.join(rows) if rows else '<tr><td colspan="6">No verified active-source leads today.</td></tr>'}</tbody></table>
+<script>
+(function(){{
+  const table = document.getElementById('car-search-table');
+  if (!table) return;
+  const tbody = table.tBodies[0];
+  const headers = Array.from(table.tHead.rows[0].cells);
+  const parse = (cell, type) => {{
+    const text = cell.textContent.trim();
+    if (type === 'num') {{
+      const n = text.replace(/[^0-9.-]/g, '');
+      return n === '' ? Number.NEGATIVE_INFINITY : Number(n);
+    }}
+    if (type === 'money') {{
+      const n = text.replace(/[^0-9.-]/g, '');
+      return n === '' ? Number.POSITIVE_INFINITY : Number(n);
+    }}
+    return text.toLowerCase();
+  }};
+  headers.forEach((th, idx) => {{
+    th.style.cursor = 'pointer';
+    th.title = 'Sort';
+    th.addEventListener('click', () => {{
+      const type = th.dataset.type || 'text';
+      const rows = Array.from(tbody.rows);
+      const asc = th.dataset.sort !== 'asc';
+      headers.forEach(h => delete h.dataset.sort);
+      th.dataset.sort = asc ? 'asc' : 'desc';
+      rows.sort((a, b) => {{
+        const av = parse(a.cells[idx], type);
+        const bv = parse(b.cells[idx], type);
+        if (av < bv) return asc ? -1 : 1;
+        if (av > bv) return asc ? 1 : -1;
+        return 0;
+      }});
+      tbody.replaceChildren(...rows);
+    }});
+  }});
+}})();
+</script>
 <footer>Canonical data remains Markdown/JSON/SQLite in the Akira vault; this dashboard is a convenience view generated at <code>daily/car_search.html</code>.</footer></main></body></html>"""
     dash_path.write_text(html_doc,encoding='utf-8')
     return dash_path
@@ -173,7 +212,7 @@ def send_dashboard_email(dash_path, report_path, listing_count, counts):
     proc=subprocess.run(['himalaya','template','send'],input=message,text=True,capture_output=True,timeout=120)
     if proc.returncode != 0:
         raise RuntimeError(f'himalaya send failed ({proc.returncode}): {(proc.stderr or proc.stdout).strip()}')
-    return {'status':'sent','to':EMAIL_TO,'subject':subject}
+    return {'status':'sent','to':EMAIL_TO,'subject':subject,'body_html':str(dash_path)}
 
 def main():
     data_dir=ROOT/'data'; rep_dir=ROOT/'daily-reports'; data_dir.mkdir(exist_ok=True); rep_dir.mkdir(exist_ok=True)

@@ -29,7 +29,7 @@ BIRTHDAY_SCRIPT = Path("/Users/rgregory/.hermes/scripts/akira_birthday_telegram_
 
 CSS = """
 :root{color-scheme:light;--bg:#f8fafc;--panel:#fff;--text:#0f172a;--muted:#64748b;--line:#dbeafe;--link:#0369a1}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f8fafc,#e0f2fe);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}main{max-width:1040px;margin:0 auto;padding:32px 20px 56px}a{color:var(--link)}h1{font-size:clamp(2rem,6vw,4rem);line-height:1;margin:.2em 0}.meta{color:var(--muted);font-size:1.05rem}.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 50px rgba(15,23,42,.08);padding:22px;margin:18px 0}pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;padding:16px;border-radius:16px;overflow:auto}table{width:100%;border-collapse:collapse;background:var(--panel);border-radius:16px;overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e0f2fe;color:#0f172a}ul{padding-left:1.3rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.tile{display:block;text-decoration:none;color:inherit}.tile .card{height:100%;margin:0}.small{font-size:.92rem;color:var(--muted)}footer{margin-top:30px;color:var(--muted);font-size:.9rem}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f8fafc,#e0f2fe);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}main{max-width:1040px;margin:0 auto;padding:32px 20px 56px}a{color:var(--link)}h1{font-size:clamp(2rem,6vw,4rem);line-height:1;margin:.2em 0}.meta{color:var(--muted);font-size:1.05rem}.card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:22px;box-shadow:0 18px 50px rgba(15,23,42,.08);padding:22px;margin:18px 0}pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;padding:16px;border-radius:16px;overflow:auto}.table-wrap{overflow:auto;margin:1rem 0;border-radius:16px;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;background:var(--panel);overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#e0f2fe;color:#0f172a}ul{padding-left:1.3rem}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.tile{display:block;text-decoration:none;color:inherit}.tile .card{height:100%;margin:0}.small{font-size:.92rem;color:var(--muted)}footer{margin-top:30px;color:var(--muted);font-size:.9rem}
 """.strip()
 
 
@@ -64,6 +64,63 @@ def md_to_html(markdown: str) -> str:
     in_code = False
     para: list[str] = []
 
+    def split_table_row(line: str) -> list[str]:
+        cells: list[str] = []
+        current: list[str] = []
+        escaped = False
+        stripped = line.strip()
+        if stripped.startswith("|"):
+            stripped = stripped[1:]
+        if stripped.endswith("|"):
+            stripped = stripped[:-1]
+        for ch in stripped:
+            if escaped:
+                current.append(ch)
+                escaped = False
+            elif ch == "\\":
+                escaped = True
+            elif ch == "|":
+                cells.append("".join(current).strip())
+                current = []
+            else:
+                current.append(ch)
+        cells.append("".join(current).strip())
+        return cells
+
+    def is_table_sep(line: str) -> bool:
+        cells = split_table_row(line)
+        return bool(cells) and all(re.fullmatch(r":?-{3,}:?", cell.strip()) for cell in cells)
+
+    def table_align(cell: str) -> str:
+        stripped = cell.strip()
+        if stripped.startswith(":") and stripped.endswith(":"):
+            return "center"
+        if stripped.endswith(":"):
+            return "right"
+        if stripped.startswith(":"):
+            return "left"
+        return ""
+
+    def table_html(header: list[str], sep: str, rows: list[list[str]]) -> str:
+        aligns = [table_align(cell) for cell in split_table_row(sep)]
+        width = len(header)
+
+        def attrs(index: int) -> str:
+            return f' style="text-align:{aligns[index]}"' if index < len(aligns) and aligns[index] else ""
+
+        parts = ["<div class=\"table-wrap\"><table>", "<thead><tr>"]
+        for i, cell in enumerate(header):
+            parts.append(f"<th{attrs(i)}>{inline_md(cell)}</th>")
+        parts.append("</tr></thead><tbody>")
+        for row in rows:
+            padded = row[:width] + [""] * max(0, width - len(row))
+            parts.append("<tr>")
+            for i, cell in enumerate(padded):
+                parts.append(f"<td{attrs(i)}>{inline_md(cell)}</td>")
+            parts.append("</tr>")
+        parts.append("</tbody></table></div>")
+        return "".join(parts)
+
     def flush_para() -> None:
         nonlocal para
         if para:
@@ -76,9 +133,13 @@ def md_to_html(markdown: str) -> str:
             out.append("</ul>")
             in_ul = False
 
-    for raw in markdown.splitlines():
+    lines = markdown.splitlines()
+    i = 0
+    while i < len(lines):
+        raw = lines[i]
         line = raw.rstrip()
         if line.strip() == "---" and not out and not para:
+            i += 1
             continue
         if line.startswith("```"):
             flush_para(); close_ul()
@@ -88,17 +149,31 @@ def md_to_html(markdown: str) -> str:
             else:
                 out.append("<pre><code>")
                 in_code = True
+            i += 1
             continue
         if in_code:
             out.append(html.escape(line))
+            i += 1
             continue
         if not line.strip():
-            flush_para(); close_ul(); continue
+            flush_para(); close_ul(); i += 1; continue
         m = re.match(r"^(#{1,4})\s+(.*)$", line)
         if m:
             flush_para(); close_ul()
             level = len(m.group(1))
             out.append(f"<h{level}>{inline_md(m.group(2))}</h{level}>")
+            i += 1
+            continue
+        if "|" in line and i + 1 < len(lines) and is_table_sep(lines[i + 1]):
+            flush_para(); close_ul()
+            header = split_table_row(line)
+            sep = lines[i + 1]
+            rows: list[list[str]] = []
+            i += 2
+            while i < len(lines) and "|" in lines[i] and lines[i].strip():
+                rows.append(split_table_row(lines[i]))
+                i += 1
+            out.append(table_html(header, sep, rows))
             continue
         if line.startswith("- "):
             flush_para()
@@ -106,8 +181,10 @@ def md_to_html(markdown: str) -> str:
                 out.append("<ul>")
                 in_ul = True
             out.append(f"<li>{inline_md(line[2:].strip())}</li>")
+            i += 1
             continue
         para.append(line.strip())
+        i += 1
     flush_para(); close_ul()
     if in_code:
         out.append("</code></pre>")

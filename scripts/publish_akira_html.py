@@ -215,11 +215,12 @@ def html_body_fragment(path: Path) -> str:
     return match.group(1) if match else f"<pre class=\"akira-pre\">{html.escape(text.strip())}</pre>"
 
 
-def page(title: str, body: str, generated: dt.datetime | None = None) -> str:
+def page(title: str, body: str, generated: dt.datetime | None = None, hero: bool = True) -> str:
     generated = generated or dt.datetime.now().astimezone()
+    hero_html = f"""<div class="card akira-hero mb-4"><div class="card-body"><div class="akira-eyebrow">r gregory / akira</div><div class="d-flex flex-column flex-md-row justify-content-between gap-3"><div><h1 class="display-5 mb-2">{html.escape(title)}</h1><p class="meta mb-0">Generated {generated.isoformat(timespec='seconds')}</p></div><div class="align-self-md-center"><a class="btn btn-primary" href="index.html">Index</a></div></div></div></div>""" if hero else ""
     return f"""<!doctype html>
 <html lang="en" x-data="{{ sidebarOpen: false }}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)}</title><link rel="stylesheet" href="{TABLER_CSS}"><style>{CSS}</style><script defer src="{ALPINE_JS}"></script></head>
-<body><div class="page"><header class="navbar navbar-expand-md d-print-none"><div class="container-xl"><a class="navbar-brand" href="index.html"><span class="avatar avatar-sm bg-primary-lt me-2">A</span>Akira</a><button class="navbar-toggler" type="button" aria-label="Toggle navigation" @click="sidebarOpen = !sidebarOpen"><span class="navbar-toggler-icon"></span></button><div class="navbar-nav flex-row order-md-last"><div class="nav-item"><span class="badge bg-blue-lt">HTML artifacts</span></div></div></div></header><div class="page-wrapper"><main class="page-body"><div class="container-xl"><div class="card akira-hero mb-4"><div class="card-body"><div class="akira-eyebrow">r gregory / akira</div><div class="d-flex flex-column flex-md-row justify-content-between gap-3"><div><h1 class="display-5 mb-2">{html.escape(title)}</h1><p class="meta mb-0">Generated {generated.isoformat(timespec='seconds')}</p></div><div class="align-self-md-center"><a class="btn btn-primary" href="index.html">Index</a></div></div></div></div>{body}<footer class="footer footer-transparent d-print-none mt-4"><div class="container-xl px-0"><div class="text-secondary">Akira HTML artifact published for <a href="https://rgregory.github.io/akira/">rgregory.github.io/akira/</a>.</div></div></footer></div></main></div></div><script src="{TABLER_JS}"></script></body></html>
+<body><div class="page"><header class="navbar navbar-expand-md d-print-none"><div class="container-xl"><a class="navbar-brand" href="index.html"><span class="avatar avatar-sm bg-primary-lt me-2">A</span>Akira</a><button class="navbar-toggler" type="button" aria-label="Toggle navigation" @click="sidebarOpen = !sidebarOpen"><span class="navbar-toggler-icon"></span></button><div class="navbar-nav flex-row order-md-last"><div class="nav-item"><span class="badge bg-blue-lt">HTML artifacts</span></div></div></div></header><div class="page-wrapper"><main class="page-body"><div class="container-xl">{hero_html}{body}<footer class="footer footer-transparent d-print-none mt-4"><div class="container-xl px-0"><div class="text-secondary">Akira HTML artifact published for <a href="https://rgregory.github.io/akira/">rgregory.github.io/akira/</a>.</div></div></footer></div></main></div></div><script src="{TABLER_JS}"></script></body></html>
 """
 
 
@@ -250,11 +251,11 @@ def write_artifacts(date: dt.date) -> dict[str, str]:
 
     car_src = newest([VAULT / "daily" / "car_search.html", VAULT / "research" / "car-search" / "daily" / "car_search.html"])
     if car_src:
-        car_body = f"<section class=\"card\"><div class=\"card-body legacy-html\"><p class=\"small\">Source: <code>{html.escape(rel_link(car_src))}</code></p>{html_body_fragment(car_src)}</div></section>"
-        (PUBLISH_DIR / "car_search.html").write_text(page("Used-Car Search Dashboard", car_body), encoding="utf-8")
+        car_body = f"<section class=\"card\"><div class=\"card-body legacy-html\">{html_body_fragment(car_src)}</div></section>"
+        (PUBLISH_DIR / "car_search.html").write_text(page("Used-Car Search Dashboard", car_body, hero=False), encoding="utf-8")
         artifacts["car_search.html"] = rel_link(car_src)
     else:
-        (PUBLISH_DIR / "car_search.html").write_text(page("Used-Car Search Dashboard", "<section class=\"card\"><div class=\"card-body\"><p>No car-search dashboard found yet.</p></div></section>"), encoding="utf-8")
+        (PUBLISH_DIR / "car_search.html").write_text(page("Used-Car Search Dashboard", "<section class=\"card\"><div class=\"card-body\"><p>No car-search dashboard found yet.</p></div></section>", hero=False), encoding="utf-8")
         artifacts["car_search.html"] = "missing"
 
     philosophy_html, philosophy_src = markdown_page("Daily Philosophy Feed", VAULT / "briefings" / "philosophy" / f"{date.isoformat()} — Philosophy Feed.md")

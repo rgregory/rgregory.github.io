@@ -74,7 +74,11 @@ def fetch_ticker(entry):
     """Read the incident detail page for the ticker symbol."""
     if not entry["link"]:
         return None
-    text = re.sub(r"<[^>]+>", "\n", get(BASE + entry["link"]))
+    try:
+        text = re.sub(r"<[^>]+>", "\n", get(BASE + entry["link"]))
+    except Exception as exc:
+        print(f"  warning: could not fetch ticker for {entry['company']}: {exc}", file=sys.stderr)
+        return None
     m = re.search(r"Ticker\s*\n\s*([A-Z][A-Z0-9.\-]{0,9})\s*\n", text)
     return m.group(1) if m else None
 

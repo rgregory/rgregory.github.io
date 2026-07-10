@@ -212,7 +212,10 @@ def html_body_fragment(path: Path) -> str:
     match = re.search(r"<main[^>]*>(.*?)</main>", text, flags=re.IGNORECASE | re.DOTALL)
     if not match:
         match = re.search(r"<body[^>]*>(.*?)</body>", text, flags=re.IGNORECASE | re.DOTALL)
-    return match.group(1) if match else f"<pre class=\"akira-pre\">{html.escape(text.strip())}</pre>"
+    body = match.group(1) if match else f"<pre class=\"akira-pre\">{html.escape(text.strip())}</pre>"
+    style_match = re.search(r"<style>(.*?)</style>", text, flags=re.IGNORECASE | re.DOTALL)
+    style = f"<style>{style_match.group(1)}</style>" if style_match else ""
+    return style + body
 
 
 def page(title: str, body: str, generated: dt.datetime | None = None, hero: bool = True) -> str:

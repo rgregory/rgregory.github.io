@@ -24,9 +24,10 @@
    - Nissan Frontier
    - Mazda B-Series
    - older compact/midsize pickups
-4. Other unusually compelling low-price/low-mileage listings
-5. Auction lots that meet the numeric filters, with auction-specific risk clearly labeled
-6. Listings with `good` year/model reliability-search signals over otherwise similar `neutral` or `bad` leads
+4. Target classic: 1984-1986 BMW 325i
+5. Other unusually compelling low-price/low-mileage listings
+6. Auction lots that meet the numeric filters, with auction-specific risk clearly labeled
+7. Listings with `good` year/model reliability-search signals over otherwise similar `neutral` or `bad` leads
 
 ## Source strategy
 

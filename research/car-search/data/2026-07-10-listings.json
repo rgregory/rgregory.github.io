@@ -6,7 +6,7 @@
       "attempted_url": "https://www.autotempest.com/results?zip=23462&radius=50&maxprice=10000&maxmiles=150000"
     },
     "Craigslist Hampton Roads": {
-      "note": "Accessible. Parsed 317 static search rows from Craigslist; detail pages fetched for Toyota/Honda/small-pickup/very-low-price candidates only.",
+      "note": "Accessible. Parsed 320 static search rows from Craigslist; detail pages fetched for Toyota/Honda/small-pickup/1984-1986 BMW 325i/very-low-price candidates only.",
       "attempted_url": "https://norfolk.craigslist.org/search/cta?max_price=10000&postal=23462&search_distance=50"
     },
     "Auction757 / BidWrangler": {
@@ -37,6 +37,7 @@
       "notes": "Visible mileage parsed as 89,000 miles. Observed body snippet: QR Code Link to This Post 1992 Toyota Corolla Base The good: - Clean Title - Registered, Inspected, Ready to drive - A/C Blows Ice cold - Original engine + transmission (3 speed auto) - I average 28mpg mixed city/highway - Tires, brakes, timing belt, water pump all new - Does not leak or burn oil / coolant at all The bad: - Minor mechanical issue: over 50% throttle the vehicle chugs and is acting fuel starved, but i'm not sure if its fuel or ignition related (see parts list!) but otherwise drive",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-07-03T15:32:14-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "1992 Toyota Corolla common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -59,6 +60,7 @@
       "notes": "Visible mileage parsed as 30,000 miles. Observed body snippet: QR Code Link to This Post Rebuilt title due to minor water damage to carpet with original owner, 10 years ago. I’ve had the car for nine years and bought it with 30,000 miles on it. I’ve had no issues whatsoever, besides regular maintenance and normal wear and tear. Alternator just replaced. Great condition, serviced regularly and very well maintained. Super clean inside and out. Fresh oil change and fresh inspection.",
       "is_small_pickup": false,
       "match_reason": "Honda preference; under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-06-28T13:39:43-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2012 Honda Civic common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -81,6 +83,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2009 Toyota Camry SE, Is loaded with leather, sunroof, alloy, wheels, ice, cold air, brand, new inspection, runs perfect",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-09T10:18:22-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2009 Toyota CAMRY common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -103,6 +106,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2008 Toyota RAV4 Runs great! Automatic, V6, tow package, power seats, power windows, Bluetooth AM/FM/CD/AUX, etc. $3950 Call or text:757-4O1-3865Ken VADLR Chevrolet equinox Kia Sportage Sorrento Honda crv Hyundai Tuscan Nissan rogue Murano",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-07T17:01:50-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2008 Toyota Rav4 common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -125,6 +129,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2003 Toyota Extended cab SR5 V6 TRD Off-Road, 4 x 4, runs absolutely perfect, ice, cold air, brand new state inspection,ALLOY Wheels, great tires",
       "is_small_pickup": true,
       "match_reason": "Toyota preference; small/midsize pickup preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-03T07:00:59-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2003 Toyota TACOMA common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -147,6 +152,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Car need some repairs. Engine light is on. Engine is liking because the car is checking when you drive.",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-02T19:12:38-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2005 Toyota CAMRY common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -169,6 +175,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Car does not run Needs to Towed In have the title I do not know why it wouldn’t start . Back seats missing",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-02T10:03:33-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2000 Toyota Sienna common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -191,6 +198,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Hi Iam selling this clean title 2008 Toyota Yaris sedan . Clean title . No issues. Interior is all good . Exterior is all good . Drives perfectly fine . Dm me if you’re interested",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; mileage not visible",
+      "posted_at": "2026-06-30T11:23:07-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2008 Toyota Yaris common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -213,6 +221,7 @@
       "notes": "Visible mileage parsed as 127,810 miles. Observed body snippet: QR Code Link to This Post 2000 Toyota Camry XLE V6 $3500 OBO 127,810 miles Registration renewed and current 05/27 This car has been reliable for me and runs and drives well. It’s not a perfect show car, but it’s a solid daily driver with low mileage for its age. Recent maintenance: • New alternator • New battery • Continental all-weather tires installed June 2025 with very little use • tie rods ( done back in march 2025) •intended to install new shocks, didn’t get to it…new parts will come with ",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-06-30T09:39:34-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2000 Toyota Camry common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -235,6 +244,7 @@
       "notes": "Visible mileage parsed as 70,000 miles. Observed body snippet: QR Code Link to This Post This Odyssey Is A 2 Owner With A Clean CARFAX Showing 26 Service Records And NO Accidents !! EX Trim, 3rd Row Seat, All Power Options, roof, Heated Seats, Back Up Camera, Timing Belt/Water Pump Replaced at 70k, Just Serviced, Fresh Oil, New State Inspection, Runs And Drives Excellent !! Warranty, See the Free CARFAX at www.AffordableAutosVB.com Check Out Our Over 630 5*Star Google Reviews And See What Our Customers Are Saying !! 757-612-8889 SORRY NO IN HOUSE/BUY HERE P",
       "is_small_pickup": false,
       "match_reason": "Honda preference; under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-07-02T16:11:48-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2014 Honda ODYSSEY common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -257,6 +267,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Well Maintained 2012 Toyota Corolla. I’m selling my 2012 Toyota Corolla Clean Title at a giveaway price. This car is in a perfect condition, no mechanical problems, no fuel or starting problems. It has brand new battery with super clean interior and exterior. I just completed the general maintenance with brand new suspensions on wheels, engine oil and transmission oil changed, brand new break pads, AC gas just filled this week and cooling so well. This is a one in a lif",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-07T21:57:19-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2012 Toyota Corolla common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -279,6 +290,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Click here to view on dealer's website 2012 - Toyota - Prius V - Two. WE ARE RATED A+ WITH THE BETTER BUSINESS BUREAU!USAA & NAVY FEDERAL CREDIT UNION WELCOMED! CALL US WITH ANY QUESTIONS OR TO SET UP YOUR TEST DRIVE AT: 757-499-2844 TO APPLY ON LINE GO TO OUR SECURED ON LINE APPLICATION AT: https://carsusa.us/creditapp TO SEE MORE CARS GO TO: https://carsusa.us/newandusedcars?clearall=1 Cars USA 5004 Virginia Beach Blvd Virginia Beach, VA 23462 2 OWNERS SINCE NEW, CARF",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; mileage not visible",
+      "posted_at": "2026-06-27T00:51:08-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2012 Toyota Prius common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -301,6 +313,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Hi Iam selling this 2011 Honda Accord sedan . Clean title . No issues. Interior is all good . Drives perfectly fine . Ac/heat works perfectly fine . Dm me if you’re interested!",
       "is_small_pickup": false,
       "match_reason": "Honda preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-08T17:41:14-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2011 Honda Accord common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -323,6 +336,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2012 Honda EX Crosstour Apple CarPlay Cruise Control Back up camera Sunroof 2.4 4cyl New tires and brakes Fresh inspection Runs great Clean CarFax",
       "is_small_pickup": false,
       "match_reason": "Honda preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-04T16:26:08-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2012 Honda Crosstour common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -345,6 +359,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Car is in good condition Up to date inspection sticker Recent oil change May need new tires 5,000 obo",
       "is_small_pickup": false,
       "match_reason": "Honda preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-03T08:50:33-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2011 Honda accord common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -367,6 +382,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Hi Iam selling this 2013 Honda Pilot suv . Clean title. No issues. Interior is all good . Exterior is all good . Drives perfectly fine . Ac/ heat works perfectly fine . Dm me or call me to schedule test drive",
       "is_small_pickup": false,
       "match_reason": "Honda preference; under $10,000; mileage not visible",
+      "posted_at": "2026-06-26T20:18:52-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2013 Honda pilot common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -389,6 +405,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post This Sienna Is A 1 Owner Since New !! EXTRA Clean Condition !! It Has A Good CARFAX, Loaded, Leather, 3rd Row Seat, All Power Options, Moonroof, Cold AC, Matching Michelin Tires, Just Serviced, Fresh Oil, New State Inspection, Runs and Drives Strong !! Warranty, See The Free CARFAX at www.AffordableAutosVB.com Check Out Our Over 630 5*Star Google Reviews And See What Our Customers Are Saying !! 757-612-8889 SORRY NO IN HOUSE/BUY HERE PAY HERE FINANCING",
       "is_small_pickup": false,
       "match_reason": "Toyota preference; under $10,000; mileage not visible",
+      "posted_at": "2026-06-25T13:10:05-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2009 Toyota SIENNA common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -411,6 +428,7 @@
       "notes": "Visible mileage parsed as 130,695 miles. Observed body snippet: QR Code Link to This Post 2006 Honda Civic. Excellent condition inside and out, no rust or body damage. 130,695 miles and the perfect first car or daily commuter car. This vehicle is an absolute gem! Must see in person to appreciate!",
       "is_small_pickup": false,
       "match_reason": "Honda preference; under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-07-08T21:55:10-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2006 Honda Civic common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -433,6 +451,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Hi Iam selling this 2006 Honda Accord sedan . Clean title. No issues. Interior is all good . Exterior is all good . Drives perfectly fine . Dm me if you’re interested!",
       "is_small_pickup": false,
       "match_reason": "Honda preference; under $10,000; mileage not visible",
+      "posted_at": "2026-06-27T10:25:18-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "Honda Accord common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -455,6 +474,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post New Inspection (7/27) Bluetooth Back-Up Camera 2.4L i-VTEC (2WD) Sunroof Leather (Heated Seats) Steering Wheel Controls Financing and Warranties Available!!! For any questions or to schedule a test drive...Please call or text Jon at 757 346-4004. Thanks :) VIRGINIA AUTO AND TRUCK 3615 N. Military Hwy Norfolk, VA 23518 757-402-3318 www.virginiaautoandtruck.com",
       "is_small_pickup": false,
       "match_reason": "Honda preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-09T23:32:47-0400",
       "maintenance_reliability": "good",
       "maintenance_reliability_query": "2013 Honda CR-V common problems reliability",
       "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
@@ -477,6 +497,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2001 Ford ranger Tried to do an engine swap It runs rough needs a lil more fine tunning and it will be a good truck",
       "is_small_pickup": true,
       "match_reason": "small/midsize pickup preference; under $10,000; mileage not visible",
+      "posted_at": "2026-07-04T10:35:43-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2003 Ford ranger common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -499,6 +520,7 @@
       "notes": "Visible mileage parsed as 10,000 miles. Observed body snippet: QR Code Link to This Post Am selling a 2024 Chevy Highcounty, 6.2 engine, sunroof, and lots of other nice things.The truck only has 10,000 miles on it like new condition am selling because of my health and the truck belong to me and the bank am not enjoying it so I want my part back🤗. But for real nice truck let's make this happen and you get a like new truck for less than the $72,000 sticker price.And thanks in advance 👍",
       "is_small_pickup": false,
       "match_reason": "under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-07-08T17:09:44-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2024 Chevy Highcounty common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -521,6 +543,7 @@
       "notes": "Visible mileage parsed as 63,797 miles. Observed body snippet: QR Code Link to This Post Ready for restoration!! Rolls and steers easily. Window cranks and doors latch. Appears to have original glass, chrome, plastic, engine, transmission, hub caps, seats, radiator, etc. A few rust through areas on body, none visible in frame. Front floor pans have been patched. Has been garage kept since 2005. Haven't tried to turn engine over. Don't know accuracy of odometer (shows 63797). Cash only. Local pickup only. More photos upon request.",
       "is_small_pickup": false,
       "match_reason": "under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-07-05T12:22:58-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "1964 Ford Falcon common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -543,6 +566,7 @@
       "notes": "Visible mileage parsed as 120,000 miles. Observed body snippet: QR Code Link to This Post 1 OWNER 2006 Ford Crown Victoria with 120,000 ORIGINAL MILES that was well taken care of and runs and drives great. This is a good and reliable car that has working HEAT and VERY COLD AC, stereo with CD player, has VERY NICE INTERIOR with power windows and locks, good tires, CURRENT INSPECTION, HAS NO CHECK ENGINE OF WARNING LIGHTS ON DASH, NO MECHANICAL ISSUES AT ALL and THE MOTOR AND TRANSMISSION ARE IN PERFECT SHAPE. This is a good reliable car that’s worth around $4",
       "is_small_pickup": false,
       "match_reason": "under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-07-03T17:33:20-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2006 Ford CROWN common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -565,6 +589,7 @@
       "notes": "Visible mileage parsed as 108,000 miles. Observed body snippet: QR Code Link to This Post Runs good highway miles clear title 108k located in Richmond Virginia 8045479535 Clean title just serviced Comparable Honda Ridgeline Accord civic pilot passport crv Toyota Tundra Tacoma Corolla Camry RAV4 highlander 4Runner Volvo XC90 Nissan Titan frontier Armada Sentra pathfinder rogue Altima maxima Chevy impala equinox traverse Malibu Toyota Corolla tundra Tacoma Camry RAV4 highlander Cadillac Escalade Lincoln Navigator Ford Taurus expedition explorer Lexus Audi Chry",
       "is_small_pickup": false,
       "match_reason": "under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-07-02T20:16:26-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2007 Pontiac g6 cold a/c common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -587,6 +612,7 @@
       "notes": "Visible mileage parsed as 114,765 miles. Observed body snippet: QR Code Link to This Post Are you ready to turn heads and hit the road in style? Look no further than this sleek and sporty 2008 Hyundai Tiburon GS. With its bold exterior design and powerful performance, this car is sure to impress.Step inside and you'll find a spacious and comfortable interior, perfect for long drives or daily commutes. The seats are upholstered in premium cloth and offer ample support for a comfortable ride. Plus, with extra legroom and headroom, you and your passengers will ",
       "is_small_pickup": false,
       "match_reason": "under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-06-24T22:36:55-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2008 Hyundai Tiburon common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -609,6 +635,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2011 Subaru Impreza 2.5i AWD Runs Great ! ❖ Gas saver! ✔️Clean, very nice Call /Text (7five7)4O1-3865Ken Automatic, Power windows, AUX/AM/FM/CD/radio, Cruise Control, etc. $3250 Must drive Please call or text ☏757-4O13865Ken VADLR Nissan Sentra Chevrolet Cruze Hyundai Elantra kia Honda Civic toyota Subaru Mazda3",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-08T15:45:24-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2011 Subaru Impreza common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -631,6 +658,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post this car run and drives great it has a 6 speed manual transmission power windows, AC Heat works great new inspection. it has a new clutch tires in excellent condition everything works great",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-06T10:32:11-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2010 Mazda 6 common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -653,6 +681,7 @@
       "notes": "Visible mileage parsed as 126,000 miles. Observed body snippet: QR Code Link to This Post Great running car Automatic All power All leather 126k miles Clean title Inspection Needs Attention Ac doesn’t work ( compressor needs to be fixed) Passenger front seat railings needs to be fixed it’s stuck",
       "is_small_pickup": false,
       "match_reason": "under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-07-04T03:57:29-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2011 Nissan Rogue common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -675,6 +704,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post letting my 2015 Hyundai Genesis go. Drove it daily for a long while. Like all things it’s time for a change. . Just needs a new home. If you like luxury you won’t be disappointed when you see this. Please Call MIKE 757-75Five-830Four",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-03T12:10:55-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2015 Hyundai Genesis common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -697,6 +727,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Powerful 4.0 liter V6 runs excellent Needs full tune up so only asking $3500. Clean title",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-01T16:43:13-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2010 Nissan X-terra common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -719,6 +750,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Hi, up for sale is my daily commute car she's in good condition no mechanical issues runs and drives great new state inspection, new AC compressor. She will make someone a very dependable commuter for only $3,200. I have the title in hand. Please feel free to reach out for a test drive.",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-01T10:15:38-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2016 Hyundai Elantra common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -741,6 +773,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2010 Dodge Charger 4 Sale $1500 OBO because the vehicle is INOPERABLE Tires and interior is in good shape I do not know what is wrong with it but would advise it probably needs a new engine (don't forget July 4th and Labor Day weekend is half price at Pick & Pull to get a motor for the car) Vehicle was abandoned by a former housemate, but I have a CLEAN TITLE IN HAND w/1 key! I have AAA and would be willing to provide the tow to a location within the allotted mileage by",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-01T01:47:44-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2010 Dodge Charger common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -763,6 +796,7 @@
       "notes": "Visible mileage parsed as 124,000 miles. Observed body snippet: QR Code Link to This Post Great running car has a current inspection. There are no mechanical issues. It has 124,000 miles. It is reliable transportation. The heat is hot. The AC is cold. The radio doesn’t work otherwise this is a great little car I have took off for the repair of the radio it may be just a blown fuse. I have the clear title. I will sell this car today. Cash only give me a call for a test drive thanks.",
       "is_small_pickup": false,
       "match_reason": "under $10,000; under 150,000 visible miles",
+      "posted_at": "2026-06-28T12:43:31-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2015 Ford FIESTA common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -785,6 +819,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Reliable and well-maintained 2011 Nissan Altima SV. Smooth ride, fuel-efficient, and great for daily commuting. Features include power windows and locks, keyless entry, cruise control, cold A/C, and a spacious interior. Clean title and ready to drive.",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-06-25T13:28:29-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2013 Nissan Altima common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -807,6 +842,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Runs great. No a/c. 114,568 original miles. Gray. Needs to be repainted on the hood and top as Nissans paint jobs are poor. There is a whining when you drive. Could be the power steering or possibly needs bearrings.The engine light is on but not sure what's the problem. Selling As Is. Jan 2027 inspection sticker. Good for a work car but will need some work. Cash only. As Is.",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-09T16:54:57-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2007 Nissan Altima common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -829,30 +865,9 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Chevrolet small cube van, single rear axle. Needs TLC to pass inspection. Runs & stops. Clean title....CASH sale. I will not answer emails. Seven-five-seven-782-1256",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-09T16:51:55-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "Chevrolet cube common problems reliability",
-      "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
-    },
-    {
-      "source": "Craigslist Hampton Roads",
-      "url": "https://www.craigslist.org/view/d/chesapeake-2008-volkswagen-eos-luxury/sgn8bGuTR2YKoeKAyoBemM",
-      "vehicle": "2008 Volkswagen Eos Luxury Hardtop",
-      "year": 2008,
-      "make": null,
-      "model": null,
-      "trim": null,
-      "price": 2700,
-      "mileage": 133000,
-      "location": "Chesapeake",
-      "distance_miles": null,
-      "dealer": "unknown Craigslist seller",
-      "vin": null,
-      "title_status": "unknown",
-      "notes": "Visible mileage parsed as 133,000 miles. Observed body snippet: QR Code Link to This Post I’m selling my 2008 Volkswagen EOS Luxury hardtop convertible for $2700 OBO (Or Best Reasonable Offer), it has 133k miles, BRAND NEW Tires, strong engine and transmission, 1/27 Va State inspection, power windows and Locks, heated seats, leather interior, power glass sunroof, convertible top, aux and Bluetooth, Ice Cold A/C, heat, keyless entry, excellent on gas, CLEAN Va Title in Hand.",
-      "is_small_pickup": false,
-      "match_reason": "under $10,000; under 150,000 visible miles",
-      "maintenance_reliability": "neutral",
-      "maintenance_reliability_query": "2008 Volkswagen Eos Luxury Hardtop common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
     },
     {
@@ -873,6 +888,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2006 Nissan XTerra. Needs towed; transmission slipped and will not engage to drive. New tires with less than 5,000 miles. In the last six months: new radiator, new rotors and brakes. “Service engine soon” fault light due to faulty fuel sensor and had this verified by mechanics. Low tire indicator fault light has always been on since I owned this vehicle. State inspection good until May 2027. Until the transmission stopped functioning, this was a very reliable vehicle fo",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-08T12:02:02-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2006 Nissan XTerra common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -895,6 +911,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Cars in great shape lotta new parts I bought it and I use it for work, but I’m upgrading you gotta come see this car. It’s an immaculate one owner super clean AC blows ice cold got good heat. ￼",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-07T19:07:34-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2002 Ford Taurus common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -917,6 +934,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 1989 grand wagoneer complete needs total restoration great father son/daughter project been sitting for quite awhile motor ran at that time but needs lots of tlc thought i would have time but age got to me...willing to entertain all reasonable offers.",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-04T11:50:46-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "Restoration wagoneer common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -939,6 +957,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post This is a good truck in great shape. Runs and drives good with cold A/C , third row seating, newly inspection please call or text show contact info Title in hand",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-03T18:30:03-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2004 GMC Yukon common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -961,6 +980,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Daily driven to and from work. The motor and transmission are strong. 4x4, PM, PL, Power adjustable pedals,, CC, Keyless entry, cold ac, PW, PL, Backup Cam, etc. WE put alot of money in it. Only issue it needs a mount, and power steering whines alittle. Does not affect how it runs or drives. I did have it recently inspected before these issues occurred. Its very strong. I will trade for a 4x4 truck. Frontier, Nissan titan, etc. I will also trade for a Raptor 700, trx450",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-03T16:55:19-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2007 Jeep Grand common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -983,6 +1003,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 1 OWNER 2006 Ford Crown Victoria with 120,000 ORIGINAL MILES that was well taken care of and runs and drives great. This is a good and reliable car that has working HEAT and VERY COLD AC, stereo with CD player, has VERY NICE INTERIOR with power windows and locks, good tires, CURRENT INSPECTION, HAS NO CHECK ENGINE OF WARNING LIGHTS ON DASH, NO MECHANICAL ISSUES AT ALL and THE MOTOR AND TRANSMISSION ARE IN PERFECT SHAPE. This is a good reliable car that’s worth around $4",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-03T16:04:18-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2006 Ford CROWN common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1005,6 +1026,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post CASH DEAL NO IN HOUSE FINANCING AVAILABLE -2008 Chevrolet Cobalt -Ice Cold air, hot heat, radio -Simple reliable transportation -Great on gas -New state inspection -Ready for a new owner -Virginia dealer $250 processing fee INCLUDED IN PRICE!!",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-03T11:18:01-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2008 Chevrolet Cobalt common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1027,6 +1049,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2008 Ford Explorer – Super Clean & Ready to Drive! Looking for a dependable SUV? This 2008 Ford Explorer is clean, well-maintained, and ready for its next owner! ✅ Very clean cloth interior ✅ Tires with less than 100 miles ✅ Strong engine & smooth transmission ✅ Cold A/C ✅ Up-to-date Virginia inspection ✅ Runs and drives great ✅ Reliable SUV with plenty of room for family, work, or everyday driving No major issues—just get in and drive. Clean inside and out, and priced ",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-02T15:27:25-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2008 Ford edge common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1049,6 +1072,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 1988 MERCEDES 300 SEL NEEDS TRANSMISSION 94,206 NOT ACTUAL, MOTOR IN GOOD SHAPE. THE CAR HAS BEEN IN THE FAMILY FOR 38 YRS HUSBAND AND WIFE OWNERS, INTERIOR IN GOOD SHAPE, MUST SEE. NEEDS TOWING",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-02T13:19:03-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "CLASSIC CAR 1988 MERCEDES 300SEL common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1071,6 +1095,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 1992 chevy suburban 1500 automatic 2wd please call if interested 540 six72 2342",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-01T16:48:23-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "1992 Chevy suberban common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1093,6 +1118,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2004 Volvo V70 AWD ..v6 automatic fully loaded power windows and door locks sun roof air condition and heater works excellent the tires are in good shape..always well maintained the timing belt and water pump was repaired at a local shop...runs and drives great very reliable",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-07-01T10:02:18-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2004 Volvo V70 wagon AWD common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1115,6 +1141,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Selling 1979 Ford F-100 Custom long-bed project. $3500 Great foundation with natural 70s patina and a solid frame. The Issue: Needs the front wheel bearing and the driver-side spindle replaced. The spindle snout is chewed up and galled (see pictures). I do not have the replacement parts. Put I know where to get them new. Electrical: Brand-new ignition control module installed. Engine turns over. Have newer doors as well",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-06-29T15:30:09-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "1979 Ford F-100 common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1137,6 +1164,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Click here to view on dealer's website 2000 - Nissan - Xterra - XE 2WD. WE ARE RATED A+ WITH THE BETTER BUSINESS BUREAU!USAA & NAVY FEDERAL CREDIT UNION WELCOMED! CALL US WITH ANY QUESTIONS OR TO SET UP YOUR TEST DRIVE AT: 757-499-2844 TO APPLY ON LINE GO TO OUR SECURED ON LINE APPLICATION AT: https://carsusa.us/creditapp TO SEE MORE CARS GO TO: https://carsusa.us/newandusedcars?clearall=1 Cars USA 5004 Virginia Beach Blvd Virginia Beach, VA 23462 MANY DOCUMENTED SERVIC",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-06-27T00:45:49-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2000 Nissan Xterra common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1159,6 +1187,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post New Inspection(6-27); tinted windows; 16.5 MPG;7 seats; Clear Title; Lots of fairly New parts))---((( Needs AC condensor; Dent in rear hatch back.; NO REVERSE,but all forward gears shift ok. Call or Text. .Negotiable for quick sale. I could deliver it.",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-06-25T06:29:32-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2004 Chrysler Town and Country common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1181,6 +1210,7 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 99 Acura TL. Needs tires, tie rods. New engine 56000 miles. Rebuilt Transmission. Very strong reliable car. Serious inquiries only. Text show contact info",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-06-24T17:10:18-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "99 Acura TL 3.2 common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
@@ -1203,8 +1233,32 @@
       "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post Hello everyone I have a 2008 f150 xlt that I’m interested of selling the truck is in very good condition inside and out The front windshield has a crank line going down the meadow of the front wind shield it will need to be replace for inspection I replaced a lot of new parts for the truck the truck has a new throttle body. new radiator. New camshaft sensors, new complete timing chain new coolant reservoir, new spark plugs core Packs new front bearings both sides new ti",
       "is_small_pickup": false,
       "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-06-24T09:11:51-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2008 f150 pickup xlt 5.4 liter common problems reliability",
+      "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
+    },
+    {
+      "source": "Craigslist Hampton Roads",
+      "url": "https://www.craigslist.org/view/d/williamsburg-2002-ford-mustang-38/xtEzLGUUYQ3B1dSU5XTAa2",
+      "vehicle": "2002 Ford Mustang 3.8",
+      "year": 2002,
+      "make": "Ford",
+      "model": "Mustang",
+      "trim": null,
+      "price": 1995,
+      "mileage": null,
+      "location": "Williamsburg",
+      "distance_miles": null,
+      "dealer": "unknown Craigslist seller",
+      "vin": null,
+      "title_status": "unknown",
+      "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2002 Ford Mustang 3.8 – V6 Very Low Mileage AUTOMATIC COLD AIR CONDITION CURRENT STATE INSPECTION EXCELLENT CONDITION NEEDS NOTHING CALL JAMIE TODAY 301-503-5440 VA. DLR. B & B MOTORSPORTS HOME OF FINE CARS !! 13201 POCAHONTAS TRAIL LANEXA, VA 23089",
+      "is_small_pickup": false,
+      "match_reason": "under $10,000; mileage not visible",
+      "posted_at": "2026-06-23T22:01:10-0400",
+      "maintenance_reliability": "neutral",
+      "maintenance_reliability_query": "2002 Ford Mustang common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
     }
   ]

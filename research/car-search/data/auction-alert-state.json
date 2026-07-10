@@ -1,0 +1,4 @@
+{
+  "description": "Deduplication state for local auction alerts. The daily car-search workflow records Auction757/Eggleston auction-date alerts here after messaging the user 3 days before auction end/date.",
+  "alerts_sent": []
+}

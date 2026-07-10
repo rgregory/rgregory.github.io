@@ -9,9 +9,17 @@
 # Obsidian local UI state / plugins cache
 .obsidian/workspace
 .obsidian/workspace.json
+.obsidian/workspace.json.bak
 .obsidian/workspace-mobile.json
 .obsidian/cache/
-.obsidian/plugins/*/data.json
+.obsidian/community-plugins.json
+.obsidian/types.json
+.obsidian/*.bak
+.obsidian/plugins/
+
+# Local embedding / recall caches
+.smart-env/
+.recall/
 
 # Derived SQLite indexes; rebuild from Markdown
 *.sqlite

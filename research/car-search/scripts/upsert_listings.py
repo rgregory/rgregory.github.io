@@ -110,6 +110,8 @@ CREATE TABLE IF NOT EXISTS observations (
   source TEXT NOT NULL,
   price INTEGER,
   mileage INTEGER,
+  maintenance_reliability TEXT,
+  maintenance_reliability_reason TEXT,
   location TEXT,
   distance_miles REAL,
   dealer TEXT,
@@ -146,6 +148,8 @@ SELECT
   l.trim,
   latest.price,
   latest.mileage,
+  latest.maintenance_reliability,
+  latest.maintenance_reliability_reason,
   COALESCE(latest.location, l.location) AS location,
   COALESCE(latest.distance_miles, l.distance_miles) AS distance_miles,
   COALESCE(latest.dealer, l.dealer) AS dealer,
@@ -284,6 +288,14 @@ def identity_key(item: dict[str, Any]) -> str:
 
 def init_db(conn: sqlite3.Connection) -> None:
     conn.executescript(SCHEMA)
+    existing = {row[1] for row in conn.execute("PRAGMA table_info(observations)").fetchall()}
+    migrations = {
+        "maintenance_reliability": "ALTER TABLE observations ADD COLUMN maintenance_reliability TEXT",
+        "maintenance_reliability_reason": "ALTER TABLE observations ADD COLUMN maintenance_reliability_reason TEXT",
+    }
+    for column, statement in migrations.items():
+        if column not in existing:
+            conn.execute(statement)
     conn.commit()
 
 
@@ -379,12 +391,15 @@ def ingest(conn: sqlite3.Connection, payload: dict[str, Any], report_path: str |
         cur = conn.execute(
             """
             INSERT INTO observations(
-              listing_id, run_id, source, price, mileage, location, distance_miles, dealer,
+              listing_id, run_id, source, price, mileage, maintenance_reliability,
+              maintenance_reliability_reason, location, distance_miles, dealer,
               notes, match_reason, raw_json
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             ON CONFLICT(listing_id, run_id, source) DO UPDATE SET
               price=excluded.price,
               mileage=excluded.mileage,
+              maintenance_reliability=excluded.maintenance_reliability,
+              maintenance_reliability_reason=excluded.maintenance_reliability_reason,
               location=excluded.location,
               distance_miles=excluded.distance_miles,
               dealer=excluded.dealer,
@@ -394,6 +409,8 @@ def ingest(conn: sqlite3.Connection, payload: dict[str, Any], report_path: str |
             """,
             (
                 listing_id, run_id, source, price, mileage,
+                str(raw.get("maintenance_reliability") or "").strip() or None,
+                str(raw.get("maintenance_reliability_reason") or "").strip() or None,
                 str(raw.get("location") or "").strip() or None,
                 distance,
                 str(raw.get("dealer") or "").strip() or None,
@@ -418,7 +435,8 @@ def ingest(conn: sqlite3.Connection, payload: dict[str, Any], report_path: str |
 def top_summary(conn: sqlite3.Connection, limit: int = 10) -> list[dict[str, Any]]:
     rows = conn.execute(
         """
-        SELECT source, vehicle, year, make, model, price, mileage, location, distance_miles,
+        SELECT source, vehicle, year, make, model, price, mileage, maintenance_reliability,
+               maintenance_reliability_reason, location, distance_miles,
                preference_bucket, score, url
         FROM current_listings
         ORDER BY score DESC, price ASC, mileage ASC
@@ -427,7 +445,7 @@ def top_summary(conn: sqlite3.Connection, limit: int = 10) -> list[dict[str, Any
         (limit,),
     ).fetchall()
     cols = [d[0] for d in conn.execute(
-        "SELECT source, vehicle, year, make, model, price, mileage, location, distance_miles, preference_bucket, score, url FROM current_listings LIMIT 0"
+        "SELECT source, vehicle, year, make, model, price, mileage, maintenance_reliability, maintenance_reliability_reason, location, distance_miles, preference_bucket, score, url FROM current_listings LIMIT 0"
     ).description]
     return [dict(zip(cols, row)) for row in rows]
 

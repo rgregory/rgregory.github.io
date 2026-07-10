@@ -2,7 +2,7 @@
 
 > **For Hermes:** Use subagent-driven-development skill to implement this plan task-by-task.
 
-**Goal:** Reduce unresolved and ambiguous wikilinks in `/Users/rgregory/sync/areas/akira/graph.sqlite` while preserving Markdown as the canonical source of truth.
+**Goal:** Reduce unresolved and ambiguous wikilinks in `/Users/rgregory/.hermes/akira/graph.sqlite` while preserving Markdown as the canonical source of truth.
 
 **Architecture:** Do not edit SQLite directly. Fix source Markdown notes, add missing canonical notes where appropriate, and/or improve deterministic normalization in `scripts/build_graph_index.py`. Rebuild `graph.sqlite` after each cleanup batch and review counts via SQLite views.
 
@@ -77,7 +77,7 @@ areas/academic/Statistics/_index                              2
 **Objective:** Add a repeatable read-only report command so each cleanup pass has comparable metrics.
 
 **Files:**
-- Create: `/Users/rgregory/sync/areas/akira/scripts/report_link_quality.py`
+- Create: `/Users/rgregory/.hermes/akira/scripts/report_link_quality.py`
 
 **Implementation sketch:**
 
@@ -146,8 +146,8 @@ Expected: prints counts plus top unresolved/ambiguous buckets.
 **Objective:** Make `MOC/...` link behavior explicit before fixing the largest unresolved/ambiguous class.
 
 **Files:**
-- Modify: `/Users/rgregory/sync/areas/akira/tests/test_build_graph_index.py`
-- Modify later: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/tests/test_build_graph_index.py`
+- Modify later: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`
 
 **Test case:**
 
@@ -177,7 +177,7 @@ Expected before implementation: new test fails where normalization is missing. E
 **Objective:** Resolve high-count MOC links without editing hundreds of note bodies.
 
 **Files:**
-- Modify: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`
 
 **Approach:**
 
@@ -197,7 +197,7 @@ Keep the algorithm conservative: add candidates; do not force a resolution if ca
 
 ```bash
 python3 tests/test_build_graph_index.py -v
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira
 python3 scripts/report_link_quality.py
 ```
 
@@ -210,7 +210,7 @@ Expected: unresolved count should drop by at least the successfully mapped MOC l
 **Objective:** For `MOC/...` targets that have no equivalent current note, create canonical area/index notes instead of leaving dead links.
 
 **Files:**
-- Create or modify Markdown notes under `/Users/rgregory/sync/areas/akira/areas/academic/`
+- Create or modify Markdown notes under `/Users/rgregory/.hermes/akira/areas/academic/`
 
 **Likely candidates:**
 
@@ -243,7 +243,7 @@ Imported placeholder for legacy MOC links. Review and expand.
 **Verification:**
 
 ```bash
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira
 sqlite3 graph.sqlite "SELECT normalized_target, COUNT(*) FROM unresolved_wikilinks WHERE normalized_target LIKE 'MOC/%' GROUP BY normalized_target ORDER BY COUNT(*) DESC;"
 ```
 
@@ -256,7 +256,7 @@ Expected: major `MOC/%` unresolved buckets reduced or eliminated.
 **Objective:** Cover legacy `03-Resources/...`, `05-People/...`, and `00-Inbox/...` links before changing production logic.
 
 **Files:**
-- Modify: `/Users/rgregory/sync/areas/akira/tests/test_build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/tests/test_build_graph_index.py`
 
 **Test cases:**
 
@@ -284,9 +284,9 @@ Do not invent matches based only on partial titles.
 
 **Files:**
 - Create notes under appropriate current folders, likely:
-  - `/Users/rgregory/sync/areas/akira/areas/academic/Resources/Articles/`
-  - `/Users/rgregory/sync/areas/akira/areas/academic/Resources/Sources/`
-  - `/Users/rgregory/sync/areas/akira/people/`
+  - `/Users/rgregory/.hermes/akira/areas/academic/Resources/Articles/`
+  - `/Users/rgregory/.hermes/akira/areas/academic/Resources/Sources/`
+  - `/Users/rgregory/.hermes/akira/people/`
 
 **First batch candidates:**
 
@@ -321,7 +321,7 @@ Placeholder created to resolve repeated legacy wikilinks. Needs review.
 **Verification:**
 
 ```bash
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira
 python3 scripts/report_link_quality.py
 ```
 
@@ -334,8 +334,8 @@ Expected: top repeated `03-Resources/...`, `05-People/...`, book-title unresolve
 **Objective:** Stop generic `_index` keys from creating noisy ambiguity while preserving area index notes as entities.
 
 **Files:**
-- Modify: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`
-- Modify: `/Users/rgregory/sync/areas/akira/tests/test_build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/tests/test_build_graph_index.py`
 
 **Approach:**
 
@@ -359,7 +359,7 @@ and path-specific links still resolve.
 
 ```bash
 python3 tests/test_build_graph_index.py -v
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira
 sqlite3 graph.sqlite "SELECT * FROM ambiguous_entity_keys ORDER BY entity_count DESC, key;"
 ```
 
@@ -412,7 +412,7 @@ aliases:
 **Verification:**
 
 ```bash
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira
 sqlite3 graph.sqlite "SELECT * FROM ambiguous_entity_keys ORDER BY key;"
 ```
 
@@ -425,7 +425,7 @@ Expected: ambiguous key count decreases only where review confidently resolved d
 **Objective:** Keep the vault self-documenting.
 
 **Files:**
-- Modify: `/Users/rgregory/sync/areas/akira/system/assistant/import-review.md`
+- Modify: `/Users/rgregory/.hermes/akira/system/assistant/import-review.md`
 
 **Add section:**
 
@@ -452,7 +452,7 @@ Remaining cleanup:
 **Verification:**
 
 ```bash
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira
 /Users/rgregory/.hermes/scripts/akira_validate_graph_sync.py
 ```
 

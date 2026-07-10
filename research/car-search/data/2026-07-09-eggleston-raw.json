@@ -1,0 +1,24 @@
+{
+  "source": "Eggleston Automotive",
+  "start_url": "https://www.egglestonservices.org/business-services/eggleston-automotive/#vehicles",
+  "pdfs": [
+    {
+      "pdf_url": "https://www.egglestonservices.org/wp-content/uploads/2026/01/Scheduled-Auctions-for-2026.pdf",
+      "label": "Upcoming Auction Dates",
+      "auction_date": null,
+      "pdf_bytes": 283763,
+      "text_chars": 2916,
+      "vehicle_count": 0,
+      "vehicles": []
+    },
+    {
+      "pdf_url": "https://www.egglestonservices.org/wp-content/uploads/2026/07/Auto-Auction-List-7-11-2026-1.pdf",
+      "label": "Click Here",
+      "auction_date": null,
+      "pdf_bytes": 358774,
+      "text_chars": 2,
+      "vehicle_count": 0,
+      "vehicles": []
+    }
+  ]
+}

@@ -402,6 +402,68 @@ def recent_items(conn: sqlite3.Connection, days: int = 7) -> list[dict]:
     return items
 
 
+def parse_date(value: str) -> datetime | None:
+    if not value:
+        return None
+    text = str(value).strip()
+    for fmt in ("%Y-%m-%d", "%Y-%m-%dT%H:%M:%S%z", "%Y-%m-%dT%H:%M:%S"):
+        try:
+            return datetime.strptime(text, fmt)
+        except ValueError:
+            pass
+    try:
+        return datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def recent_actively_exploited_vulnerabilities(conn: sqlite3.Connection, run_date: str, days: int = 30, limit: int = 20) -> list[dict]:
+    """Return CISA KEV vulnerabilities added within the lookback window.
+
+    CISA KEV entries are, by definition, known actively exploited vulnerabilities.
+    This report is intentionally independent of whether the item was newly
+    inserted in this run, so each briefing always shows the current recent KEV
+    baseline.
+    """
+    anchor = parse_date(run_date) or datetime.now(timezone.utc)
+    anchor_date = anchor.date()
+    cutoff_date = anchor_date - timedelta(days=days)
+    rows = conn.execute(
+        """
+        SELECT title, url, published_at, raw_json
+        FROM items
+        WHERE source_name = 'CISA Known Exploited Vulnerabilities'
+        ORDER BY published_at DESC, title ASC
+        """
+    ).fetchall()
+    out: list[dict] = []
+    for title, url, published_at, raw_json in rows:
+        raw = json.loads(raw_json or "{}")
+        date_added = raw.get("dateAdded") or published_at or ""
+        parsed = parse_date(date_added)
+        if not parsed:
+            continue
+        added_date = parsed.date()
+        if not (cutoff_date <= added_date <= anchor_date):
+            continue
+        cve = raw.get("cveID") or raw.get("cveId") or raw.get("id") or ""
+        out.append(
+            {
+                "cve": cve,
+                "title": title,
+                "vendor_project": raw.get("vendorProject", ""),
+                "product": raw.get("product", ""),
+                "date_added": date_added,
+                "due_date": raw.get("dueDate", ""),
+                "known_ransomware_campaign_use": raw.get("knownRansomwareCampaignUse", ""),
+                "url": url,
+            }
+        )
+        if len(out) >= limit:
+            break
+    return out
+
+
 def categories_for_item(text: str, taxonomy: dict) -> list[str]:
     blob = normalize_text(text)
     out = []
@@ -434,7 +496,7 @@ def score_item(item: dict, categories: list[str]) -> int:
     return min(score, 100)
 
 
-def analyze(conn: sqlite3.Connection, items: list[dict], taxonomy: dict, source_health: list[dict]) -> dict:
+def analyze(conn: sqlite3.Connection, items: list[dict], taxonomy: dict, source_health: list[dict], run_date: str) -> dict:
     counts = Counter()
     high = []
     solution_rows = []
@@ -454,9 +516,11 @@ def analyze(conn: sqlite3.Connection, items: list[dict], taxonomy: dict, source_
         {"pattern": cat, "signal": count, "confidence": "High" if count >= 5 else "Medium" if count >= 2 else "Low"}
         for cat, count in counts.most_common(10)
     ]
+    recent_kevs = recent_actively_exploited_vulnerabilities(conn, run_date)
     executive = [
         f"{len(items)} new item(s) ingested.",
         f"{len(high)} high-signal item(s) flagged for review.",
+        f"{len(recent_kevs)} actively exploited vulnerabilities added to CISA KEV in the last 30 days.",
         f"Top pattern: {patterns[0]['pattern']}" if patterns else "No fresh patterns detected yet.",
     ]
     return {
@@ -467,6 +531,7 @@ def analyze(conn: sqlite3.Connection, items: list[dict], taxonomy: dict, source_
         "source_health": source_health,
         "items_seen": len(items),
         "items_new": len(items),
+        "recent_actively_exploited_vulnerabilities": recent_kevs,
     }
 
 
@@ -496,6 +561,27 @@ def render_markdown(run_date: str, result: dict) -> str:
     else:
         lines.append("- No high-signal items today.")
         lines.append("")
+    lines.extend([
+        "## Actively Exploited Vulnerabilities Added in Last 30 Days",
+        "",
+        "CISA KEV entries are known actively exploited vulnerabilities. This section is shown every briefing even when no items were newly ingested today.",
+        "",
+        "| CVE | Vulnerability | Vendor/Product | Date Added | Due Date | Ransomware Use |",
+        "|---|---|---|---|---|---|",
+    ])
+    recent_kevs = result.get("recent_actively_exploited_vulnerabilities", [])
+    if recent_kevs:
+        for vuln in recent_kevs:
+            cve = vuln.get("cve") or "unknown"
+            url = vuln.get("url") or ""
+            cve_cell = f"[{cve}]({url})" if url else cve
+            vendor_product = " / ".join(part for part in [vuln.get("vendor_project", ""), vuln.get("product", "")] if part) or "unknown"
+            lines.append(
+                f"| {cve_cell} | {vuln.get('title', '')} | {vendor_product} | {vuln.get('date_added', '')} | {vuln.get('due_date', '')} | {vuln.get('known_ransomware_campaign_use', '') or 'Unknown'} |"
+            )
+    else:
+        lines.append("| none | none | none | none | none | none |")
+    lines.append("")
     lines.extend(["## Solution Alignment", "", "| Threat Pattern | Control Category | Candidate Solution Type | Why Now? |", "|---|---|---|---|"])
     if result["solution_rows"]:
         for row in result["solution_rows"]:
@@ -553,7 +639,7 @@ def run_daily(run_date: str | None = None, dry_run: bool = False):
             error = str(exc)
         source_health.append({"name": source["name"], "status": status, "new_items": count, "error": error})
 
-    analysis = analyze(conn, new_items, taxonomy, source_health)
+    analysis = analyze(conn, new_items, taxonomy, source_health, run_date)
     markdown = render_markdown(run_date, analysis)
     briefing_path = BRIEFINGS_DIR / f"{run_date} — Cyber Threat Briefing.md"
 

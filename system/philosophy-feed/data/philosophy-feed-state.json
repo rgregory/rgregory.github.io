@@ -1,0 +1,187 @@
+{
+  "runs": [
+    {
+      "checked_at": "2026-07-07T19:26:28",
+      "date": "2026-07-07",
+      "items": 75,
+      "new_items": 12,
+      "sources": [
+        {
+          "count": 47,
+          "id": "wiley-nous",
+          "name": "No\u00fbs \u2014 Wiley eTOC",
+          "ok": true
+        },
+        {
+          "count": 28,
+          "id": "daily-nous",
+          "name": "Daily Nous",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-07-08T09:26:33",
+      "date": "2026-07-08",
+      "items": 75,
+      "new_items": 2,
+      "sources": [
+        {
+          "count": 47,
+          "id": "wiley-nous",
+          "name": "No\u00fbs \u2014 Wiley eTOC",
+          "ok": true
+        },
+        {
+          "count": 28,
+          "id": "daily-nous",
+          "name": "Daily Nous",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-07-09T09:20:37",
+      "date": "2026-07-09",
+      "items": 75,
+      "new_items": 0,
+      "sources": [
+        {
+          "count": 47,
+          "id": "wiley-nous",
+          "name": "No\u00fbs \u2014 Wiley eTOC",
+          "ok": true
+        },
+        {
+          "count": 28,
+          "id": "daily-nous",
+          "name": "Daily Nous",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-07-09T09:24:50",
+      "date": "2026-07-09",
+      "items": 75,
+      "new_items": 0,
+      "sources": [
+        {
+          "count": 47,
+          "id": "wiley-nous",
+          "name": "No\u00fbs \u2014 Wiley eTOC",
+          "ok": true
+        },
+        {
+          "count": 28,
+          "id": "daily-nous",
+          "name": "Daily Nous",
+          "ok": true
+        }
+      ]
+    },
+    {
+      "checked_at": "2026-07-10T09:20:10",
+      "date": "2026-07-10",
+      "items": 76,
+      "new_items": 4,
+      "sources": [
+        {
+          "count": 48,
+          "id": "wiley-nous",
+          "name": "No\u00fbs \u2014 Wiley eTOC",
+          "ok": true
+        },
+        {
+          "count": 28,
+          "id": "daily-nous",
+          "name": "Daily Nous",
+          "ok": true
+        }
+      ]
+    }
+  ],
+  "seen_ids": [
+    "05d18f488add1e76",
+    "1092d6a925f102fb",
+    "120a7da661795e2d",
+    "129df34431f366ac",
+    "141ff3101f67c749",
+    "144c6f3e110dec9a",
+    "1555c7af5985469b",
+    "167830b41b4dc3e8",
+    "174eff946369925f",
+    "1b94289e34b588d1",
+    "1d96cbef633fdb16",
+    "2075f40d6577e884",
+    "22997e5b30eb9270",
+    "251024584dfdeed0",
+    "26ace62500bb9b69",
+    "2fc649a27c2c9d50",
+    "346ac883cf910462",
+    "3a814d2e9a50d842",
+    "3b48ec6c18fb9bd3",
+    "3e5322ddf3d13895",
+    "419aa98cbf449d2b",
+    "424b49065d8cb70c",
+    "448f3d37d75e7e04",
+    "486d8220ca52a63c",
+    "49c015bc2b3da9bb",
+    "4ea3fd5a3cc90b1f",
+    "4f641237d88ef9ff",
+    "58a746108e6f2519",
+    "5a5cadcdbcef62e0",
+    "5c7ff5ae3eb85281",
+    "5f96ef7d8b69b6c8",
+    "62f00702ba703c54",
+    "65899ac561eb9209",
+    "68bd29430001b961",
+    "6b303a26ef42bbec",
+    "6ee4a0d13fbd30dc",
+    "6f609566e2be9e80",
+    "77c7a12c60489623",
+    "8b220a83d9bd6ed2",
+    "95bc310a5c76e481",
+    "9754163a5bfac61b",
+    "9d08bbc2beccd412",
+    "9e0718e7a9549f28",
+    "a1572114f91f4626",
+    "a1f77b999ac83c8c",
+    "a3880bacbdf7242c",
+    "a3965befadc11d1b",
+    "a3eef0183a982516",
+    "a47b434b99c5a687",
+    "a898b9e6ead724a5",
+    "aa5e1a3448a5123d",
+    "ac16825ef39302d7",
+    "ade7208fff400c77",
+    "b068692723f14239",
+    "b1f6a0f899919a45",
+    "b884519d166b0607",
+    "b939c4d4ebe4a251",
+    "bb524bfd74a9d931",
+    "be47e49bf5bc6595",
+    "c7f42c2027511227",
+    "c9f7ab138b3b6d4e",
+    "caace641ceceb891",
+    "cd2c1e48d4a223fb",
+    "ce7e1bbd63dce942",
+    "daa9c8f08d6f49c5",
+    "dcfd09e26366f42e",
+    "dfb2e602038f0a87",
+    "e15847209056968c",
+    "e22aec8d7d1ecbcd",
+    "e4a45f3e4098d45b",
+    "e527da8388acb46a",
+    "e838b2e46e8f27a7",
+    "e85f8f97657f9efd",
+    "ec11aa1f6ffce8ba",
+    "ef83ea331f8a20c9",
+    "f897a9349e222185",
+    "fa7ce3268538b35e",
+    "fb2031e7cdf6639a",
+    "fe28d28ede8d108b",
+    "fe5379b155d91913",
+    "ffe0820d72303e6f"
+  ]
+}

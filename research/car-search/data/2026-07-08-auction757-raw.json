@@ -1,0 +1,93 @@
+{
+  "run_date": "2026-07-08",
+  "source": "Auction757 / BidWrangler",
+  "upcoming_url": "https://auction757.com/upcoming-auctions/",
+  "auctions_discovered": [
+    {
+      "listing_url": "https://auction757.com/auction_listings/feather-n-fin-auction/",
+      "title": "Cancelled – Feather N Fin Auction",
+      "date": null,
+      "time": "10:30 a.m.",
+      "bidwrangler_links": [
+        "https://auction757.bidwrangler.com/ui/auctions/158863"
+      ],
+      "auction_ids": [
+        "158863"
+      ],
+      "description_snippet": "Cancelled – Feather N Fin Auction | April 7 2026 | Norfolk | Auction757 {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/feather-n-fin-auction\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/auction757.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"name\":\"Auctions\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"position\":2,\"name\":\"Auctions",
+      "alert_3_days_before_end": false
+    },
+    {
+      "listing_url": "https://auction757.com/auction_listings/hampton-police-gbs-towing-auction-3/",
+      "title": "Hampton Police & GB’s Towing Auction",
+      "date": "2026-07-16",
+      "time": "10:30 a.m.",
+      "bidwrangler_links": [
+        "https://auction757.bidwrangler.com/ui/auctions/165068?category=All&subCategory=Active"
+      ],
+      "auction_ids": [
+        "165068"
+      ],
+      "description_snippet": "Hampton Police & GB's Towing Auction | 7-16-26 | Auction757 {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/hampton-police-gbs-towing-auction-3\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/auction757.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"name\":\"Auctions\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"position\":2,\"name\":\"Auctio",
+      "alert_3_days_before_end": false
+    },
+    {
+      "listing_url": "https://auction757.com/auction_listings/norfolk-police-auction-july-9-2026/",
+      "title": "Norfolk Police Auction",
+      "date": "2026-07-09",
+      "time": "10:30 a.m.",
+      "bidwrangler_links": [],
+      "auction_ids": [],
+      "description_snippet": "Norfolk Police Auction | July 9, 2026 | Auction757.com {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/norfolk-police-auction-july-9-2026\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/auction757.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"name\":\"Auctions\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"position\":2,\"name\":\"Auctions\",\"i",
+      "alert_3_days_before_end": false
+    },
+    {
+      "listing_url": "https://auction757.com/auction_listings/norfolk-police-bike-auction/",
+      "title": "Norfolk Police Bike Auction",
+      "date": "2026-07-09",
+      "time": "10:30 a.m.",
+      "bidwrangler_links": [
+        "https://auction757.bidwrangler.com/ui/auctions/164929?category=All&subCategory=Active"
+      ],
+      "auction_ids": [
+        "164929"
+      ],
+      "description_snippet": "Norfolk Police Bike Auction | July 9, 2026 | Auction757 {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/norfolk-police-bike-auction\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/auction757.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"name\":\"Auctions\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"position\":2,\"name\":\"Auctions\",\"item\":\"",
+      "alert_3_days_before_end": false
+    },
+    {
+      "listing_url": "https://auction757.com/auction_listings/subway-restaurant-auction-va-beach/",
+      "title": "Subway Restaurant Auction – VA Beach",
+      "date": "2026-09-29",
+      "time": "10:30 a.m.",
+      "bidwrangler_links": [],
+      "auction_ids": [],
+      "description_snippet": "Subway Restaurant Auction | 9-29-2026 | Auction757 {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/subway-restaurant-auction-va-beach\\/#breadcrumblist\",\"itemListElement\":[{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com#listItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/auction757.com\",\"nextItem\":{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"name\":\"Auctions\"}},{\"@type\":\"ListItem\",\"@id\":\"https:\\/\\/auction757.com\\/auction_listings\\/#listItem\",\"position\":2,\"name\":\"Auctions\",\"item\"",
+      "alert_3_days_before_end": false
+    }
+  ],
+  "bidwrangler_extractions": [
+    {
+      "auction_id": "158863",
+      "error": "HTTPError 404: Not Found"
+    },
+    {
+      "auction_id": "164929",
+      "auction_name": "July 9 Norfolk Police Auction",
+      "status": "accepting_bids",
+      "complete": false,
+      "scheduled_end_time": "2026-07-09T14:30:00.000Z",
+      "vehicle_total": 0,
+      "vehicle_lots": []
+    },
+    {
+      "auction_id": "165068",
+      "auction_name": "July 16 GB's Towing",
+      "status": "accepting_bids",
+      "complete": false,
+      "scheduled_end_time": "2026-07-16T14:30:00.000Z",
+      "vehicle_total": 0,
+      "vehicle_lots": []
+    }
+  ]
+}

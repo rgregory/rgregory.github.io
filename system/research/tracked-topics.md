@@ -22,9 +22,9 @@ This index lists research topics Hermes should keep alive over time. Each topic 
 
 ## Active Topics
 
-| Topic | Canonical note | Cadence | Delivery | Status |
-|---|---|---|---|---|
-| Working Memory as Internal Stigmergy | [[Working Memory as Internal Stigmergy]] | Weekly | Telegram | active |
+| Topic                                | Canonical note                           | Cadence | Delivery | Status |
+| ------------------------------------ | ---------------------------------------- | ------- | -------- | ------ |
+| Working Memory as Internal Stigmergy | [[Working Memory as Internal Stigmergy]] | Weekly  | Telegram | active |
 
 ## Tracking Rules
 

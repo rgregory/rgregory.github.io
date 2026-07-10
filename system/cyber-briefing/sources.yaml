@@ -1,26 +1,39 @@
 version: 1
 sources:
+  # Official / primary security sources
   - name: CISA Alerts
     kind: rss
     url: https://www.cisa.gov/cybersecurity-advisories/all.xml
+    requested_url: https://www.cisa.gov/newsfeeds/alerts.xml
+    note: User-requested CISA newsfeeds alerts URL returned 404 on 2026-07-07; using CISA's current cybersecurity advisories RSS endpoint.
     reliability_tier: 1
     enabled: true
-    tags: [government, alerts]
+    tags: [government, alerts, cyber]
 
   - name: CISA Known Exploited Vulnerabilities
     kind: json
     url: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
     reliability_tier: 1
     enabled: true
-    tags: [government, vulnerabilities, kev]
+    tags: [government, vulnerabilities, kev, actively-exploited]
 
-  - name: Hackread
+  - name: SANS Internet Storm Center
     kind: rss
-    url: https://hackread.com/feed/
-    reliability_tier: 2
+    url: https://isc.sans.edu/rssfeed_full.xml
+    reliability_tier: 1
     enabled: true
-    tags: [cybersecurity-news, threat-news]
+    tags: [isc, sans, threat-intel, cyber]
 
+  - name: Tenable News
+    kind: rss
+    url: https://www.tenable.com/feed/news
+    requested_url: https://www.tenable.com/rss/news
+    note: User-requested Tenable /rss/news URL returned 404 on 2026-07-07; site advertises /feed/news.
+    reliability_tier: 1
+    enabled: true
+    tags: [vendor, vulnerability-management, exposure-management, cyber]
+
+  # Cybersecurity news / threat news
   - name: BleepingComputer
     kind: rss
     url: https://www.bleepingcomputer.com/feed/
@@ -28,6 +41,72 @@ sources:
     enabled: true
     tags: [cybersecurity-news, threat-news]
 
+  - name: The Hacker News
+    kind: rss
+    url: https://feeds.feedburner.com/TheHackersNews
+    reliability_tier: 2
+    enabled: true
+    tags: [cybersecurity-news, threat-news]
+
+  - name: Dark Reading
+    kind: rss
+    url: https://www.darkreading.com/rss.xml
+    requested_url: https://www.darkreading.com/rss/all.xml
+    note: User-requested Dark Reading /rss/all.xml URL returned 404 on 2026-07-07; homepage advertises /rss.xml.
+    reliability_tier: 2
+    enabled: true
+    tags: [cybersecurity-news, threat-news]
+
+  - name: Cybersecurity Hub News
+    kind: rss
+    url: https://www.cshub.com/rss/news
+    requested_url: https://www.cshub.com/rss-feeds
+    note: User-requested URL is an HTML feed directory; selected the News RSS feed from that directory.
+    reliability_tier: 3
+    enabled: true
+    tags: [cybersecurity-news, industry-news]
+
+  # Insurance / financial / actuarial risk context
+  - name: Insurance Day All
+    kind: rss
+    url: https://feeds.feedblitz.com/insuranceday-all
+    requested_url: https://www.insuranceday.com/rss-feeds
+    note: User-requested URL is an HTML feed directory; selected the all-news FeedBlitz RSS feed from that directory.
+    reliability_tier: 3
+    enabled: true
+    tags: [insurance, risk, market-context]
+
+  - name: DTCC Important Notices
+    kind: rss
+    url: https://www.dtcc.com/rss-feeds/legal/all-important-notices
+    reliability_tier: 2
+    enabled: true
+    tags: [financial-infrastructure, legal-notices, operational-risk]
+
+  - name: The Actuary Magazine
+    kind: rss
+    url: https://theactuarymagazine.org/feed/
+    reliability_tier: 3
+    enabled: true
+    tags: [actuarial, insurance, risk]
+
+  - name: ProActuary Blog
+    kind: rss
+    url: https://proactuary.com/resources/blog/feed/
+    reliability_tier: 3
+    enabled: false
+    note: User-requested URL redirected to HTML rather than RSS during validation on 2026-07-07; kept disabled until a valid feed is found.
+    tags: [actuarial, insurance, risk, disabled-invalid-feed]
+
+  - name: Actuaries Digital
+    kind: rss
+    url: https://actuaries.digital/feed/
+    reliability_tier: 3
+    enabled: false
+    note: User-requested URL returned HTTP 503 during validation on 2026-07-07 and the site redirected to a new Actuaries Institute page without an advertised RSS feed; kept disabled until a valid feed is confirmed.
+    tags: [actuarial, insurance, risk, disabled-unavailable]
+
+  # Disclosure feed retained from the existing cyber workflow
   - name: SEC 8-K Cybersecurity Filings
     kind: sec_8k
     url: https://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=8-K&owner=include&count=100&output=atom

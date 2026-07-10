@@ -15,7 +15,7 @@
 Vault root:
 
 ```text
-/Users/rgregory/sync/areas/akira
+/Users/rgregory/.hermes/akira
 ```
 
 Observed content:
@@ -27,8 +27,8 @@ Observed content:
 - 40 directories.
 - 23 `_index.md` files.
 - 267 dated notes.
-- Existing generated DB: `/Users/rgregory/sync/areas/akira/graph.sqlite`.
-- Existing builder: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`.
+- Existing generated DB: `/Users/rgregory/.hermes/akira/graph.sqlite`.
+- Existing builder: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`.
 
 Frontmatter shape is rich but not yet normalized for the current graph builder:
 
@@ -39,7 +39,7 @@ Frontmatter shape is rich but not yet normalized for the current graph builder:
 Current builder issue:
 
 ```text
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira --db <temp-db>
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira --db <temp-db>
 ```
 
 fails with:
@@ -104,8 +104,8 @@ Use `graph.sqlite` as a derived index with these minimum layers:
 
 **Files:**
 
-- Create: `/Users/rgregory/sync/areas/akira/tests/test_build_graph_index.py`
-- Possibly create: `/Users/rgregory/sync/areas/akira/pyproject.toml` if no test runner config exists.
+- Create: `/Users/rgregory/.hermes/akira/tests/test_build_graph_index.py`
+- Possibly create: `/Users/rgregory/.hermes/akira/pyproject.toml` if no test runner config exists.
 
 **Steps:**
 
@@ -132,7 +132,7 @@ Expected before implementation: failing tests for duplicate/ambiguous handling a
 
 **Files:**
 
-- Modify: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`
 
 **Plan:**
 
@@ -165,7 +165,7 @@ HAVING COUNT(DISTINCT entity_id) > 1;
 
 **Files:**
 
-- Modify: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`
 
 **Schema additions:**
 
@@ -191,7 +191,7 @@ CREATE TABLE entity_property (
 
 **Files:**
 
-- Modify: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`
 
 **Schema additions:**
 
@@ -237,7 +237,7 @@ CREATE TABLE wikilink (
 
 **Files:**
 
-- Modify: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`
 
 **Rules:**
 
@@ -262,7 +262,7 @@ Neurology --subarea_of--> Health Systems
 
 **Files:**
 
-- Modify: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`
 
 **Rules:**
 
@@ -277,7 +277,7 @@ Neurology --subarea_of--> Health Systems
 
 **Files:**
 
-- Modify: `/Users/rgregory/sync/areas/akira/scripts/build_graph_index.py`
+- Modify: `/Users/rgregory/.hermes/akira/scripts/build_graph_index.py`
 
 **Views:**
 
@@ -305,13 +305,13 @@ GROUP BY source_path, raw_target, normalized_target;
 
 **Files:**
 
-- Generated: `/Users/rgregory/sync/areas/akira/graph.sqlite`
+- Generated: `/Users/rgregory/.hermes/akira/graph.sqlite`
 
 **Commands:**
 
 ```bash
-cd /Users/rgregory/sync/areas/akira
-python3 scripts/build_graph_index.py --vault /Users/rgregory/sync/areas/akira --json
+cd /Users/rgregory/.hermes/akira
+python3 scripts/build_graph_index.py --vault /Users/rgregory/.hermes/akira --json
 sqlite3 graph.sqlite "SELECT COUNT(*) FROM entity;"
 sqlite3 graph.sqlite "SELECT COUNT(*) FROM wikilink;"
 sqlite3 graph.sqlite "SELECT resolution_status, COUNT(*) FROM wikilink GROUP BY resolution_status;"
@@ -333,8 +333,8 @@ Expected success criteria:
 
 **Files:**
 
-- Create: `/Users/rgregory/sync/areas/akira/system/assistant/vault-map.md`
-- Modify: `/Users/rgregory/sync/areas/akira/system/assistant/assistant-memory-index.md`
+- Create: `/Users/rgregory/.hermes/akira/system/assistant/vault-map.md`
+- Modify: `/Users/rgregory/.hermes/akira/system/assistant/assistant-memory-index.md`
 
 **Content should document:**
 
@@ -360,7 +360,7 @@ Add wikilinks:
 
 **Files:**
 
-- Create: `/Users/rgregory/sync/areas/akira/system/assistant/import-review.md`
+- Create: `/Users/rgregory/.hermes/akira/system/assistant/import-review.md`
 
 **Report sections:**
 
@@ -402,7 +402,7 @@ Do not auto-create hundreds of missing person/resource notes in this pass. Creat
 
 ## Definition of Done
 
-- `scripts/build_graph_index.py` runs successfully against `/Users/rgregory/sync/areas/akira`.
+- `scripts/build_graph_index.py` runs successfully against `/Users/rgregory/.hermes/akira`.
 - `graph.sqlite` contains all Markdown files as entities.
 - Wikilinks are indexed with resolution status.
 - Duplicate titles/aliases no longer crash the build.

@@ -16,8 +16,11 @@
       "location": "Virginia Beach, VA",
       "distance_miles": 8,
       "dealer": "Sample Dealer",
-      "notes": "Synthetic verification fixture",
-      "match_reason": "Toyota small pickup under criteria"
+      "notes": "Synthetic verification fixture with recent maintenance and service records.",
+      "match_reason": "Toyota small pickup under criteria",
+      "maintenance_reliability": "good",
+      "maintenance_reliability_query": "2012 Toyota Tacoma common problems reliability",
+      "maintenance_reliability_reason": "Good year/model reliability search: no broad known problem trend flagged in the local reliability table; still check recalls, service history, and condition."
     }
   ]
 }

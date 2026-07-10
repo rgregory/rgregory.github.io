@@ -1,0 +1,15 @@
+{
+  "json_path": "/Users/rgregory/sync/bin/hermes/akira/research/car-search/data/2026-07-10-listings.json",
+  "report_path": "/Users/rgregory/sync/bin/hermes/akira/research/car-search/daily-reports/2026-07-10.md",
+  "dashboard_path": "/Users/rgregory/sync/bin/hermes/akira/daily/car_search.html",
+  "listing_count": 53,
+  "counts": {
+    "Craigslist Hampton Roads": 53
+  },
+  "new_alerts": [],
+  "email": {
+    "status": "disabled",
+    "to": "roger.gregory@xerox.com",
+    "body_html": "/Users/rgregory/sync/bin/hermes/akira/daily/car_search.html"
+  }
+}

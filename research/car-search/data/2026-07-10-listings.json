@@ -6,11 +6,11 @@
       "attempted_url": "https://www.autotempest.com/results?zip=23462&radius=50&maxprice=10000&maxmiles=150000"
     },
     "Craigslist Hampton Roads": {
-      "note": "Accessible. Parsed 320 static search rows from Craigslist; detail pages fetched for Toyota/Honda/small-pickup/1984-1986 BMW 325i/very-low-price candidates only.",
+      "note": "Accessible. Parsed 321 static search rows from Craigslist; detail pages fetched for Toyota/Honda/small-pickup/1984-1986 BMW 325i/very-low-price candidates only.",
       "attempted_url": "https://norfolk.craigslist.org/search/cta?max_price=10000&postal=23462&search_distance=50"
     },
     "Auction757 / BidWrangler": {
-      "note": "Discovered 0 Auction757 listing pages; BidWrangler vehicle API returned 0 vehicle lots, 0 qualifying under filters.",
+      "note": "Discovered 3 Auction757 listing pages; BidWrangler vehicle API returned 0 vehicle lots, 0 qualifying under filters.",
       "attempted_url": "https://auction757.com/upcoming-auctions/"
     },
     "Eggleston Automotive": {
@@ -1236,29 +1236,6 @@
       "posted_at": "2026-06-24T09:11:51-0400",
       "maintenance_reliability": "neutral",
       "maintenance_reliability_query": "2008 f150 pickup xlt 5.4 liter common problems reliability",
-      "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
-    },
-    {
-      "source": "Craigslist Hampton Roads",
-      "url": "https://www.craigslist.org/view/d/williamsburg-2002-ford-mustang-38/xtEzLGUUYQ3B1dSU5XTAa2",
-      "vehicle": "2002 Ford Mustang 3.8",
-      "year": 2002,
-      "make": "Ford",
-      "model": "Mustang",
-      "trim": null,
-      "price": 1995,
-      "mileage": null,
-      "location": "Williamsburg",
-      "distance_miles": null,
-      "dealer": "unknown Craigslist seller",
-      "vin": null,
-      "title_status": "unknown",
-      "notes": "Mileage not visible in observed Craigslist title/body; odometer not shown in captured listing text. Observed body snippet: QR Code Link to This Post 2002 Ford Mustang 3.8 – V6 Very Low Mileage AUTOMATIC COLD AIR CONDITION CURRENT STATE INSPECTION EXCELLENT CONDITION NEEDS NOTHING CALL JAMIE TODAY 301-503-5440 VA. DLR. B & B MOTORSPORTS HOME OF FINE CARS !! 13201 POCAHONTAS TRAIL LANEXA, VA 23089",
-      "is_small_pickup": false,
-      "match_reason": "under $10,000; mileage not visible",
-      "posted_at": "2026-06-23T22:01:10-0400",
-      "maintenance_reliability": "neutral",
-      "maintenance_reliability_query": "2002 Ford Mustang common problems reliability",
       "maintenance_reliability_reason": "Neutral year/model reliability search: no specific model problem trend in the local reliability table; manually search/verify common problems before pursuing."
     }
   ]

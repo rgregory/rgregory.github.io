@@ -26,7 +26,10 @@ REMOTE = "https://github.com/rgregory/rgregory.github.io.git"
 BRANCHES = ("public", "master")
 CALENDAR_SCRIPT = Path("/Users/rgregory/.hermes/scripts/apple_calendar_today.py")
 DIGEST_SCRIPT = Path("/Users/rgregory/.hermes/scripts/akira_daily_digest.py")
-BIRTHDAY_SCRIPT = Path("/Users/rgregory/.hermes/scripts/akira_birthday_telegram_reminders.py")
+BIRTHDAY_SCRIPTS = [
+    VAULT / "scripts" / "birthday_telegram_reminders.py",
+    Path("/Users/rgregory/.hermes/scripts/akira_birthday_telegram_reminders.py"),
+]
 
 TABLER_CSS = "https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css"
 TABLER_JS = "https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"
@@ -242,6 +245,7 @@ def command_page(title: str, args: list[str], timeout: int = 180) -> tuple[str, 
 
 def write_artifacts(date: dt.date) -> dict[str, str]:
     PUBLISH_DIR.mkdir(parents=True, exist_ok=True)
+    (PUBLISH_DIR / "ai_agents.html").unlink(missing_ok=True)
     artifacts: dict[str, str] = {}
 
     car_src = newest([VAULT / "daily" / "car_search.html", VAULT / "research" / "car-search" / "daily" / "car_search.html"])
@@ -278,13 +282,9 @@ def write_artifacts(date: dt.date) -> dict[str, str]:
     (PUBLISH_DIR / "calendar.html").write_text(calendar_html, encoding="utf-8")
     artifacts["calendar.html"] = calendar_src
 
-    latest_research = latest_glob("research/ai-agents/**/*.md")
-    research_html, research_src = markdown_page("AI Agents Research", latest_research)
-    (PUBLISH_DIR / "ai_agents.html").write_text(research_html, encoding="utf-8")
-    artifacts["ai_agents.html"] = research_src
-
-    if BIRTHDAY_SCRIPT.exists():
-        birthday_html, birthday_src = command_page("Birthday Reminders", [sys.executable, str(BIRTHDAY_SCRIPT)], timeout=120)
+    birthday_script = newest(BIRTHDAY_SCRIPTS)
+    if birthday_script:
+        birthday_html, birthday_src = command_page("Birthday Reminders", [sys.executable, str(birthday_script), "--dry-run"], timeout=120)
     else:
         birthday_html, birthday_src = page("Birthday Reminders", "<section class=\"card\"><div class=\"card-body\"><p>Birthday reminder script not found.</p></div></section>"), "missing"
     (PUBLISH_DIR / "birthdays.html").write_text(birthday_html, encoding="utf-8")
@@ -310,7 +310,6 @@ def write_index(artifacts: dict[str, str], date: dt.date) -> None:
         "car_search.html": "Daily used-car search",
         "cyber.html": "Cyber threat briefing",
         "philosophy.html": "Daily philosophy feed",
-        "ai_agents.html": "AI agents research",
         "birthdays.html": "Birthday reminders",
         "job_status.html": "Job HTML status",
     }

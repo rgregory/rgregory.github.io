@@ -24,12 +24,12 @@ VAULT = Path(os.environ.get("AKIRA_VAULT", Path(__file__).resolve().parents[1]))
 PUBLISH_DIR = VAULT / "akira"
 REMOTE = "https://github.com/rgregory/rgregory.github.io.git"
 BRANCHES = ("public", "master")
-CALENDAR_SCRIPT = Path("/Users/rgregory/.hermes/scripts/apple_calendar_today.py")
 DIGEST_SCRIPT = Path("/Users/rgregory/.hermes/scripts/akira_daily_digest.py")
 BIRTHDAY_SCRIPTS = [
     VAULT / "scripts" / "birthday_telegram_reminders.py",
     Path("/Users/rgregory/.hermes/scripts/akira_birthday_telegram_reminders.py"),
 ]
+CYBER8K_SCRIPT = VAULT / "scripts" / "cyber8k_report.py"
 
 TABLER_CSS = "https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css"
 TABLER_JS = "https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"
@@ -279,12 +279,7 @@ def write_artifacts(date: dt.date) -> dict[str, str]:
     (PUBLISH_DIR / "daily_digest.html").write_text(digest_html, encoding="utf-8")
     artifacts["daily_digest.html"] = digest_src
 
-    if CALENDAR_SCRIPT.exists():
-        calendar_html, calendar_src = command_page("Apple Calendar Agenda", [sys.executable, str(CALENDAR_SCRIPT)], timeout=120)
-    else:
-        calendar_html, calendar_src = page("Apple Calendar Agenda", "<section class=\"card\"><div class=\"card-body\"><p>Calendar script not found.</p></div></section>"), "missing"
-    (PUBLISH_DIR / "calendar.html").write_text(calendar_html, encoding="utf-8")
-    artifacts["calendar.html"] = calendar_src
+    (PUBLISH_DIR / "calendar.html").unlink(missing_ok=True)
 
     birthday_script = newest(BIRTHDAY_SCRIPTS)
     if birthday_script:
@@ -293,6 +288,28 @@ def write_artifacts(date: dt.date) -> dict[str, str]:
         birthday_html, birthday_src = page("Birthday Reminders", "<section class=\"card\"><div class=\"card-body\"><p>Birthday reminder script not found.</p></div></section>"), "missing"
     (PUBLISH_DIR / "birthdays.html").write_text(birthday_html, encoding="utf-8")
     artifacts["birthdays.html"] = birthday_src
+
+    if CYBER8K_SCRIPT.exists():
+        cyber8k = run(
+            [sys.executable, str(CYBER8K_SCRIPT), "--output", str(PUBLISH_DIR / "8k-market-reaction.html")],
+            cwd=VAULT,
+            timeout=900,
+        )
+        if cyber8k.returncode == 0:
+            artifacts["8k-market-reaction.html"] = rel_link(CYBER8K_SCRIPT)
+        else:
+            fallback = text_page("Cybersecurity 8-K Market Reaction", cyber8k.stderr or cyber8k.stdout or "cyber8k_report.py failed")
+            (PUBLISH_DIR / "8k-market-reaction.html").write_text(fallback, encoding="utf-8")
+            artifacts["8k-market-reaction.html"] = f"failed: exit {cyber8k.returncode}"
+    else:
+        (PUBLISH_DIR / "8k-market-reaction.html").write_text(
+            page(
+                "Cybersecurity 8-K Market Reaction",
+                "<section class=\"card\"><div class=\"card-body\"><p>Cybersecurity 8-K market reaction script not found.</p></div></section>",
+            ),
+            encoding="utf-8",
+        )
+        artifacts["8k-market-reaction.html"] = "missing"
 
     health = {
         "date": date.isoformat(),
@@ -310,11 +327,11 @@ def write_index(artifacts: dict[str, str], date: dt.date) -> None:
     rows = []
     labels = {
         "daily_digest.html": "Unified Akira Daily Digest",
-        "calendar.html": "Apple Calendar agenda",
         "car_search.html": "Daily used-car search",
         "cyber.html": "Cyber threat briefing",
         "philosophy.html": "Daily philosophy feed",
         "birthdays.html": "Birthday reminders",
+        "8k-market-reaction.html": "Cybersecurity 8-K market reaction",
         "job_status.html": "Job HTML status",
     }
     for filename, label in labels.items():

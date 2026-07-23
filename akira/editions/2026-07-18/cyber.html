@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cyber Threat Briefing</title><style>/* The Akira Dispatch — broadsheet × observatory. Inlined at build; no external requests. */
+html{font-size:115%}
+:root{color-scheme:light;--ground:#f7f3ea;--ink:#1a1a1a;--muted:#6b6357;--hairline:#d8d0c2;--hairline-lt:#e7e1d3;--rust:#b0543a;
+--serif:Georgia,'Iowan Old Style','Times New Roman',serif;--sans:Helvetica,Arial,system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--serif);line-height:1.55}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hairline)}a:hover{border-bottom-color:var(--rust);color:var(--rust)}
+.dispatch{max-width:76rem;margin:0 auto;padding:1.5rem 1.25rem 3rem}
+.kicker{display:flex;justify-content:space-between;align-items:baseline;font:700 .62rem var(--sans);letter-spacing:.08em;color:var(--muted)}
+.masthead{text-align:center;font-size:clamp(1.9rem,4.5vw,3rem);font-weight:700;letter-spacing:.03em;margin:.2rem 0}
+.masthead a,.masthead-compact a{border-bottom:0}
+.edition-line{text-align:center;font:.62rem var(--sans);letter-spacing:.22em;color:var(--muted);text-transform:uppercase;
+border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding:.3rem 0;margin-bottom:1.2rem}
+.edition-line a{border-bottom:0}.edition-line .prev{color:var(--rust)}
+.masthead-compact{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:.3rem;margin-bottom:1rem}
+.masthead-compact .brand{font-size:1.1rem;font-weight:700}
+.masthead-compact nav{font:.6rem var(--sans);letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.eyebrow{font:700 .62rem var(--sans);letter-spacing:.18em;color:var(--rust);text-transform:uppercase;margin:0 0 .2rem}
+h1.headline{font-size:clamp(1.4rem,3vw,1.9rem);line-height:1.15;margin:.1rem 0 .3rem}
+.byline{font:.68rem var(--sans);color:var(--muted);margin:0 0 1rem}.byline code{font-family:inherit}
+.lead-grid{display:flex;gap:1.2rem;flex-wrap:wrap}
+.lead{flex:2 1 24rem;border-right:1px solid var(--hairline);padding-right:1.1rem}
+.lead .headline{font-size:clamp(1.3rem,2.8vw,1.7rem)}
+.lead p{margin:.3rem 0;color:#3d3a33}
+.sections{flex:1.2 1 14rem;display:flex;flex-direction:column}
+.sections .item{padding:.45rem 0;border-top:1px solid var(--hairline)}.sections .item:first-child{border-top:0;padding-top:0}
+.sections .item h3{margin:0;font-size:.95rem}.sections .item p{margin:.1rem 0 0;font:.68rem var(--sans);color:var(--muted)}
+.sections .item a{border-bottom:0;display:block}
+.fold{border-top:2px solid var(--ink);margin:1.3rem 0 .5rem;display:flex;justify-content:space-between;align-items:baseline;
+font:.62rem var(--sans);letter-spacing:.22em;color:var(--muted);text-transform:uppercase;padding-top:.35rem}
+.ledger-toggle{background:none;border:0;cursor:pointer;font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;padding:0}
+.ledger-toggle:hover{color:var(--rust)}.ledger-toggle .indicator{color:var(--rust)}
+.ledger{display:flex;gap:1.4rem;flex-wrap:wrap;font-family:var(--sans)}
+.ledger.collapsed{display:none}
+.ledger-group{flex:1 1 20rem}
+.ledger-group h4{font:700 .62rem var(--sans);letter-spacing:.18em;color:var(--muted);margin:.4rem 0 .2rem;text-transform:uppercase}
+.ledger-row{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:.72rem;line-height:2.1;
+border-bottom:1px solid var(--hairline-lt);color:#2e2b25}
+.ledger-row a{border-bottom:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ledger-row .age{color:var(--muted);white-space:nowrap}
+.ledger-row.warn,.ledger-row.warn .age{color:var(--rust)}
+.vault-strip{border-top:1px solid var(--hairline);margin-top:.6rem;padding-top:.4rem;font:.62rem var(--sans);color:var(--muted);line-height:1.7}
+.foot{border-top:2px solid var(--ink);margin-top:1.6rem;padding-top:.4rem;font:.62rem var(--sans);letter-spacing:.06em;color:var(--muted)}
+.foot a{border-bottom:0}
+.spark{vertical-align:middle}
+.stat-band{display:flex;flex-wrap:wrap;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+padding:.55rem 0;margin:0 0 .9rem;font-family:var(--sans)}
+.stat{flex:1 1 7rem;border-right:1px solid var(--hairline-lt);padding:0 .8rem}
+.stat:first-child{padding-left:0}.stat:last-child{border-right:0}
+.stat .value{font:700 1.25rem var(--serif)}.stat .value.warn{color:var(--rust)}
+.stat .label{font-size:.56rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.mix{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;font:.68rem var(--sans);color:#2e2b25;margin-bottom:.9rem}
+.mix .bar{display:inline-block;height:7px;background:var(--ink);vertical-align:middle;margin:0 .3rem}
+.mix .watch{color:var(--rust)}
+table.dispatch-table{width:100%;border-collapse:collapse;font:.85rem var(--sans)}
+.dispatch-table th{font-size:.58rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;text-align:left;
+border-bottom:1px solid var(--ink);padding:.3rem .5rem;white-space:nowrap;cursor:pointer}
+.dispatch-table th[data-sorted]{color:var(--rust)}
+.dispatch-table td{border-bottom:1px solid var(--hairline-lt);padding:.45rem .5rem;vertical-align:top}
+.dispatch-table td.num{text-align:right;font-family:var(--serif)}
+.dispatch-table .new,.dispatch-table .source-pill{display:inline-block;border:1px solid currentColor;border-radius:999px;padding:.04rem .3rem;font-size:.55rem;line-height:1.2;letter-spacing:.08em;font-weight:700;margin-right:.28rem;vertical-align:.08em}
+.dispatch-table .new{color:var(--rust)}
+.dispatch-table .source-pill{color:var(--muted);font-weight:600}
+.dispatch-table .sub{color:var(--muted)}
+.dispatch-table .notes{font:.68rem var(--sans);color:var(--muted);margin-top:.15rem}
+.car-search-page table.dispatch-table{font-size:.98rem}
+.car-search-page .mix{font-size:.78rem}
+.car-search-page .stat .label{font-size:.64rem}
+.car-search-page .dispatch-table th{font-size:.67rem}
+.car-search-page .dispatch-table .new,.car-search-page .dispatch-table .source-pill{font-size:.63rem}
+.search-box{position:relative}
+.search-box input{font:.72rem var(--sans);border:1px solid var(--hairline);background:transparent;color:var(--ink);padding:.25rem .5rem;width:11rem}
+.search-box input:focus{outline:1px solid var(--rust)}
+.search-results{position:absolute;right:0;top:1.9rem;z-index:5;background:var(--ground);border:1px solid var(--ink);min-width:20rem;max-height:22rem;overflow:auto;padding:.4rem .6rem;box-shadow:4px 4px 0 rgba(26,26,26,.12)}
+.search-results[hidden]{display:none}
+.search-results .hit{display:block;padding:.3rem 0;border-bottom:1px solid var(--hairline-lt);font:.72rem var(--sans)}
+.search-results .hit small{display:block;color:var(--muted)}
+.markdown-body{max-width:52rem}
+.markdown-body h1,.markdown-body h2,.markdown-body h3{font-family:var(--serif);line-height:1.2;margin:1.3rem 0 .4rem}
+.markdown-body h2{border-bottom:1px solid var(--hairline);padding-bottom:.25rem}
+.markdown-body p,.markdown-body li{color:#2e2b25}
+.markdown-body pre,pre.akira-pre{white-space:pre-wrap;background:#141210;color:#e8e3d8;padding:.9rem;overflow:auto;font-size:.78rem}
+.markdown-body code:not(pre code){background:rgba(176,84,58,.08);padding:.05rem .25rem}
+.table-wrap,.pm-table-wrap{overflow:auto;margin:1rem 0;border:1px solid var(--hairline)}
+.table-wrap table,table.table,table.pm-table{width:100%;border-collapse:collapse;font:.78rem var(--sans)}
+.table-wrap th,.pm-table th{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:1px solid var(--ink);padding:.4rem .55rem}
+.table-wrap td,.pm-table td{border-bottom:1px solid var(--hairline-lt);padding:.45rem .55rem;vertical-align:top}
+.card,.pm-card,.digest-details-card,.pm-hero,.pm-meal-card{background:transparent;border:0;box-shadow:none;padding:0}
+.pm-meal-card{border-top:1px solid var(--hairline);padding-top:.6rem;margin:1rem 0}
+.small,.meta,.sub,.pm-source{font:.68rem var(--sans);color:var(--muted)}
+.digest-shell .digest-hero{border:0;background:transparent;padding:0;box-shadow:none}
+.digest-hero h2{font-family:var(--serif);letter-spacing:0;font-size:clamp(1.3rem,2.8vw,1.7rem);margin:.1rem 0}
+.digest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);margin:.8rem 0}
+.digest-card{border:0;border-right:1px solid var(--hairline-lt);border-radius:0;background:transparent;box-shadow:none;padding:.6rem .8rem}
+.digest-card:hover{transform:none;box-shadow:none;color:var(--rust)}
+.digest-card h3{font:700 .56rem var(--sans);letter-spacing:.14em;color:var(--muted);margin:0 0 .3rem}
+.digest-metric{font:700 1.3rem var(--serif);letter-spacing:0;color:var(--ink)}
+.digest-detail{font:.62rem var(--sans);color:var(--muted);margin:.2rem 0 0}
+.digest-pill-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.5rem}
+.digest-pill,.digest-chip{border:0;border-radius:0;background:transparent;font:.62rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0}
+.digest-chip-warn{color:var(--rust)}.digest-chip-good{color:var(--ink)}
+.legacy-html .cards,.legacy-html .sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1rem 0}
+.legacy-html .num{font-size:1.6rem;font-weight:700;font-family:var(--serif)}
+.legacy-html table{width:100%;margin:1rem 0;border-collapse:collapse;font:.78rem var(--sans)}
+.legacy-html .flag{color:var(--rust)}.legacy-html .ok{color:var(--ink)}
+.legacy-html .new-week{display:inline-block;vertical-align:middle;margin:0 4px 1px 0;border-radius:999px;background:var(--rust);color:white;padding:.1rem .35rem;font-size:.66rem;font-weight:700;line-height:1;letter-spacing:.06em}
+.legacy-html tr.new-this-week{background:rgba(176,84,58,.05)}
+@media(max-width:700px){.dispatch{padding:1rem .8rem 2rem}.lead{border-right:0;padding-right:0}
+.stat{flex:1 1 40%;margin-bottom:.4rem}.masthead-compact{flex-direction:column;gap:.2rem}
+.search-results{min-width:0;width:calc(100vw - 1.6rem)}
+/* dispatch-table collapses to stacked listing cards; cells opt in via data-label */
+.dispatch-table,.dispatch-table tbody,.dispatch-table tr,.dispatch-table td{display:block}
+.dispatch-table thead{display:none}
+.dispatch-table tr{border-bottom:1px solid var(--hairline);padding:.55rem 0}
+.dispatch-table td{border-bottom:0;padding:.15rem 0}
+.dispatch-table td.num{display:inline-block;text-align:left;margin:.15rem 1.1rem .15rem 0}
+.dispatch-table td[data-label]::before{content:attr(data-label);display:block;font:.56rem var(--sans);letter-spacing:.14em;color:var(--muted);text-transform:uppercase}}
+@media print{.search-box,.ledger-toggle .indicator{display:none}}
+</style></head><body><div class="dispatch"><header class="masthead-compact"><span class="brand"><a href="../../index.html">The Akira Dispatch</a></span><nav><a href="../../index.html">◂ Index</a> · SAT 18 JUL 2026 · <a href="../index.html">Back issues</a></nav></header><h1 class="headline">Cyber Threat Briefing</h1><p class="byline"><code>50-research/cyber-briefing/briefings/2026-07-18 — Cyber Threat Briefing.md</code> · fresh 7h</p><section class="markdown-body"><h1>2026-07-18 — Cyber Threat Briefing</h1>
+<h2>Executive Summary</h2>
+<ul>
+<li>4 new item(s) ingested.</li>
+<li>4 high-signal item(s) flagged for review.</li>
+<li>20 actively exploited vulnerabilities added to CISA KEV in the last 30 days.</li>
+<li>Top pattern: vulnerability_exploitation</li>
+</ul>
+<h2>Fast-Moving Patterns</h2>
+<div class="table-wrap"><table class="table table-vcenter table-striped"><thead><tr><th>Pattern</th><th style="text-align:right">Signal</th><th>Confidence</th></tr></thead><tbody><tr><td data-label="Pattern">vulnerability_exploitation</td><td style="text-align:right" data-label="Signal">4</td><td data-label="Confidence">Medium</td></tr></tbody></table></div>
+<h2>High-Signal Items Today</h2>
+<h3>1. CVE-2026-62309 CoreDNS: proxyproto plugin panics on PPv2 datagram with non-UDP transport — single 28-byte packet remote DoS</h3>
+<ul>
+<li><strong>Source:</strong> Microsoft Security Response Center</li>
+<li><strong>Published:</strong> Sat, 18 Jul 2026 01:01:20 -0700</li>
+<li><strong>URL:</strong> https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62309</li>
+<li><strong>Score:</strong> 50</li>
+<li><strong>Mapped pattern:</strong> vulnerability_exploitation</li>
+</ul>
+<h3>2. CVE-2026-62299 CoreDNS: rewrite-plugin EDNS0 response-revert nil-pointer panic (remote DoS) when a downstream plugin returns a response with no OPT record</h3>
+<ul>
+<li><strong>Source:</strong> Microsoft Security Response Center</li>
+<li><strong>Published:</strong> Sat, 18 Jul 2026 01:01:26 -0700</li>
+<li><strong>URL:</strong> https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-62299</li>
+<li><strong>Score:</strong> 50</li>
+<li><strong>Mapped pattern:</strong> vulnerability_exploitation</li>
+</ul>
+<h3>3. CVE-2026-47729 Squid: Memory disclosure in FTP gateway</h3>
+<ul>
+<li><strong>Source:</strong> Microsoft Security Response Center</li>
+<li><strong>Published:</strong> Sat, 18 Jul 2026 01:01:34 -0700</li>
+<li><strong>URL:</strong> https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-47729</li>
+<li><strong>Score:</strong> 50</li>
+<li><strong>Mapped pattern:</strong> vulnerability_exploitation</li>
+</ul>
+<h3>4. CVE-2026-50012 Squid: Memory corruption in cache_digest reply handling</h3>
+<ul>
+<li><strong>Source:</strong> Microsoft Security Response Center</li>
+<li><strong>Published:</strong> Sat, 18 Jul 2026 01:01:40 -0700</li>
+<li><strong>URL:</strong> https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-50012</li>
+<li><strong>Score:</strong> 50</li>
+<li><strong>Mapped pattern:</strong> vulnerability_exploitation</li>
+</ul>
+<h2>Actively Exploited Vulnerabilities Added in Last 30 Days</h2>
+<p>CISA KEV entries are known actively exploited vulnerabilities. This section is shown every briefing even when no items were newly ingested today.</p>
+<div class="table-wrap"><table class="table table-vcenter table-striped"><thead><tr><th>CVE</th><th>Vulnerability</th><th>Vendor/Product</th><th>Date Added</th><th>Due Date</th><th>Ransomware Use</th></tr></thead><tbody><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-25089">CVE-2026-25089</a></td><td data-label="Vulnerability">Fortinet FortiSandbox OS Command Injection Vulnerability</td><td data-label="Vendor/Product">Fortinet / FortiSandbox</td><td data-label="Date Added">2026-07-16</td><td data-label="Due Date">2026-07-19</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-39808">CVE-2026-39808</a></td><td data-label="Vulnerability">Fortinet FortiSandbox OS Command Injection Vulnerability</td><td data-label="Vendor/Product">Fortinet / FortiSandbox</td><td data-label="Date Added">2026-07-16</td><td data-label="Due Date">2026-07-19</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-58644">CVE-2026-58644</a></td><td data-label="Vulnerability">Microsoft SharePoint Deserialization of Untrusted Data Vulnerability</td><td data-label="Vendor/Product">Microsoft / SharePoint</td><td data-label="Date Added">2026-07-16</td><td data-label="Due Date">2026-07-19</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-4346">CVE-2023-4346</a></td><td data-label="Vulnerability">KNX Association KNX Protocol Connection Authorization Option 1 Overly Restrictive Account Lockout Mechanism Vulnerability</td><td data-label="Vendor/Product">KNX Association / KNX Protocol Connection Authorization Option 1</td><td data-label="Date Added">2026-07-15</td><td data-label="Due Date">2026-07-29</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-46817">CVE-2026-46817</a></td><td data-label="Vulnerability">Oracle E-Business Suite Improper Privilege Management Vulnerability</td><td data-label="Vendor/Product">Oracle / E-Business Suite</td><td data-label="Date Added">2026-07-15</td><td data-label="Due Date">2026-07-18</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56155">CVE-2026-56155</a></td><td data-label="Vulnerability">Microsoft Active Directory Federation Services Insufficient Granularity of Access Control Vulnerability</td><td data-label="Vendor/Product">Microsoft / Active Directory Federation Services</td><td data-label="Date Added">2026-07-14</td><td data-label="Due Date">2026-07-28</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56164">CVE-2026-56164</a></td><td data-label="Vulnerability">Microsoft SharePoint Server Missing Authentication for Critical Function Vulnerability</td><td data-label="Vendor/Product">Microsoft / SharePoint Server</td><td data-label="Date Added">2026-07-14</td><td data-label="Due Date">2026-07-17</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15410">CVE-2026-15410</a></td><td data-label="Vulnerability">SonicWall SMA1000 Appliances Code Injection Vulnerability</td><td data-label="Vendor/Product">SonicWall / SMA1000 Appliances</td><td data-label="Date Added">2026-07-14</td><td data-label="Due Date">2026-07-17</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-15409">CVE-2026-15409</a></td><td data-label="Vulnerability">SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability</td><td data-label="Vendor/Product">SonicWall / SMA1000 Appliances</td><td data-label="Date Added">2026-07-14</td><td data-label="Due Date">2026-07-17</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2008-4128">CVE-2008-4128</a></td><td data-label="Vulnerability">Cisco IOS Cross-Site Request Forgery Vulnerability</td><td data-label="Vendor/Product">Cisco / IOS</td><td data-label="Date Added">2026-07-13</td><td data-label="Due Date">2026-07-16</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56291">CVE-2026-56291</a></td><td data-label="Vulnerability">Balbooa Forms Unrestricted Upload of File with Dangerous Type Vulnerability</td><td data-label="Vendor/Product">Balbooa / Forms</td><td data-label="Date Added">2026-07-10</td><td data-label="Due Date">2026-07-13</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48939">CVE-2026-48939</a></td><td data-label="Vulnerability">iCagenda Unrestricted Upload of File with Dangerous Type Vulnerability</td><td data-label="Vendor/Product">iCagenda / iCagenda</td><td data-label="Date Added">2026-07-10</td><td data-label="Due Date">2026-07-13</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48282">CVE-2026-48282</a></td><td data-label="Vulnerability">Adobe ColdFusion Path Traversal Vulnerability</td><td data-label="Vendor/Product">Adobe / ColdFusion</td><td data-label="Date Added">2026-07-07</td><td data-label="Due Date">2026-07-10</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48908">CVE-2026-48908</a></td><td data-label="Vulnerability">JoomShaper SP Page Builder Unrestricted Upload of File with Dangerous Type Vulnerability</td><td data-label="Vendor/Product">JoomShaper / SP Page Builder</td><td data-label="Date Added">2026-07-07</td><td data-label="Due Date">2026-07-10</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-56290">CVE-2026-56290</a></td><td data-label="Vulnerability">Joomlack Page Builder Improper Access Control Vulnerability</td><td data-label="Vendor/Product">Joomlack / Page Builder</td><td data-label="Date Added">2026-07-07</td><td data-label="Due Date">2026-07-10</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-55255">CVE-2026-55255</a></td><td data-label="Vulnerability">Langflow Authorization Bypass Through User-Controlled Key Vulnerability</td><td data-label="Vendor/Product">Langflow / Langflow</td><td data-label="Date Added">2026-07-07</td><td data-label="Due Date">2026-07-10</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-45659">CVE-2026-45659</a></td><td data-label="Vulnerability">Microsoft SharePoint Server Deserialization of Untrusted Data Vulnerability</td><td data-label="Vendor/Product">Microsoft / SharePoint Server</td><td data-label="Date Added">2026-07-01</td><td data-label="Due Date">2026-07-04</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-48558">CVE-2026-48558</a></td><td data-label="Vulnerability">SimpleHelp Authentication Bypass Vulnerability</td><td data-label="Vendor/Product">SimpleHelp  / SimpleHelp</td><td data-label="Date Added">2026-06-29</td><td data-label="Due Date">2026-07-02</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-20230">CVE-2026-20230</a></td><td data-label="Vulnerability">Cisco Unified Communications Manager Server-Side Request Forgery (SSRF) Vulnerability</td><td data-label="Vendor/Product">Cisco / Unified Communications Manager</td><td data-label="Date Added">2026-06-25</td><td data-label="Due Date">2026-06-28</td><td data-label="Ransomware Use">Unknown</td></tr><tr><td data-label="CVE"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-12569">CVE-2026-12569</a></td><td data-label="Vulnerability">PTC Windchill and FlexPLM Improper Input Validation Vulnerability</td><td data-label="Vendor/Product">PTC / Windchill and FlexPLM</td><td data-label="Date Added">2026-06-25</td><td data-label="Due Date">2026-06-28</td><td data-label="Ransomware Use">Unknown</td></tr></tbody></table></div>
+<h2>Control Implications</h2>
+<p>These are control categories suggested by the observed source items, not vendor-specific recommendations or proof of exposure.</p>
+<div class="table-wrap"><table class="table table-vcenter table-striped"><thead><tr><th>Threat Pattern</th><th>Control Category</th><th>Candidate Control</th><th>Why Now?</th></tr></thead><tbody><tr><td data-label="Threat Pattern">none</td><td data-label="Control Category">none</td><td data-label="Candidate Control">none</td><td data-label="Why Now?">none</td></tr></tbody></table></div>
+<h2>Source Health</h2>
+<div class="table-wrap"><table class="table table-vcenter table-striped"><thead><tr><th>Source</th><th>Status</th><th style="text-align:right">New Items</th><th>Last Error</th></tr></thead><tbody><tr><td data-label="Source">CISA Alerts</td><td data-label="Status">ok</td><td style="text-align:right" data-label="New Items">0</td><td data-label="Last Error"></td></tr><tr><td data-label="Source">CISA Known Exploited Vulnerabilities</td><td data-label="Status">ok</td><td style="text-align:right" data-label="New Items">0</td><td data-label="Last Error"></td></tr><tr><td data-label="Source">Microsoft Security Response Center</td><td data-label="Status">ok</td><td style="text-align:right" data-label="New Items">4</td><td data-label="Last Error"></td></tr><tr><td data-label="Source">Google TAG / Mandiant — Google Threat Intelligence</td><td data-label="Status">ok</td><td style="text-align:right" data-label="New Items">0</td><td data-label="Last Error"></td></tr><tr><td data-label="Source">SEC 8-K Cybersecurity Filings</td><td data-label="Status">ok</td><td style="text-align:right" data-label="New Items">0</td><td data-label="Last Error"></td></tr></tbody></table></div>
+<h2>Deduplication</h2>
+<ul>
+<li>Items fetched from enabled sources: 7094</li>
+<li>New canonical items stored: 4</li>
+<li>Duplicate items suppressed: 7090</li>
+<li>Deduplication keys: canonical URL and a normalized source/title/URL content hash.</li>
+</ul></section><footer class="foot"><a href="https://rgregory.github.io/akira/">rgregory.github.io/akira</a></footer></div><script>(() => {
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  // Ledger expand/collapse. With JS disabled the ledger renders expanded (no .collapsed class is
+  // added until here), satisfying the no-JS fallback.
+  const ledger = document.querySelector('.ledger');
+  const toggle = document.querySelector('.ledger-toggle');
+  if (ledger && toggle) {
+    ledger.classList.add('collapsed');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.addEventListener('click', () => {
+      const open = ledger.classList.toggle('collapsed') === false;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('.indicator').textContent = open ? '▴' : '▾';
+    });
+  }
+
+  // Search overlay (index only; requires search-index.json next to the page).
+  const box = document.querySelector('.search-box input');
+  const results = document.querySelector('.search-results');
+  if (box && results) {
+    let index = null;
+    const load = () => fetch('search-index.json').then(r => r.json()).then(d => { index = d; }).catch(() => { index = { pages: [] }; });
+    box.addEventListener('focus', () => { if (!index) load(); }, { once: true });
+    box.addEventListener('input', () => {
+      const q = box.value.trim().toLowerCase();
+      if (!q || !index) { results.hidden = true; return; }
+      const hits = [];
+      for (const p of index.pages) {
+        const inTitle = p.title.toLowerCase().includes(q);
+        const line = (p.lines || []).find(l => l.toLowerCase().includes(q));
+        if (inTitle || line) hits.push({ file: p.file, title: p.title, line: line || '' });
+        if (hits.length >= 12) break;
+      }
+      results.innerHTML = hits.length
+        ? hits.map(h => `<a class="hit" href="${esc(h.file)}">${esc(h.title)}<small>${esc(h.line)}</small></a>`).join('')
+        : '<span class="hit">No matches</span>';
+      results.hidden = false;
+    });
+    document.addEventListener('click', e => { if (!e.target.closest('.search-box')) results.hidden = true; });
+  }
+
+  // Column sort for .dispatch-table (numeric-aware).
+  document.querySelectorAll('table.dispatch-table').forEach(table => {
+    const body = table.tBodies[0];
+    if (!table.tHead || !body) return;
+    [...table.tHead.rows[0].cells].forEach((th, col) => {
+      th.addEventListener('click', () => {
+        const dir = th.dataset.sorted === 'asc' ? 'desc' : 'asc';
+        [...table.tHead.rows[0].cells].forEach(c => delete c.dataset.sorted);
+        th.dataset.sorted = dir;
+        const rows = [...body.rows];
+        rows.sort((a, b) => {
+          const av = a.cells[col]?.textContent.trim() || '';
+          const bv = b.cells[col]?.textContent.trim() || '';
+          const an = parseFloat(av.replace(/[^0-9.-]/g, ''));
+          const bn = parseFloat(bv.replace(/[^0-9.-]/g, ''));
+          const cmp = (!Number.isNaN(an) && !Number.isNaN(bn)) ? an - bn : av.localeCompare(bv);
+          return dir === 'asc' ? cmp : -cmp;
+        });
+        rows.forEach(r => body.appendChild(r));
+      });
+    });
+  });
+})();
+</script></body></html>

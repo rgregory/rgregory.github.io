@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lewy body dementia — LaTeX.css prototype</title>
+  <link rel="stylesheet" href="https://latex.vercel.app/style.css">
+  <style>
+    :root {
+      --body-width: 62rem;
+      --body-font: 'Latin Modern Roman', 'Computer Modern Serif', Georgia, serif;
+      --heading-font: 'Latin Modern Roman', 'Computer Modern Serif', Georgia, serif;
+      --font-scale: 1.08;
+      --bg: #fcfbf7;
+      --text: #1f1a17;
+      --border: #ded4c6;
+      --muted: #6e6258;
+      --link: #7a4f2a;
+      --visited: #5e3d78;
+    }
+
+    html { background: var(--bg); }
+    body {
+      color: var(--text);
+      font-size: 1.09rem;
+      line-height: 1.72;
+    }
+
+    main {
+      max-width: var(--body-width);
+      margin: 0 auto;
+      padding: 2.4rem 2.4rem 4.2rem;
+    }
+
+    header {
+      max-width: var(--body-width);
+      margin: 0 auto;
+      padding: 2.2rem 2.4rem 0.9rem;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: 2.4rem; margin-bottom: 0.35rem; }
+    h2 { font-size: 1.55rem; margin-top: 2.1rem; }
+    h3 { font-size: 1.15rem; margin-top: 1.6rem; }
+
+    p, li { max-width: 74ch; }
+
+    .lede {
+      font-size: 1.09rem;
+      max-width: 72ch;
+      color: var(--text);
+    }
+
+    .subtle {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .callout {
+      border: 1px solid var(--border);
+      border-left: 4px solid #bb8a5b;
+      background: #fffdf9;
+      padding: 0.85rem 1rem;
+      margin: 1rem 0 1.25rem;
+      border-radius: 0.3rem;
+    }
+
+    .callout h3 {
+      margin-top: 0;
+      margin-bottom: 0.45rem;
+      font-size: 0.98rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.95rem 0 1.3rem;
+      font-size: 0.95rem;
+      table-layout: auto;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.62rem 0.72rem;
+      vertical-align: top;
+      overflow-wrap: normal;
+      word-break: normal;
+    }
+
+    table th:first-child,
+    table td:first-child {
+      min-width: 15rem;
+    }
+
+    th {
+      background: #f7f1e8;
+      text-align: left;
+      font-size: 0.79rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #594c43;
+      line-height: 1.2;
+      white-space: normal;
+      hyphens: auto;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: #fcfaf6;
+    }
+
+    .tagrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.8rem 0 1rem;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.22rem 0.62rem;
+      font-size: 0.84rem;
+      background: #faf5ee;
+      color: #56483f;
+      white-space: nowrap;
+    }
+
+    .boundary {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 1rem;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: #fffdf9;
+      padding: 1rem 1.1rem;
+      border-radius: 0.3rem;
+      margin: 1rem 0 1.2rem;
+    }
+
+    .boundary .center {
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #f3eadf;
+      color: #5b4736;
+      white-space: nowrap;
+    }
+
+    .boundary p {
+      margin: 0;
+      max-width: none;
+    }
+
+    .boundary .label {
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    @media (max-width: 780px) {
+      main, header { padding-left: 0.8rem; padding-right: 0.8rem; }
+      .boundary { grid-template-columns: 1fr; }
+      .boundary .center { justify-self: start; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="subtle">Research loop prototype</p>
+    <h1>Lewy body dementia</h1>
+    <p class="lede">LaTeX.css base with custom overrides — tighter width, more distinctive typography, and cleaner tables.</p>
+  </header>
+
+  <main>
+    <section>
+      <div class="callout">
+        <p>
+          Lewy body dementia is a pattern disease: the diagnosis depends on a recurring cluster of symptoms and their timing, not any one symptom alone.
+          The important part is not one symptom in isolation; it is the combination of dementia, hallucinations, movement change, and sleep disturbance.
+          Rivastigmine is the best-supported symptomatic drug in this loop, and the patch/restart rules matter because the medicine is easy to misuse even when the science is straightforward.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>What Lewy body dementia is</h2>
+      <p>
+        Lewy body dementia is a <a href="https://www.ninds.nih.gov/health-information/disorders/lewy-body-dementia">neurodegenerative disease</a> in which abnormal
+        <a href="https://www.ncbi.nlm.nih.gov/books/NBK536956/">alpha-synuclein protein</a> builds up in the brain. Those deposits are called <strong>Lewy bodies</strong>.
+        They interfere with thinking, attention, sleep, movement, and sometimes perception.
+      </p>
+      <p>
+        The result is not just “memory loss.” It is often a mix of fluctuating attention, recurrent hallucinations, parkinsonian movement problems, and REM sleep behavior disorder.
+      </p>
+      <p>
+        <strong>Dementia with Lewy bodies (DLB)</strong> means the dementia begins before or within about one year of the parkinsonism.
+        <strong>Parkinson disease dementia (PDD)</strong> means Parkinson disease is established first and dementia appears later.
+      </p>
+      <p class="subtle">
+        That one-year boundary is not a magical biological cliff; it is a practical label switch used in diagnosis and research.
+      </p>
+
+      <div class="callout">
+        <h3>Why this definition is not just a memory-loss label</h3>
+        <ul>
+          <li><a href="https://pubmed.ncbi.nlm.nih.gov/28592453/">McKeith et al. 2017</a> is the core consensus report: it separates clinical features from biomarkers, defines probable vs possible DLB, and formalizes the DLB/PDD one-year convention.</li>
+          <li><a href="https://pubmed.ncbi.nlm.nih.gov/32241955/">McKeith et al. 2020</a> extends the same biology backward into prodromal disease, including MCI-LB, delirium-onset, and psychiatric-onset presentations.</li>
+          <li><a href="https://pubmed.ncbi.nlm.nih.gov/19300591/">Mrak and Griffin 2007</a> is useful for the mixed-pathology boundary: DLB often overlaps with Alzheimer pathology, so the clinical picture can be blended rather than neat.</li>
+          <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2656298/">PMC full text</a> is the open version of that review if you want the longer pathogenesis framing.</li>
+        </ul>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Paper</th>
+            <th>What it adds</th>
+            <th>Why it matters here</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://pubmed.ncbi.nlm.nih.gov/28592453/">McKeith 2017 consensus report</a></td>
+            <td>Diagnostic criteria and biomarker framework</td>
+            <td>Best single citation for how DLB is defined in practice</td>
+          </tr>
+          <tr>
+            <td><a href="https://pubmed.ncbi.nlm.nih.gov/32241955/">McKeith 2020 prodromal criteria</a></td>
+            <td>Pre-dementia DLB patterns</td>
+            <td>Shows DLB starts before the classic dementia stage</td>
+          </tr>
+          <tr>
+            <td><a href="https://pubmed.ncbi.nlm.nih.gov/19300591/">Mrak and Griffin 2007</a></td>
+            <td>DLB / Alzheimer overlap and pathogenesis framing</td>
+            <td>Explains why mixed pathology can blur the bedside picture</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Key diagnostic indicators</h2>
+      <p>The diagnosis is usually built from a pattern, not a single symptom.</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Indicator</th>
+            <th>What it looks like</th>
+            <th>Why it matters</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dementia</td>
+            <td>Decline in daily function, often with early attention, executive, or visuoperceptual problems</td>
+            <td>Dementia is the central requirement for DLB diagnosis</td>
+          </tr>
+          <tr>
+            <td>Recurrent visual hallucinations</td>
+            <td>Well-formed images or people that recur, often early</td>
+            <td>One of the strongest signposts</td>
+          </tr>
+          <tr>
+            <td>Spontaneous parkinsonism</td>
+            <td>Slowness, stiffness, tremor, shuffling, reduced facial expression, reduced dexterity</td>
+            <td>A core clinical feature</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.ninds.nih.gov/health-information/disorders/rem-sleep-behavior-disorder">REM sleep behavior disorder</a></td>
+            <td>Dream enactment: punching, kicking, talking, acting out dreams</td>
+            <td>Strong pointer to Lewy-body disease</td>
+          </tr>
+          <tr>
+            <td><a href="https://medlineplus.gov/encyclopedia.html">Cognitive fluctuations</a></td>
+            <td>Clear good/bad periods, sometimes looking delirium-like</td>
+            <td>A classic clue, especially when early</td>
+          </tr>
+          <tr>
+            <td>Supportive biomarker evidence</td>
+            <td>For example, reduced dopamine transporter uptake on <a href="https://www.ncbi.nlm.nih.gov/books/NBK499944/">DAT scan</a></td>
+            <td>Helps when the clinical picture needs support</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>
+        What does <strong>not</strong> count as enough by itself: a hallucination here, a tremor there, or a vague “confusion” label.
+        The diagnosis is the pattern — the repeated combination of symptoms, the order they arrive in, and whether they fit a Lewy-body pattern better than another cause.
+      </p>
+    </section>
+
+    <section>
+      <h2>Research loop summary</h2>
+      <p>
+        Plainly: Lewy body dementia is a pattern disease. That means the diagnosis comes from a repeated cluster of problems — especially thinking changes,
+        hallucinations, movement changes, and sleep changes — rather than from one isolated symptom.
+      </p>
+      <p>
+        The key divide in this loop is <strong>dementia with Lewy bodies (DLB)</strong> versus <strong>Parkinson disease dementia (PDD)</strong> — same disease family,
+        different symptom timing, different research label, different treatment framing.
+      </p>
+      <div class="tagrow">
+        <span class="tag">visual hallucinations</span>
+        <span class="tag">auditory hallucinations</span>
+        <span class="tag">fine-motor trouble</span>
+        <span class="tag">rivastigmine</span>
+        <span class="tag">donepezil</span>
+      </div>
+      <p>What matters most is not a trivia list. It is this:</p>
+      <ul>
+        <li><strong>visual hallucinations</strong> are a major signpost</li>
+        <li><strong>auditory hallucinations</strong> can matter too, but they do not diagnose anything by themselves</li>
+        <li><strong>fine-motor trouble</strong> like difficulty cutting a steak is meaningful because it can reflect parkinsonism, but it is not specific on its own</li>
+        <li><strong>rivastigmine</strong> has the strongest symptomatic evidence in this pass</li>
+        <li><strong>donepezil</strong> is a reasonable comparator, but the evidence base is thinner</li>
+        <li>neither drug is a cure or disease-modifier</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>DLB vs PDD boundary</h2>
+      <div class="boundary">
+        <div>
+          <p class="label">Dementia with Lewy bodies (DLB)</p>
+          <p>Dementia and hallucination/attention changes appear before or around the same time as parkinsonism.</p>
+        </div>
+        <div class="center">≈ 1 year</div>
+        <div>
+          <p class="label">Parkinson disease dementia (PDD)</p>
+          <p>Parkinson disease is established first, then dementia follows later.</p>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Pattern</th>
+            <th>What comes first</th>
+            <th>What comes later</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DLB</td>
+            <td>Dementia + hallucination / attention change</td>
+            <td>Parkinsonian motor disease is already present or appears around the same time</td>
+          </tr>
+          <tr>
+            <td>PDD</td>
+            <td>Parkinson disease</td>
+            <td>Dementia shows up later</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="subtle">The boundary is useful because the syndrome label changes the trial logic and the way clinicians talk about the disease family.</p>
+    </section>
+
+    <section>
+      <h2>Rivastigmine vs donepezil</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Axis</th>
+            <th>Rivastigmine</th>
+            <th>Donepezil</th>
+            <th>Read</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Evidence in DLB/PDD</td>
+            <td>Strongest in this pass</td>
+            <td>Thinner and more heterogeneous</td>
+            <td>Rivastigmine is the anchor drug</td>
+          </tr>
+          <tr>
+            <td>Symptom focus</td>
+            <td>Attention, behavior, global symptomatic support</td>
+            <td>Attention and hallucinations in smaller studies</td>
+            <td>Both are symptomatic only</td>
+          </tr>
+          <tr>
+            <td>Practical use</td>
+            <td>Oral or patch; patch can improve adherence</td>
+            <td>Oral only</td>
+            <td>Patch adds risk if the old patch is left on or two patches are used</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <p>
+          <strong>Multi-patch medication-error risk</strong> means the patch contains real medicine, so if someone forgets to remove the old patch and puts on a new one,
+          or uses two patches at once, the person can accidentally get too much rivastigmine.
+        </p>
+        <p>
+          <strong>Retitration after interruptions &gt;3 days</strong> means that if the medicine has been stopped for more than 3 days, you do not restart at the old dose.
+          You go back to the starting dose and build up again.
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

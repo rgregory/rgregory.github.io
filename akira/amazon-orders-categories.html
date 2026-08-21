@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akira · Amazon order categories</title>
+<style>
+:root { color-scheme: dark; --bg:#0f172a; --panel:#111827; --muted:#94a3b8; --text:#e5e7eb; --line:#1f2937; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:linear-gradient(135deg,#0f172a,#111827 55%,#172554); color:var(--text); }
+main { max-width:1100px; margin:0 auto; padding:32px 20px 60px; }
+.hero { display:grid; gap:14px; margin-bottom:24px; }
+h1 { margin:0; font-size:clamp(2rem,5vw,4rem); letter-spacing:-0.04em; }
+p { color:var(--muted); line-height:1.5; max-width:78ch; }
+.stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin:18px 0; }
+.stat,.panel,.category { background:rgba(17,24,39,.82); border:1px solid rgba(148,163,184,.18); border-radius:18px; padding:16px; box-shadow:0 18px 48px rgba(0,0,0,.22); }
+.stat strong { display:block; font-size:2rem; }
+.stat span { color:var(--muted); }
+.panel { margin:18px 0; }
+.bar-row { display:grid; grid-template-columns:minmax(220px,330px) 1fr; gap:12px; align-items:center; margin:14px 0; }
+.bar-label span { display:block; color:var(--muted); font-size:.9rem; margin-top:2px; }
+.bar-track { height:16px; background:#0b1220; border:1px solid #243044; border-radius:999px; overflow:hidden; }
+.bar { height:100%; border-radius:999px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; }
+h2 { margin:.1rem 0 1rem; }
+h2 small { color:var(--muted); font-weight:500; }
+ul { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+li { border-top:1px solid var(--line); padding-top:10px; }
+li:first-child { border-top:0; padding-top:0; }
+li span { display:block; }
+li em { display:block; color:var(--muted); font-size:.85rem; margin-top:4px; font-style:normal; }
+.note { font-size:.92rem; color:var(--muted); }
+code { background:#0b1220; padding:.15rem .35rem; border-radius:6px; }
+@media (max-width:720px) { .bar-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <h1>Amazon order categories</h1>
+    <p>Rough category view derived from cached amazon-orders-pp-cli HTML. This is useful for lightweight browsing, but categories are inferred from item-title keywords rather than Amazon's product taxonomy, and spend fields are not yet reliable.</p>
+    <div class="stats">
+      <div class="stat"><strong>18</strong><span>extracted items</span></div>
+      <div class="stat"><strong>7</strong><span>categories</span></div>
+      <div class="stat"><strong>2</strong><span>need review</span></div>
+    </div>
+  </section>
+  <section class="panel">
+    <h2>Category mix</h2>
+
+        <div class="bar-row">
+          <div class="bar-label"><strong>Crafts, office &amp; school</strong><span>4 items · avg confidence 0.88</span></div>
+          <div class="bar-track"><div class="bar" style="width:100%;background:#38bdf8"></div></div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label"><strong>Health &amp; personal care</strong><span>4 items · avg confidence 0.90</span></div>
+          <div class="bar-track"><div class="bar" style="width:100%;background:#a78bfa"></div></div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label"><strong>Clothing &amp; footwear</strong><span>3 items · avg confidence 0.87</span></div>
+          <div class="bar-track"><div class="bar" style="width:75%;background:#34d399"></div></div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label"><strong>Bags &amp; accessories</strong><span>2 items · avg confidence 0.87</span></div>
+          <div class="bar-track"><div class="bar" style="width:50%;background:#f59e0b"></div></div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label"><strong>Home &amp; kitchen</strong><span>2 items · avg confidence 0.85</span></div>
+          <div class="bar-track"><div class="bar" style="width:50%;background:#fb7185"></div></div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label"><strong>Needs review</strong><span>2 items · avg confidence 0.25</span></div>
+          <div class="bar-track"><div class="bar" style="width:50%;background:#22c55e"></div></div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label"><strong>Food &amp; grocery</strong><span>1 items · avg confidence 0.86</span></div>
+          <div class="bar-track"><div class="bar" style="width:25%;background:#f472b6"></div></div>
+        </div>
+
+  </section>
+  <section class="grid">
+    <section class='category'><h2>Crafts, office &amp; school <small>4</small></h2><ul><li><span>Book Ring, 1 1/5&quot; Loose Leaf Binder Rings for Key Chains, Open Card Rings, Clip Rings for Book Rings, Keyrings School, Home or Office (50Pack)</span><em>0.90 · book ring, binder, school, office, key chain</em></li><li><span>Legal Pads 5x8 Inch Writing Pads for Office Note Pads 5x8 for Work 80 GSM Paper College Ruled Legal Pad To Do List Notepad 30 Sheets 6 Pack Notebook Writing Pad Notepads for Grocery List Shopping List</span><em>0.88 · legal pad, note pad, office, writing pad</em></li><li><span>Loctite Super Glue Brush On Liquid, Clear, 0.17 fl oz Bottle, 1 Pack - Superglue for Leather, Wood, Metal, Crafts, &amp; Repair, Cyanoacrylate Adhesive Instant Glue, Quick Dry</span><em>0.86 · craft, loctite, super glue</em></li><li><span>Pipe Cleaners Craft Bulk,Kids Toys &amp; Games Gifts,200pcs Arts Crafts,Chenille Stems Art Supplies for Projects Creative DIY Room Decor,Christmas Decorations,Juegos para Niños Fidget Toys for Ages 5-7</span><em>0.88 · pipe cleaner, craft, chenille, art supplies</em></li></ul></section><section class='category'><h2>Health &amp; personal care <small>4</small></h2><ul><li><span>Harry&#x27;s Original Razor Blades for Men - 10 Count - Premium Razor Blade Refill Cartridges - German Engineered</span><em>0.88 · razor</em></li><li><span>NAC Supplement (N-Acetyl Cysteine) - 99%+ Purity Tested - (1,000mg Per Serving 500mg Per Cap, 210 Capsules) (Third Party Tested) with Odor Masking Technology to Boost Glutathione Levels by Double Wood</span><em>0.92 · supplement, n-acetyl, nac </em></li><li><span>Nizoral Anti-Dandruff Shampoo with 1% Ketoconazole, Fresh Scent, 7 Fl Oz</span><em>0.90 · shampoo, ketoconazole</em></li><li><span>OLLY Men&#x27;s Multivitamin Gummy, Vitamins A, C, D, E, B, Zinc, Blackberry Flavor, 45 Day Supply - 90 Count</span><em>0.88 · vitamin</em></li></ul></section><section class='category'><h2>Clothing &amp; footwear <small>3</small></h2><ul><li><span>Darn Tough Vermont Mens Hiker Merino Wool Boot Socks Cushion Rye Large</span><em>0.90 · socks, merino, wool, mens</em></li><li><span>Diu Life 5 Pack Biker Shorts for Women – Buttery Soft 8&quot; High Waisted Tummy Control Workout Shorts with Pockets Non See Through Black Grey Blue Green Pink Yoga Shorts Under Dress Gifts</span><em>0.86 · shorts, women</em></li><li><span>Saloogoe Summer Outfits for Women Cap Sleeve V Neck Tops Loose Fit Wide Leg Pants Woman Business Casual Work Outfits Matching Sets Women Clothing Fashion Trendy 2025 Blue XL</span><em>0.86 · outfit, women</em></li></ul></section><section class='category'><h2>Bags &amp; accessories <small>2</small></h2><ul><li><span>Gardsell Cosmetic Bags for Women - Corduroy Cosmetic Bag Aesthetic Women Handbags Purses Smile Dots Makeup Organizer Storage Makeup Bag Girls Case Bags (Pure Pink)</span><em>0.88 · purse, cosmetic bag, makeup organizer, handbag</em></li><li><span>Quilax 6 Pcs Snap Closure Purse Organizer Pouches, Portable No Zipper Leather Pouches for Purse, Self-Closing Mini Cosmetic Bag for Purses, Cosmetics Jewelry Eyeglasses Travel Accessories(6 colors)</span><em>0.86 · purse, cosmetic bag, pouches</em></li></ul></section><section class='category'><h2>Home &amp; kitchen <small>2</small></h2><ul><li><span>Bambaw 100% Viscose Derived from Bamboo Full Fitted Sheet Only, Soft &amp; Cooling Fitted Sheet Full Size, 15’’ Deep Pockets (Sea Glass)</span><em>0.86 · sheet, fitted sheet</em></li><li><span>Personal Size Portable Blender for Shakes &amp; Smoothies, 16oz Mini Small Smoothie Blender with On Go Lid &amp; Sip Lid, 26000RPM Rechargeable Cordless Electric Blender for Travel Gym Office</span><em>0.84 · blender</em></li></ul></section><section class='category'><h2>Needs review <small>2</small></h2><ul><li><span>Amazon Business Card</span><em>0.25 · no keyword match</em></li><li><span>Amazon Secured Card</span><em>0.25 · no keyword match</em></li></ul></section><section class='category'><h2>Food &amp; grocery <small>1</small></h2><ul><li><span>Amazon Basics Square Snack Bags with Double Zipper, Seals in Freshness, 5 1/8&quot; x 4 11/16&quot;, 100 Count</span><em>0.86 · snack</em></li></ul></section>
+  </section>
+  <p class="note">Generated 2026-07-12 18:17  from <code>/Users/rgregory/sync/agents/akira/data/amazon-orders-pp-cli/data.db</code>. Derived tables: <code>amazon_order_items_derived</code>, <code>amazon_order_category_summary</code>.</p>
+</main>
+</body>
+</html>

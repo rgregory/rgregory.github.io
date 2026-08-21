@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Events Discovery Targets</title>
+  <script>
+    function sortTable(col) {
+      const table = document.getElementById('targets-table');
+      const tbody = table.querySelector('tbody');
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      const idx = Number(col.dataset.col);
+      const asc = col.dataset.asc !== 'true';
+      rows.sort((a, b) => {
+        const av = a.children[idx].innerText.trim();
+        const bv = b.children[idx].innerText.trim();
+        const an = Number(av); const bn = Number(bv);
+        const cmp = (!Number.isNaN(an) && !Number.isNaN(bn)) ? an - bn : av.localeCompare(bv);
+        return asc ? cmp : -cmp;
+      });
+      rows.forEach(r => tbody.appendChild(r));
+      table.querySelectorAll('th button').forEach(btn => btn.dataset.asc = '');
+      col.dataset.asc = asc ? 'true' : 'false';
+    }
+  </script>
+  <style>
+    :root { --accent:#3366ff; --bg:#e5e7eb; --panel:#ffffff; --ink:#111827; --muted:#6b7280; --line:#d1d5db; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; background:#e2e8f0; color:var(--ink); }
+    header { position:sticky; top:0; z-index:50; background:#fff; border-bottom:1px solid #e5e7eb; }
+    .shell { max-width:1100px; margin:0 auto; padding:0 16px; }
+    .header-row { display:flex; justify-content:space-between; align-items:center; min-height:56px; }
+    .brand { font-weight:700; font-size:1rem; }
+    .brand span { color:var(--accent); }
+    .stamp { font-size:12px; color:var(--muted); }
+    main { padding:24px 0 32px; }
+    .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-bottom:16px; }
+    .card { background:var(--panel); border-radius:10px; border-left:4px solid var(--accent); box-shadow:0 1px 4px rgba(0,0,0,.08); padding:14px 16px; }
+    .label { font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:700; }
+    .value { font-size:28px; font-weight:800; margin-top:6px; }
+    .sub { color:var(--muted); font-size:13px; margin:6px 0 0; }
+    .section { background:var(--panel); border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,.08); padding:16px; margin-bottom:16px; }
+    .section h2 { margin:0 0 12px; font-size:18px; }
+    .pm-table { width:100%; border-collapse:collapse; font-size:.92rem; }
+    .pm-table thead { background:#f3f4f6; }
+    .pm-table th, .pm-table td { padding:10px; border-bottom:1px solid #e5e7eb; text-align:left; }
+    .pm-table th button { all:unset; cursor:pointer; color:#374151; font-size:.74rem; text-transform:uppercase; letter-spacing:.03em; font-weight:700; }
+    .pm-table tbody tr:hover { background:#f8fafc; }
+    .grid-2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; }
+    .pill { display:inline-flex; align-items:center; border-radius:999px; background:#dbeafe; color:#1d4ed8; font-size:12px; font-weight:700; padding:3px 10px; }
+    .card-head { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+    .card-head h3 { margin:0; font-size:15px; }
+    .query-list { margin:10px 0 0; padding-left:18px; }
+    code { background:#f3f4f6; padding:2px 4px; border-radius:4px; font-size:12px; }
+    ul.slim { margin:8px 0 0; padding-left:18px; }
+    @media (max-width: 720px) {
+      .pm-table thead { display:none; }
+      .pm-table, .pm-table tbody, .pm-table tr, .pm-table td { display:block; width:100%; }
+      .pm-table tr { border-bottom:1px solid #e5e7eb; padding:8px 0; }
+      .pm-table td { border-bottom:none; padding:6px 0; }
+      .pm-table td::before { content: attr(data-label); display:block; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:700; margin-bottom:2px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="shell">
+      <div class="header-row">
+        <div class="brand"><span>Cyber</span> Events Discovery Targets</div>
+        <div class="stamp">Updated 2026-08-18T00:16:17.201582+00:00</div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="shell">
+      <section class="stats">
+        <div class="card"><div class="label">Ranked targets</div><div class="value">20</div></div>
+        <div class="card"><div class="label">New since prior run</div><div class="value">5</div></div>
+        <div class="card"><div class="label">Dropped since prior run</div><div class="value">5</div></div>
+        <div class="card"><div class="label">Corroboration tasks</div><div class="value">12</div></div>
+      </section>
+
+      <section class="section">
+        <h2>Ranked target queue</h2>
+        <table class="pm-table" id="targets-table">
+          <thead>
+            <tr>
+              <th><button data-col="0" onclick="sortTable(this)">Target ↕</button></th>
+              <th><button data-col="1" onclick="sortTable(this)">Start ↕</button></th>
+              <th><button data-col="2" onclick="sortTable(this)">Place ↕</button></th>
+              <th><button data-col="3" onclick="sortTable(this)">Evidence ↕</button></th>
+              <th><button data-col="4" onclick="sortTable(this)">Days ↕</button></th>
+              <th><button data-col="5" onclick="sortTable(this)">Priority ↕</button></th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr>
+          <td data-label="Target">Minneapolis CISO Community Inner Circle</td>
+          <td data-label="Start">2026-09-17</td>
+          <td data-label="Place">The Beach Club, Minneapolis, Minnesota, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">30</td>
+          <td data-label="Priority">56</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">Infosec Nashville 2026</td>
+          <td data-label="Start">2026-09-17</td>
+          <td data-label="Place">Nashville, Tennessee, United States</td>
+          <td data-label="Evidence">38</td>
+          <td data-label="Days">30</td>
+          <td data-label="Priority">52</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">Philadelphia CISO Community Executive Summit</td>
+          <td data-label="Start">2026-10-28</td>
+          <td data-label="Place">Philadelphia Marriott Downtown, Philadelphia, Pennsylvania, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">71</td>
+          <td data-label="Priority">52</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">San Francisco CISO Community Executive Summit</td>
+          <td data-label="Start">2026-11-05</td>
+          <td data-label="Place">Grand Hyatt at SFO, San Francisco, California, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">79</td>
+          <td data-label="Priority">52</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">Indianapolis CISO Community Executive Summit</td>
+          <td data-label="Start">2026-11-12</td>
+          <td data-label="Place">Hyatt Regency Indianapolis, Indianapolis, Indiana, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">86</td>
+          <td data-label="Priority">52</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">SANS Network Security 2026</td>
+          <td data-label="Start">2026-09-21</td>
+          <td data-label="Place">Caesars Palace, Las Vegas, NV, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">34</td>
+          <td data-label="Priority">49</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">ISC2 Security Congress 2026</td>
+          <td data-label="Start">2026-10-24</td>
+          <td data-label="Place">Gaylord Rockies Resort &amp; Convention Center, Denver, Colorado, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">67</td>
+          <td data-label="Priority">49</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">SANS Raleigh 2026</td>
+          <td data-label="Start">2026-11-02</td>
+          <td data-label="Place">Embassy Suites by Hilton Raleigh-Durham Research Triangle, Cary, NC, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">76</td>
+          <td data-label="Priority">49</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">Washington, DC CISO Community Executive Summit</td>
+          <td data-label="Start">2026-11-17</td>
+          <td data-label="Place">Convene at 1201 Wilson Blvd, Arlington, Virginia, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">91</td>
+          <td data-label="Priority">48</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">SANS Cyber Defense Initiative® 2026</td>
+          <td data-label="Start">2026-12-14</td>
+          <td data-label="Place">Grand Hyatt Washington, Washington, DC, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">118</td>
+          <td data-label="Priority">45</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">Gartner Cybersecurity &amp; Risk Management Summit</td>
+          <td data-label="Start">2027-06-14</td>
+          <td data-label="Place">National Harbor, Maryland, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">300</td>
+          <td data-label="Priority">44</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">Black Hat | Upcoming Events</td>
+          <td data-label="Start">2027-07-31</td>
+          <td data-label="Place">Las Vegas, Nevada, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">347</td>
+          <td data-label="Priority">44</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">SANS Cloud Security Exchange Summit &amp; Training 2026</td>
+          <td data-label="Start">2026-08-17</td>
+          <td data-label="Place">Hyatt Regency San Francisco Downtown SOMA, San Francisco, CA, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">-1</td>
+          <td data-label="Priority">41</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">SANS Rockville 2027</td>
+          <td data-label="Start">2027-02-22</td>
+          <td data-label="Place">Hilton Washington DC/Rockville Hotel and Executive Meeting Ctr, Rockville, MD, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">188</td>
+          <td data-label="Priority">41</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">SANS 2027</td>
+          <td data-label="Start">2027-04-12</td>
+          <td data-label="Place">Hyatt Regency Orlando, Orlando, FL, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">237</td>
+          <td data-label="Priority">41</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">SANS Security West 2027</td>
+          <td data-label="Start">2027-05-10</td>
+          <td data-label="Place">Hilton San Diego Bayfront, San Diego, CA, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">265</td>
+          <td data-label="Priority">41</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">SANS ICS Security Summit &amp; Training 2027</td>
+          <td data-label="Start">2027-06-07</td>
+          <td data-label="Place">Disney’s Contemporary Resort, Lake Buena Vista, FL, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">293</td>
+          <td data-label="Priority">41</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">SANSFIRE 2027</td>
+          <td data-label="Start">2027-07-12</td>
+          <td data-label="Place">Grand Hyatt Washington, Washington, DC, United States</td>
+          <td data-label="Evidence">39</td>
+          <td data-label="Days">328</td>
+          <td data-label="Priority">41</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">RSA Conference 2027</td>
+          <td data-label="Start">2027-04-05</td>
+          <td data-label="Place">San Francisco, California, United States</td>
+          <td data-label="Evidence">38</td>
+          <td data-label="Days">230</td>
+          <td data-label="Priority">40</td>
+        </tr>
+        
+        <tr>
+          <td data-label="Target">CUI-CON 2027</td>
+          <td data-label="Start">2027-02-21</td>
+          <td data-label="Place">—</td>
+          <td data-label="Evidence">30</td>
+          <td data-label="Days">187</td>
+          <td data-label="Priority">30</td>
+        </tr>
+        </tbody>
+        </table>
+      </section>
+
+      <section class="grid-2">
+        <div class="section">
+          <h2>Monthly diff</h2>
+          <div class="grid-2">
+            <div>
+              <div class="label">New targets</div>
+              <ul class="slim"><li>Minneapolis CISO Community Inner Circle — 2026-09-17</li><li>Philadelphia CISO Community Executive Summit — 2026-10-28</li><li>Indianapolis CISO Community Executive Summit — 2026-11-12</li><li>Black Hat | Upcoming Events — 2027-07-31</li><li>CUI-CON 2027 — 2027-02-21</li></ul>
+            </div>
+            <div>
+              <div class="label">Dropped targets</div>
+              <ul class="slim"><li>GRC Conference 2026 — 2026-08-17</li><li>Nashville Official Cybersecurity Summit 2026 — 2026-09-17</li><li>SANS Seattle 2027 — 2027-03-15</li><li>ISACA 2027 North America Conference — 2027-05-05</li><li>SANS Baltimore 2027 — 2027-05-17</li></ul>
+            </div>
+          </div>
+        </div>
+        <div class="section">
+          <h2>Corroboration needed</h2>
+          <p class="sub">Exact search probes for the current ranked queue.</p>
+          <div class="grid-2">
+        <article class="card">
+          <div class="card-head">
+            <h3>Minneapolis CISO Community Inner Circle</h3>
+            <span class="pill">priority 56</span>
+          </div>
+          <p class="sub">2026-09-17 · The Beach Club, Minneapolis, Minnesota, United States</p>
+          <ul class="query-list"><li><code>https://www.evanta.com/ciso/minneapolis/minneapolis-ciso-inner-circle-9317</code></li><li><code>&quot;Minneapolis CISO Community Inner Circle&quot; site:infosecmap.com/event/</code></li><li><code>&quot;Minneapolis CISO Community Inner Circle&quot; &quot;The Beach Club, Minneapolis, Minnesota, United States&quot;</code></li><li><code>&quot;Minneapolis CISO Community Inner Circle&quot; &quot;2026-09-17&quot;</code></li><li><code>&quot;Minneapolis CISO Community Inner Circle&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>Infosec Nashville 2026</h3>
+            <span class="pill">priority 52</span>
+          </div>
+          <p class="sub">2026-09-17 · Nashville, Tennessee, United States</p>
+          <ul class="query-list"><li><code>https://infosecmap.com/event/infosec-nashville-2026/</code></li><li><code>&quot;Infosec Nashville 2026&quot; site:infosecmap.com/event/</code></li><li><code>&quot;Infosec Nashville 2026&quot; &quot;Nashville, Tennessee, United States&quot;</code></li><li><code>&quot;Infosec Nashville 2026&quot; &quot;2026-09-17&quot;</code></li><li><code>&quot;Infosec Nashville 2026&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>Philadelphia CISO Community Executive Summit</h3>
+            <span class="pill">priority 52</span>
+          </div>
+          <p class="sub">2026-10-28 · Philadelphia Marriott Downtown, Philadelphia, Pennsylvania, United States</p>
+          <ul class="query-list"><li><code>https://www.evanta.com/ciso/philadelphia/philadelphia-ciso-executive-summit-8414</code></li><li><code>&quot;Philadelphia CISO Community Executive Summit&quot; site:infosecmap.com/event/</code></li><li><code>&quot;Philadelphia CISO Community Executive Summit&quot; &quot;Philadelphia Marriott Downtown, Philadelphia, Pennsylvania, United States&quot;</code></li><li><code>&quot;Philadelphia CISO Community Executive Summit&quot; &quot;2026-10-28&quot;</code></li><li><code>&quot;Philadelphia CISO Community Executive Summit&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>San Francisco CISO Community Executive Summit</h3>
+            <span class="pill">priority 52</span>
+          </div>
+          <p class="sub">2026-11-05 · Grand Hyatt at SFO, San Francisco, California, United States</p>
+          <ul class="query-list"><li><code>https://www.evanta.com/ciso/san-francisco/san-francisco-ciso-executive-summit-9349</code></li><li><code>&quot;San Francisco CISO Community Executive Summit&quot; site:infosecmap.com/event/</code></li><li><code>&quot;San Francisco CISO Community Executive Summit&quot; &quot;Grand Hyatt at SFO, San Francisco, California, United States&quot;</code></li><li><code>&quot;San Francisco CISO Community Executive Summit&quot; &quot;2026-11-05&quot;</code></li><li><code>&quot;San Francisco CISO Community Executive Summit&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>Indianapolis CISO Community Executive Summit</h3>
+            <span class="pill">priority 52</span>
+          </div>
+          <p class="sub">2026-11-12 · Hyatt Regency Indianapolis, Indianapolis, Indiana, United States</p>
+          <ul class="query-list"><li><code>https://www.evanta.com/ciso/indianapolis/indianapolis-ciso-executive-summit-8419</code></li><li><code>&quot;Indianapolis CISO Community Executive Summit&quot; site:infosecmap.com/event/</code></li><li><code>&quot;Indianapolis CISO Community Executive Summit&quot; &quot;Hyatt Regency Indianapolis, Indianapolis, Indiana, United States&quot;</code></li><li><code>&quot;Indianapolis CISO Community Executive Summit&quot; &quot;2026-11-12&quot;</code></li><li><code>&quot;Indianapolis CISO Community Executive Summit&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>SANS Network Security 2026</h3>
+            <span class="pill">priority 49</span>
+          </div>
+          <p class="sub">2026-09-21 · Caesars Palace, Las Vegas, NV, United States</p>
+          <ul class="query-list"><li><code>https://www.sans.org/cyber-security-training-events/network-security-2026</code></li><li><code>&quot;SANS Network Security 2026&quot; site:infosecmap.com/event/</code></li><li><code>&quot;SANS Network Security 2026&quot; &quot;Caesars Palace, Las Vegas, NV, United States&quot;</code></li><li><code>&quot;SANS Network Security 2026&quot; &quot;2026-09-21&quot;</code></li><li><code>&quot;SANS Network Security 2026&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>ISC2 Security Congress 2026</h3>
+            <span class="pill">priority 49</span>
+          </div>
+          <p class="sub">2026-10-24 · Gaylord Rockies Resort &amp; Convention Center, Denver, Colorado, United States</p>
+          <ul class="query-list"><li><code>https://isc2chapters.isc2.org/events/278638</code></li><li><code>&quot;ISC2 Security Congress 2026&quot; site:infosecmap.com/event/</code></li><li><code>&quot;ISC2 Security Congress 2026&quot; &quot;Gaylord Rockies Resort &amp; Convention Center, Denver, Colorado, United States&quot;</code></li><li><code>&quot;ISC2 Security Congress 2026&quot; &quot;2026-10-24&quot;</code></li><li><code>&quot;ISC2 Security Congress 2026&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>SANS Raleigh 2026</h3>
+            <span class="pill">priority 49</span>
+          </div>
+          <p class="sub">2026-11-02 · Embassy Suites by Hilton Raleigh-Durham Research Triangle, Cary, NC, United States</p>
+          <ul class="query-list"><li><code>https://www.sans.org/cyber-security-training-events/raleigh-2026</code></li><li><code>&quot;SANS Raleigh 2026&quot; site:infosecmap.com/event/</code></li><li><code>&quot;SANS Raleigh 2026&quot; &quot;Embassy Suites by Hilton Raleigh-Durham Research Triangle, Cary, NC, United States&quot;</code></li><li><code>&quot;SANS Raleigh 2026&quot; &quot;2026-11-02&quot;</code></li><li><code>&quot;SANS Raleigh 2026&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>Washington, DC CISO Community Executive Summit</h3>
+            <span class="pill">priority 48</span>
+          </div>
+          <p class="sub">2026-11-17 · Convene at 1201 Wilson Blvd, Arlington, Virginia, United States</p>
+          <ul class="query-list"><li><code>https://www.evanta.com/ciso/washington-dc/washington-dc-ciso-executive-summit-8496</code></li><li><code>&quot;Washington, DC CISO Community Executive Summit&quot; site:infosecmap.com/event/</code></li><li><code>&quot;Washington, DC CISO Community Executive Summit&quot; &quot;Convene at 1201 Wilson Blvd, Arlington, Virginia, United States&quot;</code></li><li><code>&quot;Washington, DC CISO Community Executive Summit&quot; &quot;2026-11-17&quot;</code></li><li><code>&quot;Washington, DC CISO Community Executive Summit&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>SANS Cyber Defense Initiative® 2026</h3>
+            <span class="pill">priority 45</span>
+          </div>
+          <p class="sub">2026-12-14 · Grand Hyatt Washington, Washington, DC, United States</p>
+          <ul class="query-list"><li><code>https://www.sans.org/cyber-security-training-events/cyber-defense-initiative-2026</code></li><li><code>&quot;SANS Cyber Defense Initiative® 2026&quot; site:infosecmap.com/event/</code></li><li><code>&quot;SANS Cyber Defense Initiative® 2026&quot; &quot;Grand Hyatt Washington, Washington, DC, United States&quot;</code></li><li><code>&quot;SANS Cyber Defense Initiative® 2026&quot; &quot;2026-12-14&quot;</code></li><li><code>&quot;SANS Cyber Defense Initiative® 2026&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>Gartner Cybersecurity &amp; Risk Management Summit</h3>
+            <span class="pill">priority 44</span>
+          </div>
+          <p class="sub">2027-06-14 · National Harbor, Maryland, United States</p>
+          <ul class="query-list"><li><code>https://www.gartner.com/en/conferences/na/security-risk-management-us</code></li><li><code>&quot;Gartner Cybersecurity &amp; Risk Management Summit&quot; site:infosecmap.com/event/</code></li><li><code>&quot;Gartner Cybersecurity &amp; Risk Management Summit&quot; &quot;National Harbor, Maryland, United States&quot;</code></li><li><code>&quot;Gartner Cybersecurity &amp; Risk Management Summit&quot; &quot;2027-06-14&quot;</code></li><li><code>&quot;Gartner Cybersecurity &amp; Risk Management Summit&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        
+        <article class="card">
+          <div class="card-head">
+            <h3>Black Hat | Upcoming Events</h3>
+            <span class="pill">priority 44</span>
+          </div>
+          <p class="sub">2027-07-31 · Las Vegas, Nevada, United States</p>
+          <ul class="query-list"><li><code>https://www.blackhat.com/upcoming.html</code></li><li><code>&quot;Black Hat | Upcoming Events&quot; site:infosecmap.com/event/</code></li><li><code>&quot;Black Hat | Upcoming Events&quot; &quot;Las Vegas, Nevada, United States&quot;</code></li><li><code>&quot;Black Hat | Upcoming Events&quot; &quot;2027-07-31&quot;</code></li><li><code>&quot;Black Hat | Upcoming Events&quot; (conference OR cybersecurity OR infosec)</code></li></ul>
+        </article>
+        </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

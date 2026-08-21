@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Cyber Events Launch Surface</title>
+  <style>
+    :root{color-scheme:light;--ground:#f7f3ea;--ink:#1a1a1a;--muted:#6b6357;--hairline:#d8d0c2;--hairline-lt:#e7e1d3;--rust:#b0543a;--blue:#234a8a;--blue-soft:#e9eef8;--serif:Georgia,'Iowan Old Style','Times New Roman',serif;--sans:Helvetica,Arial,system-ui,sans-serif}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--serif);line-height:1.55}
+    a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hairline)}
+    a:hover{border-bottom-color:var(--rust);color:var(--rust)}
+    .page{max-width:78rem;margin:0 auto;padding:1.2rem 1rem 3rem}
+    .kicker{display:flex;justify-content:space-between;align-items:baseline;font:700 .62rem var(--sans);letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+    .masthead{font-size:clamp(1.8rem,4.3vw,3rem);font-weight:700;text-align:center;margin:.2rem 0 .3rem}
+    .masthead a{border-bottom:0}
+    .line{border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding:.35rem 0;margin-bottom:1.1rem;text-align:center;font:.62rem var(--sans);letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+    .hero{display:grid;grid-template-columns:2fr 1.15fr;gap:1.2rem;align-items:start}
+    .hero-main{padding-right:1rem;border-right:1px solid var(--hairline)}
+    .eyebrow{font:700 .62rem var(--sans);letter-spacing:.18em;color:var(--rust);text-transform:uppercase;margin:0 0 .25rem}
+    h1{font-size:clamp(1.45rem,3.2vw,2rem);line-height:1.12;margin:.1rem 0 .5rem}
+    .deck{margin:.3rem 0 0;color:#333028}
+    .pill-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.85rem;font:.64rem var(--sans);letter-spacing:.08em;text-transform:uppercase}
+    .pill-row a,.pill{border:1px solid var(--hairline);padding:.28rem .5rem;border-radius:999px;background:#fff7ef}
+    .side-note{display:flex;flex-direction:column;gap:.8rem}
+    .side-card,.card,.panel{background:rgba(255,255,255,.55);border:1px solid var(--hairline);padding:1rem 1rem .95rem}
+    .side-card h3,.card h2,.panel h2{margin:.1rem 0 .3rem;font-size:1.02rem}
+    .side-card p,.card p,.panel p,.panel li,.card li{margin:.25rem 0;color:#2f2c26}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem;margin:1rem 0 1.2rem}
+    .stat{background:#fff;border:1px solid var(--hairline);padding:.8rem .9rem}
+    .stat .label{font:.56rem var(--sans);letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+    .stat .value{font:700 1.45rem var(--serif);margin-top:.25rem}
+    .stat .sub{font:.68rem var(--sans);color:var(--muted);margin-top:.2rem}
+    .sections{display:grid;grid-template-columns:1.2fr 1fr;gap:1rem;margin-top:1rem}
+    .list{margin:.5rem 0 0;padding-left:1.15rem}
+    .list li{margin:.38rem 0}
+    .code{background:#141210;color:#e8e3d8;padding:.9rem 1rem;overflow:auto;font:.78rem/1.45 ui-monospace,SFMono-Regular,Menlo,Monaco,monospace;white-space:pre-wrap}
+    table{width:100%;border-collapse:collapse;font:.82rem var(--sans)}
+    th{font-size:.58rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;text-align:left;border-bottom:1px solid var(--ink);padding:.38rem .45rem;white-space:nowrap}
+    td{border-bottom:1px solid var(--hairline-lt);padding:.45rem;vertical-align:top}
+    .mini{font:.68rem var(--sans);color:var(--muted)}
+    .foot{border-top:2px solid var(--ink);margin-top:1.5rem;padding-top:.4rem;font:.62rem var(--sans);letter-spacing:.06em;color:var(--muted)}
+    @media(max-width:900px){.hero,.sections{grid-template-columns:1fr}.hero-main{padding-right:0;border-right:0}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:640px){.grid{grid-template-columns:1fr}.page{padding:.9rem .8rem 2rem}.kicker{display:block}.line{letter-spacing:.12em}}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="kicker"><span>Akira public surface</span><span>Launched 29 July 2026</span></div>
+    <div class="masthead"><a href="index.html">Cyber Events</a></div>
+    <div class="line">Telegram-first query surface · SQLite source of truth · verified launch</div>
+
+    <section class="hero">
+      <div class="hero-main">
+        <p class="eyebrow">Launch surface</p>
+        <h1>A private cyber-events system is now live: chat-facing in front, SQL underneath.</h1>
+        <p class="deck">The front door is a Telegram/chat wrapper for regional and time-window questions. The load-bearing layer is a local SQLite corpus refreshed from 14 source lanes, with canonical events separated from discovery targets that still need corroboration.</p>
+        <div class="pill-row">
+          <a href="cyber-events-discovery-targets.html">Open discovery-target report</a>
+          <a href="cyber.html">Open cyber briefing</a>
+          <a href="workflow_health.html">Open workflow health</a>
+          <a href="index.html">Back to dispatch</a>
+        </div>
+      </div>
+      <div class="side-note">
+        <div class="side-card">
+          <p class="eyebrow">What launched</p>
+          <h3>Chat wrapper + watcher + source-health summary</h3>
+          <p>The public page is just the window. The real system includes a monthly refresh, a six-hour new-events watcher, query output with coverage notes, and a verifier that exercises refresh, DB integrity, query shape, watcher dedupe, and failure paths.</p>
+        </div>
+        <div class="side-card">
+          <p class="eyebrow">Boundary</p>
+          <h3>Useful, not exhaustive</h3>
+          <p>This is a private operational tool, not a claim of full market coverage. It can answer real questions now, but its answers are still bounded by the current source set and by how well a venue or organizer publishes event data.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Launch metrics">
+      <div class="stat"><div class="label">Sources configured</div><div class="value">14</div><div class="sub">latest verified refresh</div></div>
+      <div class="stat"><div class="label">Sources failed</div><div class="value">0</div><div class="sub">latest verified refresh</div></div>
+      <div class="stat"><div class="label">Canonical US events</div><div class="value">97</div><div class="sub">query-ready rows</div></div>
+      <div class="stat"><div class="label">Discovery targets</div><div class="value">20</div><div class="sub">future US items needing corroboration</div></div>
+    </section>
+
+    <section class="sections">
+      <div class="panel">
+        <p class="eyebrow">How to use it</p>
+        <h2>Query patterns</h2>
+        <ul class="list">
+          <li>State + time window: <span class="mini">“What cyber events are happening in Ohio in the next 3 months?”</span></li>
+          <li>National scope: <span class="mini">“What US cyber events are coming up in the next 3 months?”</span></li>
+          <li>Event type + region: <span class="mini">“What ICS cyber events are happening in Tennessee in the next 6 months?”</span></li>
+          <li>Discovery mode: <span class="mini">ask for new or discovered US events to review weaker lanes</span></li>
+        </ul>
+        <p class="mini">The wrapper returns interpreted filters, a coverage block, canonical events, and discovery targets as separate sections.</p>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">Current posture</p>
+        <h2>What the system now says about itself</h2>
+        <ul class="list">
+          <li>Per-source refresh runs classify outcomes as healthy, empty-but-okay, blocked, fetch-failed, or parse-failed.</li>
+          <li>The watcher stays silent on first seed and no-change runs, emits once for new rows, and exits nonzero on runtime failure.</li>
+          <li>The corpus distinguishes canonical confirmed events from discovery targets that still need corroboration.</li>
+          <li>The launch verifier passed on the real wrapper paths before publication.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:1rem">
+      <p class="eyebrow">Verified wrapper example</p>
+      <h2>National query now resolves correctly</h2>
+      <div class="code">Query: What US cyber events are coming up in the next 3 months?
+Interpreted filters: region=all queried regions; months=3; event_filters=['any']; include_discovery_targets=True
+Coverage: strong | total_region_rows=117 | future_window_rows=21 | distinct_sources=14</div>
+    </section>
+
+    <section class="sections">
+      <div class="card">
+        <p class="eyebrow">Current canonical slice</p>
+        <h2>Near-term US events</h2>
+        <table>
+          <thead>
+            <tr><th>Event</th><th>Start</th><th>Place</th><th>Source</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>INTERFACE Montana 2026</td><td>2026-07-29</td><td>Bozeman, Montana, United States</td><td>infosec_conferences</td></tr>
+            <tr><td>Cybersecurity Summit: State of Vulnerability Management 2026</td><td>2026-07-29</td><td>Virtual</td><td>infosec_conferences</td></tr>
+            <tr><td>CIOMeet: Baltimore Social 2026</td><td>2026-07-30</td><td>Baltimore, Maryland, United States</td><td>infosec_conferences</td></tr>
+            <tr><td>SIAThere! San Jose</td><td>2026-07-30</td><td>San Jose, California, United States</td><td>securityindustry_upcoming</td></tr>
+            <tr><td>Black Hat | Upcoming Events</td><td>2026-08-01</td><td>Las Vegas, Nevada, United States</td><td>blackhat_search</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <p class="eyebrow">Discovery queue</p>
+        <h2>Highest-priority corroboration targets</h2>
+        <table>
+          <thead>
+            <tr><th>Target</th><th>Start</th><th>Place</th><th>Priority</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Black Hat | Upcoming Events</td><td>2026-08-01</td><td>Las Vegas, Nevada, United States</td><td>56</td></tr>
+            <tr><td>GRC Conference 2026</td><td>2026-08-17</td><td>San Diego, California, United States</td><td>53</td></tr>
+            <tr><td>SANS Network Security 2026</td><td>2026-09-21</td><td>Las Vegas, Nevada, United States</td><td>49</td></tr>
+            <tr><td>ISC2 Security Congress 2026</td><td>2026-10-24</td><td>Denver, Colorado, United States</td><td>49</td></tr>
+            <tr><td>Louisville Metro InfoSec Conference 2026</td><td>2026-09-11</td><td>Louisville, Kentucky, United States</td><td>48</td></tr>
+          </tbody>
+        </table>
+        <p class="mini">Full ranked queue: <a href="cyber-events-discovery-targets.html">cyber-events-discovery-targets.html</a></p>
+      </div>
+    </section>
+
+    <footer class="foot">Published from the Akira public tree · updated from verified launch state at 2026-07-29T21:30:32.567351+00:00</footer>
+  </div>
+</body>
+</html>

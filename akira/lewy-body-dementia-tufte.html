@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lewy body dementia — Tufte prototype</title>
+  <link rel="stylesheet" href="https://edwardtufte.github.io/tufte-css/tufte.css">
+  <style>
+    body { max-width: 90rem; }
+    article { max-width: 55rem; }
+    h1, h2, h3 { line-height: 1.1; }
+    h1 { margin-top: 2rem; }
+    .subtitle { color: #666; font-style: italic; margin-top: -0.5rem; }
+    .lede { font-size: 1.1rem; }
+    .rule { margin: 1.5rem 0; border-top: 1px solid #ddd; }
+    table { font-size: 0.9rem; }
+    th { text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.08em; }
+    .smallcaps { font-variant: small-caps; letter-spacing: 0.03em; }
+    .proto-note { color: #666; font-size: 0.95rem; }
+    .compare { margin-top: 1.2rem; }
+    @media (max-width: 760px) {
+      article { width: auto; padding: 0 1rem; }
+      .marginnote, .sidenote { display: none; }
+    }
+  </style>
+</head>
+<body>
+<article>
+  <h1>Lewy body dementia</h1>
+  <p class="subtitle">Tufte CSS prototype — same research, different skin</p>
+
+  <p class="lede">
+    Lewy body dementia is a pattern disease: the diagnosis depends on a recurring cluster of symptoms and their timing, not any one symptom alone.
+    <label for="sn-pattern" class="margin-toggle sidenote-number"></label>
+    <input type="checkbox" id="sn-pattern" class="margin-toggle">
+    <span class="sidenote">That is the basic Tufte fit: prose first, with the important caveat in the margin instead of a dashboard wrapper.</span>
+  </p>
+
+  <p>
+    The disease is a <a href="https://www.ninds.nih.gov/health-information/disorders/lewy-body-dementia">neurodegenerative disease</a> in which abnormal
+    <a href="https://www.ncbi.nlm.nih.gov/books/NBK536956/">alpha-synuclein protein</a> builds up in the brain. Those deposits are called <strong>Lewy bodies</strong>.
+    They interfere with thinking, attention, sleep, movement, and sometimes perception.
+  </p>
+
+  <p>
+    The result is not just “memory loss.” It is often a mix of fluctuating attention, recurrent hallucinations, parkinsonian movement problems, and
+    REM sleep behavior disorder.
+  </p>
+
+  <p>
+    <strong>Dementia with Lewy bodies (DLB)</strong> means the dementia begins before or within about one year of the parkinsonism.
+    <strong>Parkinson disease dementia (PDD)</strong> means Parkinson disease is established first and dementia appears later.
+    <label for="sn-boundary" class="margin-toggle sidenote-number"></label>
+    <input type="checkbox" id="sn-boundary" class="margin-toggle">
+    <span class="sidenote">That one-year boundary is not a magical biological cliff; it is a practical label switch used in diagnosis and research.</span>
+  </p>
+
+  <h2>Key diagnostic indicators</h2>
+  <p>The diagnosis is usually built from a pattern, not a single symptom.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Indicator</th>
+        <th>What it looks like</th>
+        <th>Why it matters</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dementia</td>
+        <td>Decline in daily function, often with early attention, executive, or visuoperceptual problems</td>
+        <td>Dementia is the central requirement for DLB diagnosis</td>
+      </tr>
+      <tr>
+        <td>Recurrent visual hallucinations</td>
+        <td>Well-formed images or people that recur, often early</td>
+        <td>One of the strongest signposts</td>
+      </tr>
+      <tr>
+        <td>Spontaneous parkinsonism</td>
+        <td>Slowness, stiffness, tremor, shuffling, reduced facial expression, reduced dexterity</td>
+        <td>A core clinical feature</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.ninds.nih.gov/health-information/disorders/rem-sleep-behavior-disorder">REM sleep behavior disorder</a></td>
+        <td>Dream enactment: punching, kicking, talking, acting out dreams</td>
+        <td>Strong pointer to Lewy-body disease</td>
+      </tr>
+      <tr>
+        <td><a href="https://medlineplus.gov/encyclopedia.html">Cognitive fluctuations</a></td>
+        <td>Clear good/bad periods, sometimes looking delirium-like</td>
+        <td>A classic clue, especially when early</td>
+      </tr>
+      <tr>
+        <td>Supportive biomarker evidence</td>
+        <td>For example, reduced dopamine transporter uptake on <a href="https://www.ncbi.nlm.nih.gov/books/NBK499944/">DAT scan</a></td>
+        <td>Helps when the clinical picture needs support</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    What does <strong>not</strong> count as enough by itself: a hallucination here, a tremor there, or a vague “confusion” label.
+    The diagnosis is the pattern — the repeated combination of symptoms, the order they arrive in, and whether they fit a Lewy-body pattern better than another cause.
+  </p>
+
+  <h2>Research loop summary</h2>
+  <p>
+    Plainly: Lewy body dementia is a pattern disease. That means the diagnosis comes from a repeated cluster of problems — especially thinking changes,
+    hallucinations, movement changes, and sleep changes — rather than from one isolated symptom.
+  </p>
+
+  <p>
+    The key divide in this loop is <strong>dementia with Lewy bodies (DLB)</strong> versus <strong>Parkinson disease dementia (PDD)</strong> — same disease family,
+    different symptom timing, different research label, different treatment framing.
+  </p>
+
+  <aside class="marginnote">
+    This is where Tufte helps: the boundary explanation can live beside the paragraph instead of competing with a dashboard header or callout card.
+  </aside>
+
+  <p>What matters most is not a trivia list. It is this:</p>
+  <ul>
+    <li><strong>visual hallucinations</strong> are a major signpost</li>
+    <li><strong>auditory hallucinations</strong> can matter too, but they do not diagnose anything by themselves</li>
+    <li><strong>fine-motor trouble</strong> like difficulty cutting a steak is meaningful because it can reflect parkinsonism, but it is not specific on its own</li>
+    <li><strong>rivastigmine</strong> has the strongest symptomatic evidence in this pass</li>
+    <li><strong>donepezil</strong> is a reasonable comparator, but the evidence base is thinner</li>
+    <li>neither drug is a cure or disease-modifier</li>
+  </ul>
+
+  <h2>DLB vs PDD boundary</h2>
+  <table class="compare">
+    <thead>
+      <tr>
+        <th>Dementia with Lewy bodies (DLB)</th>
+        <th>Timing rule</th>
+        <th>Parkinson disease dementia (PDD)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dementia and hallucination/attention changes show up before or around the same time as parkinsonism.</td>
+        <td><strong>About 1 year</strong></td>
+        <td>Established Parkinson disease comes first, then dementia follows later.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <label for="sn-timing" class="margin-toggle sidenote-number"></label>
+    <input type="checkbox" id="sn-timing" class="margin-toggle">
+    <span class="sidenote">The boundary is useful because the syndrome label changes the trial logic and the way clinicians talk about the disease family.</span>
+  </p>
+
+  <h2>Rivastigmine vs donepezil</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Axis</th>
+        <th>Rivastigmine</th>
+        <th>Donepezil</th>
+        <th>Read</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Evidence in DLB/PDD</td>
+        <td>Strongest in this pass</td>
+        <td>Thinner and more heterogeneous</td>
+        <td>Rivastigmine is the anchor drug</td>
+      </tr>
+      <tr>
+        <td>Symptom focus</td>
+        <td>Attention, behavior, global symptomatic support</td>
+        <td>Attention and hallucinations in smaller studies</td>
+        <td>Both are symptomatic only</td>
+      </tr>
+      <tr>
+        <td>Practical use</td>
+        <td>Oral or patch; patch can improve adherence</td>
+        <td>Oral only</td>
+        <td>Patch adds risk if the old patch is left on or two patches are used</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    <strong>Multi-patch medication-error risk</strong> means the patch contains real medicine, so if someone forgets to remove the old patch and puts on a new one,
+    or uses two patches at once, the person can accidentally get too much rivastigmine.
+    <label for="sn-patch" class="margin-toggle sidenote-number"></label>
+    <input type="checkbox" id="sn-patch" class="margin-toggle">
+    <span class="sidenote">That is the part the Tufte layout can emphasize cleanly: the risk sits next to the explanation, not buried in a busy callout box.</span>
+  </p>
+
+  <p>
+    <strong>Retitration after interruptions &gt;3 days</strong> means that if the medicine has been stopped for more than 3 days, you do not restart at the old dose.
+    You go back to the starting dose and build up again.
+  </p>
+
+  <h2>What the prototype shows</h2>
+  <ul>
+    <li>The page reads more like a short essay than a dashboard.</li>
+    <li>The major caveats fit into margin notes instead of competing with the main text.</li>
+    <li>The tables are still usable, but the document gets much less chrome-heavy.</li>
+    <li>The current Akira dispatch shell is mostly gone; what remains is the article itself.</li>
+  </ul>
+
+  <p class="proto-note">
+    Prototype link back to the current page:
+    <a href="lewy-body-dementia.html">current research-loop page</a>
+  </p>
+
+  <p class="proto-note">This is a prototype only. If you like this direction, I would convert the generator so the research-loop pages get a Tufte/article mode while dashboards keep the existing skin.</p>
+</article>
+</body>
+</html>

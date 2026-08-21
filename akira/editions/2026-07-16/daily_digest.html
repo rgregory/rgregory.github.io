@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unified Akira Daily Digest</title><style>/* The Akira Dispatch — broadsheet × observatory. Inlined at build; no external requests. */
+:root{color-scheme:light;--ground:#f7f3ea;--ink:#1a1a1a;--muted:#6b6357;--hairline:#d8d0c2;--hairline-lt:#e7e1d3;--rust:#b0543a;
+--serif:Georgia,'Iowan Old Style','Times New Roman',serif;--sans:Helvetica,Arial,system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--serif);line-height:1.55}
+a{color:inherit;text-decoration:none;border-bottom:1px solid var(--hairline)}a:hover{border-bottom-color:var(--rust);color:var(--rust)}
+.dispatch{max-width:76rem;margin:0 auto;padding:1.5rem 1.25rem 3rem}
+.kicker{display:flex;justify-content:space-between;align-items:baseline;font:700 .62rem var(--sans);letter-spacing:.08em;color:var(--muted)}
+.masthead{text-align:center;font-size:clamp(1.9rem,4.5vw,3rem);font-weight:700;letter-spacing:.03em;margin:.2rem 0}
+.masthead a,.masthead-compact a{border-bottom:0}
+.edition-line{text-align:center;font:.62rem var(--sans);letter-spacing:.22em;color:var(--muted);text-transform:uppercase;
+border-top:2px solid var(--ink);border-bottom:1px solid var(--ink);padding:.3rem 0;margin-bottom:1.2rem}
+.edition-line a{border-bottom:0}.edition-line .prev{color:var(--rust)}
+.masthead-compact{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:.3rem;margin-bottom:1rem}
+.masthead-compact .brand{font-size:1.1rem;font-weight:700}
+.masthead-compact nav{font:.6rem var(--sans);letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.eyebrow{font:700 .62rem var(--sans);letter-spacing:.18em;color:var(--rust);text-transform:uppercase;margin:0 0 .2rem}
+h1.headline{font-size:clamp(1.4rem,3vw,1.9rem);line-height:1.15;margin:.1rem 0 .3rem}
+.byline{font:.68rem var(--sans);color:var(--muted);margin:0 0 1rem}.byline code{font-family:inherit}
+.lead-grid{display:flex;gap:1.2rem;flex-wrap:wrap}
+.lead{flex:2 1 24rem;border-right:1px solid var(--hairline);padding-right:1.1rem}
+.lead .headline{font-size:clamp(1.3rem,2.8vw,1.7rem)}
+.lead p{margin:.3rem 0;color:#3d3a33}
+.sections{flex:1.2 1 14rem;display:flex;flex-direction:column}
+.sections .item{padding:.45rem 0;border-top:1px solid var(--hairline)}.sections .item:first-child{border-top:0;padding-top:0}
+.sections .item h3{margin:0;font-size:.95rem}.sections .item p{margin:.1rem 0 0;font:.68rem var(--sans);color:var(--muted)}
+.sections .item a{border-bottom:0;display:block}
+.fold{border-top:2px solid var(--ink);margin:1.3rem 0 .5rem;display:flex;justify-content:space-between;align-items:baseline;
+font:.62rem var(--sans);letter-spacing:.22em;color:var(--muted);text-transform:uppercase;padding-top:.35rem}
+.ledger-toggle{background:none;border:0;cursor:pointer;font:inherit;color:inherit;letter-spacing:inherit;text-transform:inherit;padding:0}
+.ledger-toggle:hover{color:var(--rust)}.ledger-toggle .indicator{color:var(--rust)}
+.ledger{display:flex;gap:1.4rem;flex-wrap:wrap;font-family:var(--sans)}
+.ledger.collapsed{display:none}
+.ledger-group{flex:1 1 20rem}
+.ledger-group h4{font:700 .62rem var(--sans);letter-spacing:.18em;color:var(--muted);margin:.4rem 0 .2rem;text-transform:uppercase}
+.ledger-row{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:.72rem;line-height:2.1;
+border-bottom:1px solid var(--hairline-lt);color:#2e2b25}
+.ledger-row a{border-bottom:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ledger-row .age{color:var(--muted);white-space:nowrap}
+.ledger-row.warn,.ledger-row.warn .age{color:var(--rust)}
+.vault-strip{border-top:1px solid var(--hairline);margin-top:.6rem;padding-top:.4rem;font:.62rem var(--sans);color:var(--muted);line-height:1.7}
+.foot{border-top:2px solid var(--ink);margin-top:1.6rem;padding-top:.4rem;font:.62rem var(--sans);letter-spacing:.06em;color:var(--muted)}
+.foot a{border-bottom:0}
+.spark{vertical-align:middle}
+.stat-band{display:flex;flex-wrap:wrap;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+padding:.55rem 0;margin:0 0 .9rem;font-family:var(--sans)}
+.stat{flex:1 1 7rem;border-right:1px solid var(--hairline-lt);padding:0 .8rem}
+.stat:first-child{padding-left:0}.stat:last-child{border-right:0}
+.stat .value{font:700 1.25rem var(--serif)}.stat .value.warn{color:var(--rust)}
+.stat .label{font-size:.56rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.mix{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;font:.68rem var(--sans);color:#2e2b25;margin-bottom:.9rem}
+.mix .bar{display:inline-block;height:7px;background:var(--ink);vertical-align:middle;margin:0 .3rem}
+.mix .watch{color:var(--rust)}
+table.dispatch-table{width:100%;border-collapse:collapse;font:.74rem var(--sans)}
+.dispatch-table th{font-size:.58rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;text-align:left;
+border-bottom:1px solid var(--ink);padding:.3rem .5rem;white-space:nowrap;cursor:pointer}
+.dispatch-table th[data-sorted]{color:var(--rust)}
+.dispatch-table td{border-bottom:1px solid var(--hairline-lt);padding:.45rem .5rem;vertical-align:top}
+.dispatch-table td.num{text-align:right;font-family:var(--serif)}
+.dispatch-table .new{color:var(--rust);font-size:.55rem;letter-spacing:.1em;font-weight:700;margin-right:.3rem}
+.dispatch-table .sub{color:var(--muted)}
+.search-box{position:relative}
+.search-box input{font:.72rem var(--sans);border:1px solid var(--hairline);background:transparent;color:var(--ink);padding:.25rem .5rem;width:11rem}
+.search-box input:focus{outline:1px solid var(--rust)}
+.search-results{position:absolute;right:0;top:1.9rem;z-index:5;background:var(--ground);border:1px solid var(--ink);min-width:20rem;max-height:22rem;overflow:auto;padding:.4rem .6rem;box-shadow:4px 4px 0 rgba(26,26,26,.12)}
+.search-results[hidden]{display:none}
+.search-results .hit{display:block;padding:.3rem 0;border-bottom:1px solid var(--hairline-lt);font:.72rem var(--sans)}
+.search-results .hit small{display:block;color:var(--muted)}
+.markdown-body{max-width:52rem}
+.markdown-body h1,.markdown-body h2,.markdown-body h3{font-family:var(--serif);line-height:1.2;margin:1.3rem 0 .4rem}
+.markdown-body h2{border-bottom:1px solid var(--hairline);padding-bottom:.25rem}
+.markdown-body p,.markdown-body li{color:#2e2b25}
+.markdown-body pre,pre.akira-pre{white-space:pre-wrap;background:#141210;color:#e8e3d8;padding:.9rem;overflow:auto;font-size:.78rem}
+.markdown-body code:not(pre code){background:rgba(176,84,58,.08);padding:.05rem .25rem}
+.table-wrap,.pm-table-wrap{overflow:auto;margin:1rem 0;border:1px solid var(--hairline)}
+.table-wrap table,table.table,table.pm-table{width:100%;border-collapse:collapse;font:.78rem var(--sans)}
+.table-wrap th,.pm-table th{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:left;border-bottom:1px solid var(--ink);padding:.4rem .55rem}
+.table-wrap td,.pm-table td{border-bottom:1px solid var(--hairline-lt);padding:.45rem .55rem;vertical-align:top}
+.card,.pm-card,.digest-details-card,.pm-hero,.pm-meal-card{background:transparent;border:0;box-shadow:none;padding:0}
+.pm-meal-card{border-top:1px solid var(--hairline);padding-top:.6rem;margin:1rem 0}
+.small,.meta,.sub,.pm-source{font:.68rem var(--sans);color:var(--muted)}
+.digest-shell .digest-hero{border:0;background:transparent;padding:0;box-shadow:none}
+.digest-hero h2{font-family:var(--serif);letter-spacing:0;font-size:clamp(1.3rem,2.8vw,1.7rem);margin:.1rem 0}
+.digest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:0;border-top:1px solid var(--hairline);border-bottom:1px solid var(--hairline);margin:.8rem 0}
+.digest-card{border:0;border-right:1px solid var(--hairline-lt);border-radius:0;background:transparent;box-shadow:none;padding:.6rem .8rem}
+.digest-card:hover{transform:none;box-shadow:none;color:var(--rust)}
+.digest-card h3{font:700 .56rem var(--sans);letter-spacing:.14em;color:var(--muted);margin:0 0 .3rem}
+.digest-metric{font:700 1.3rem var(--serif);letter-spacing:0;color:var(--ink)}
+.digest-detail{font:.62rem var(--sans);color:var(--muted);margin:.2rem 0 0}
+.digest-pill-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.5rem}
+.digest-pill,.digest-chip{border:0;border-radius:0;background:transparent;font:.62rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0}
+.digest-chip-warn{color:var(--rust)}.digest-chip-good{color:var(--ink)}
+.legacy-html .cards,.legacy-html .sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin:1rem 0}
+.legacy-html .num{font-size:1.6rem;font-weight:700;font-family:var(--serif)}
+.legacy-html table{width:100%;margin:1rem 0;border-collapse:collapse;font:.78rem var(--sans)}
+.legacy-html .flag{color:var(--rust)}.legacy-html .ok{color:var(--ink)}
+.legacy-html .new-week{color:var(--rust);font-weight:700;font-size:.6rem;letter-spacing:.06em}
+.legacy-html tr.new-this-week{background:rgba(176,84,58,.05)}
+@media(max-width:700px){.dispatch{padding:1rem .8rem 2rem}.lead{border-right:0;padding-right:0}
+.stat{flex:1 1 40%;margin-bottom:.4rem}.masthead-compact{flex-direction:column;gap:.2rem}}
+@media print{.search-box,.ledger-toggle .indicator{display:none}}
+</style></head><body><div class="dispatch"><header class="masthead-compact"><span class="brand"><a href="../../index.html">The Akira Dispatch</a></span><nav><a href="../../index.html">◂ Index</a> · FRI 17 JUL 2026 · <a href="../index.html">Back issues</a></nav></header><h1 class="headline">Unified Akira Daily Digest</h1><p class="byline"><code>10-dashboard/digests/2026-07-16 — Unified Akira Daily Digest.md</code> · fresh 24h</p><section class="digest-shell"><div class="digest-hero"><div class="akira-eyebrow">Akira daily operating brief</div><h2>Thursday, July 16, 2026</h2><p>129 car listings · 20 KEV vulnerabilities · 0 philosophy items · 0 Techmeme links</p><div class="digest-pill-row"><a class="digest-pill" href="#details">Details</a><a class="digest-pill" href="#calendar">Calendar</a><a class="digest-pill" href="#cars">Cars</a><a class="digest-pill" href="#cyber">Cyber</a><a class="digest-pill" href="#philosophy">Philosophy</a><a class="digest-pill" href="#techmeme">Techmeme</a><a class="digest-pill" href="#health">Health</a></div></div><div class="digest-grid"><a class="digest-card digest-card-wide" href="calendar.html" style="--accent:#2563eb"><h3>Calendar</h3><div class="digest-metric">0</div><p class="digest-detail">No calendar item captured</p></a><a class="digest-card" href="car_search.html" style="--accent:#ec4899"><h3>Car Search</h3><div class="digest-metric">129</div><p class="digest-detail">new listings this week</p></a><a class="digest-card" href="cyber.html" style="--accent:#dc2626"><h3>Cyber</h3><div class="digest-metric">20</div><p class="digest-detail">CISA KEV in last 30 days</p></a><a class="digest-card" href="philosophy.html" style="--accent:#16a34a"><h3>Philosophy</h3><div class="digest-metric">0</div><p class="digest-detail">items fetched · 0 new · 0 sources</p></a><a class="digest-card" href="techmeme.html" style="--accent:#f59e0b"><h3>Techmeme</h3><div class="digest-metric">0</div><p class="digest-detail">source mix unavailable</p></a><a class="digest-card" href="job_status.html" style="--accent:#8b5cf6"><h3>System Health</h3><div class="digest-metric"><span class="digest-chip digest-chip-good">OK</span></div><p class="digest-detail">digest composer status</p></a></div></section><section id="details" class="markdown-body"><h2 class="digest-section-heading">Akira Daily Digest — Thursday, July 16, 2026</h2>
+<h2 id="calendar" class="digest-section-heading">Calendar Today</h2>
+<ul>
+<li>No events found for today.</li>
+</ul>
+<h2 id="cars" class="digest-section-heading">Car Search / Auctions</h2>
+<p>Active automated sources only: AutoTempest, Craigslist Hampton Roads, Auction757 / BidWrangler, Eggleston Automotive PDFs</p>
+<h2>Counts by active source</h2>
+<div class="table-wrap"><table class="table table-vcenter table-striped"><thead><tr><th>Source</th><th style="text-align:right">Verified listings/lots captured</th></tr></thead><tbody><tr><td data-label="Source">AutoTempest</td><td style="text-align:right" data-label="Verified listings/lots captured">21</td></tr><tr><td data-label="Source">Craigslist Hampton Roads</td><td style="text-align:right" data-label="Verified listings/lots captured">34</td></tr><tr><td data-label="Source">eBay Motors</td><td style="text-align:right" data-label="Verified listings/lots captured">14</td></tr><tr><td data-label="Source">Auction757 / BidWrangler</td><td style="text-align:right" data-label="Verified listings/lots captured">60</td></tr><tr><td data-label="Source">Eggleston Automotive</td><td style="text-align:right" data-label="Verified listings/lots captured">0</td></tr><tr><td data-label="Source"><strong>Total in today&#x27;s JSON</strong></td><td style="text-align:right" data-label="Verified listings/lots captured"><strong>129</strong></td></tr></tbody></table></div>
+<h2>New this week</h2>
+<ul>
+<li>Listings first seen in the last 7 days: 129</li>
+</ul>
+<div class="table-wrap"><table class="table table-vcenter table-striped"><thead><tr><th>Source</th><th>Vehicle</th><th>First seen</th><th style="text-align:right">Price/current bid</th><th style="text-align:right">Mileage</th><th>Why it fits</th><th>Link</th></tr></thead><tbody><tr><td data-label="Source">Auction757 / BidWrangler</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> 1999 Toyota Corolla</td><td data-label="First seen">2026-07-13</td><td style="text-align:right" data-label="Price/current bid">$600</td><td style="text-align:right" data-label="Mileage">38,937</td><td data-label="Why it fits">Auction lot under numeric filters; verify before bidding</td><td data-label="Link"><a href="https://auction757.bidwrangler.com/ui/auctions/165068/items/25127170">link</a></td></tr><tr><td data-label="Source">Craigslist Hampton Roads</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> 2006 TOYOTA CAMRY <strong>118K Miles </strong></td><td data-label="First seen">2026-07-16</td><td style="text-align:right" data-label="Price/current bid">$2,400</td><td style="text-align:right" data-label="Mileage">118,000</td><td data-label="Why it fits">Toyota preference; no mileage cap; visible mileage recorded when available</td><td data-label="Link"><a href="https://www.craigslist.org/view/d/baltimore-2006-toyota-camry-118k-miles/bH53NnFPH2GQnAmvW6ZcPt">link</a></td></tr><tr><td data-label="Source">Craigslist Hampton Roads</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> Very Nice 2018 Toyota RAV4 Hybrid XLE</td><td data-label="First seen">2026-07-16</td><td style="text-align:right" data-label="Price/current bid">$6,700</td><td style="text-align:right" data-label="Mileage">not visible</td><td data-label="Why it fits">Toyota preference; mileage not visible</td><td data-label="Link"><a href="https://www.craigslist.org/view/d/philadelphia-very-nice-2018-toyota-rav4/dcM2uuFhsYbatCYhpuTCBE">link</a></td></tr><tr><td data-label="Source">Craigslist Hampton Roads</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> 2010 TOYOTA CAMRY LE, 157,000 MILES, NEW INSPECTION</td><td data-label="First seen">2026-07-16</td><td style="text-align:right" data-label="Price/current bid">$3,990</td><td style="text-align:right" data-label="Mileage">157,000</td><td data-label="Why it fits">Toyota preference; no mileage cap; visible mileage recorded when available</td><td data-label="Link"><a href="https://www.craigslist.org/view/d/virginia-beach-2010-toyota-camry-le/bcePHz6AV5BR5XThKFfT4E">link</a></td></tr><tr><td data-label="Source">Craigslist Hampton Roads</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> 2016 Mazda 6 Grand Touring — Well Maintained Like Honda or Toyota</td><td data-label="First seen">2026-07-16</td><td style="text-align:right" data-label="Price/current bid">$6,900</td><td style="text-align:right" data-label="Mileage">177,000</td><td data-label="Why it fits">Toyota preference; no mileage cap; visible mileage recorded when available</td><td data-label="Link"><a href="https://www.craigslist.org/view/d/silver-spring-2016-mazda-grand-touring/34GvZMkWJS6c2rJznaE1Uk">link</a></td></tr><tr><td data-label="Source">Craigslist Hampton Roads</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> 2004 Toyota Camry LE- Only 61k original miles</td><td data-label="First seen">2026-07-16</td><td style="text-align:right" data-label="Price/current bid">$10,000</td><td style="text-align:right" data-label="Mileage">61,000</td><td data-label="Why it fits">Toyota preference; no mileage cap; visible mileage recorded when available</td><td data-label="Link"><a href="https://www.craigslist.org/view/d/baltimore-2004-toyota-camry-le-only-61k/99G8tWjQ6pQMb9e3XnmedR">link</a></td></tr><tr><td data-label="Source">Craigslist Hampton Roads</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> 2010 Toyota Corolla</td><td data-label="First seen">2026-07-15</td><td style="text-align:right" data-label="Price/current bid">$5,800</td><td style="text-align:right" data-label="Mileage">146,740</td><td data-label="Why it fits">Toyota preference; no mileage cap; visible mileage recorded when available</td><td data-label="Link"><a href="https://www.craigslist.org/view/d/arlington-2010-toyota-corolla/id4SnQZGKw2EQoVwNLwJQ6">link</a></td></tr><tr><td data-label="Source">Auction757 / BidWrangler</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> 2011 Toyota Camry</td><td data-label="First seen">2026-07-15</td><td style="text-align:right" data-label="Price/current bid">$1,700</td><td style="text-align:right" data-label="Mileage">227,937</td><td data-label="Why it fits">Auction lot under numeric filters; verify before bidding</td><td data-label="Link"><a href="https://auction757.bidwrangler.com/ui/auctions/165068/items/25127204">link</a></td></tr><tr><td data-label="Source">Auction757 / BidWrangler</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> 2019 Toyota C-HR</td><td data-label="First seen">2026-07-13</td><td style="text-align:right" data-label="Price/current bid">$1,100</td><td style="text-align:right" data-label="Mileage">124,067</td><td data-label="Why it fits">Auction lot under numeric filters; verify before bidding</td><td data-label="Link"><a href="https://auction757.bidwrangler.com/ui/auctions/165068/items/25127219">link</a></td></tr><tr><td data-label="Source">Craigslist Hampton Roads</td><td data-label="Vehicle"><strong>NEW THIS WEEK</strong> 2012 Toyota Camry, 1 owner, low miles, MINT CONDITION, 32mpg!!</td><td data-label="First seen">2026-07-16</td><td style="text-align:right" data-label="Price/current bid">$9,800</td><td style="text-align:right" data-label="Mileage">102,000</td><td data-label="Why it fits">Toyota preference; no mileage cap; visible mileage recorded when available</td><td data-label="Link"><a href="https://www.craigslist.org/view/d/raleigh-2012-toyota-camry-owner-low/fQAEfSpG4ng9bCuaFAD4Db">link</a></td></tr></tbody></table></div>
+<ul>
+<li>Full report: /Users/rgregory/sync/agents/akira/vault/50-research/car-search/daily-reports/2026-07-16.md</li>
+</ul>
+<h2 id="cyber" class="digest-section-heading">Cyber / Briefings</h2>
+<ul>
+<li>ransomware</li>
+<li>20 actively exploited vulnerabilities added to CISA KEV in the last 30 days.</li>
+<li>Source:** CISA Alerts</li>
+<li>URL:** https://www.cisa.gov/news-events/ics-advisories/icsa-26-197-06</li>
+<li>Source:** CISA Alerts</li>
+<li>Full briefing: /Users/rgregory/sync/agents/akira/vault/50-research/cyber-briefing/briefings/2026-07-16 — Cyber Threat Briefing.md</li>
+</ul>
+<h2 id="philosophy" class="digest-section-heading">Philosophy Feed</h2>
+<ul>
+<li>A Meta-Epistemological Reason for Rejecting AI-Written Philosophy (Daily Nous)</li>
+<li>Full feed: /Users/rgregory/sync/agents/akira/vault/50-research/philosophy-feed/briefings/2026-07-16 — Philosophy Feed.md</li>
+</ul>
+<h2 class="digest-section-heading">Research</h2>
+<ul>
+<li>Current status: active · last run 2026-07-16T17:08:54Z.</li>
+<li>LangChain’s current homepage now emphasizes delivery into Slack, governed deep agents, cost control, safer isolated execution, and trace-mining for improvement.</li>
+<li>arXiv results now highlight readable harnesses, enforceable permissions, controlled memory, recursive evaluation, skill security, and turn-level credit assignment.</li>
+<li>Weekly briefing was updated at <code>50-research/ai-agents/briefings/weekly/2026-07-16 — AI Agents Weekly Briefing.md</code>.</li>
+<li>Research update was published at <code>50-research/ai-agents/updates/2026-07-16 — AI Agents Research Update.md</code>.</li>
+<li>Latest artifact: AI Agents Research Update — 2026-07-16 — /Users/rgregory/sync/agents/akira/vault/50-research/ai-agents/updates/2026-07-16 — AI Agents Research Update.md</li>
+<li>Latest artifact: AI Agents Weekly Briefing — 2026-07-16 — /Users/rgregory/sync/agents/akira/vault/50-research/ai-agents/briefings/weekly/2026-07-16 — AI Agents Weekly Briefing.md</li>
+</ul>
+<h2 id="techmeme" class="digest-section-heading">Techmeme</h2>
+<ul>
+<li>techmeme-pp-cli is unavailable; digest fell back gracefully.</li>
+<li>Briefing: /Users/rgregory/sync/agents/akira/vault/50-research/techmeme/briefings/2026-07-16 — Techmeme.md</li>
+</ul>
+<h2 class="digest-section-heading">Open Items</h2>
+<ul>
+<li>Verify first unattended cron cycle (2026-07-12): Amazon full sync 08:00, auth watchdog 09:00, Reelviews 09:30, publisher 10:10</li>
+<li>Grant macOS Automation permission for Hermes python → Calendar (digest agenda section currently unavailable)</li>
+<li>24h old-home-quiet check: <code>find /Users/rgregory/sync/bin/hermes -newer /tmp/migration_marker -not -path &quot;*/akira/*&quot;</code> — expect empty, then old tree archivable</li>
+<li>Confirm model fallback engages on next ChatGPT Plus 429 (look for fallback line in logs/gateway.log)</li>
+<li>Watch for builtin <code>obsidian</code> vs kepano obsidian-* skill trigger collisions</li>
+<li>Decide: google-workspace OAuth setup (Calendar/Drive/Sheets) or remove the skill</li>
+<li>Manage: /Users/rgregory/sync/agents/akira/vault/10-dashboard/open-items.md</li>
+<li>Manage: /Users/rgregory/sync/agents/akira/vault/10-dashboard/open-items.md</li>
+</ul>
+<h2 id="health" class="digest-section-heading">System Health</h2>
+<ul>
+<li>No local artifact anomalies detected by digest composer.</li>
+</ul></section><footer class="foot"><a href="https://rgregory.github.io/akira/">rgregory.github.io/akira</a></footer></div><script>(() => {
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  // Ledger expand/collapse. With JS disabled the ledger renders expanded (no .collapsed class is
+  // added until here), satisfying the no-JS fallback.
+  const ledger = document.querySelector('.ledger');
+  const toggle = document.querySelector('.ledger-toggle');
+  if (ledger && toggle) {
+    ledger.classList.add('collapsed');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.addEventListener('click', () => {
+      const open = ledger.classList.toggle('collapsed') === false;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.querySelector('.indicator').textContent = open ? '▴' : '▾';
+    });
+  }
+
+  // Search overlay (index only; requires search-index.json next to the page).
+  const box = document.querySelector('.search-box input');
+  const results = document.querySelector('.search-results');
+  if (box && results) {
+    let index = null;
+    const load = () => fetch('search-index.json').then(r => r.json()).then(d => { index = d; }).catch(() => { index = { pages: [] }; });
+    box.addEventListener('focus', () => { if (!index) load(); }, { once: true });
+    box.addEventListener('input', () => {
+      const q = box.value.trim().toLowerCase();
+      if (!q || !index) { results.hidden = true; return; }
+      const hits = [];
+      for (const p of index.pages) {
+        const inTitle = p.title.toLowerCase().includes(q);
+        const line = (p.lines || []).find(l => l.toLowerCase().includes(q));
+        if (inTitle || line) hits.push({ file: p.file, title: p.title, line: line || '' });
+        if (hits.length >= 12) break;
+      }
+      results.innerHTML = hits.length
+        ? hits.map(h => `<a class="hit" href="${esc(h.file)}">${esc(h.title)}<small>${esc(h.line)}</small></a>`).join('')
+        : '<span class="hit">No matches</span>';
+      results.hidden = false;
+    });
+    document.addEventListener('click', e => { if (!e.target.closest('.search-box')) results.hidden = true; });
+  }
+
+  // Column sort for .dispatch-table (numeric-aware).
+  document.querySelectorAll('table.dispatch-table').forEach(table => {
+    const body = table.tBodies[0];
+    if (!table.tHead || !body) return;
+    [...table.tHead.rows[0].cells].forEach((th, col) => {
+      th.addEventListener('click', () => {
+        const dir = th.dataset.sorted === 'asc' ? 'desc' : 'asc';
+        [...table.tHead.rows[0].cells].forEach(c => delete c.dataset.sorted);
+        th.dataset.sorted = dir;
+        const rows = [...body.rows];
+        rows.sort((a, b) => {
+          const av = a.cells[col]?.textContent.trim() || '';
+          const bv = b.cells[col]?.textContent.trim() || '';
+          const an = parseFloat(av.replace(/[^0-9.-]/g, ''));
+          const bn = parseFloat(bv.replace(/[^0-9.-]/g, ''));
+          const cmp = (!Number.isNaN(an) && !Number.isNaN(bn)) ? an - bn : av.localeCompare(bv);
+          return dir === 'asc' ? cmp : -cmp;
+        });
+        rows.forEach(r => body.appendChild(r));
+      });
+    });
+  });
+})();
+</script></body></html>

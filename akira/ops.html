@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Akira Ops Dashboard</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:#f6f8fb;color:#111827}body{margin:0}main{max-width:1180px;margin:0 auto;padding:24px}a{color:#2563eb}.hero,.card{background:white;border:1px solid #e5e7eb;border-radius:18px;box-shadow:0 6px 24px rgba(15,23,42,.06)}.hero{padding:24px;margin-bottom:18px}h1{margin:0;font-size:34px;letter-spacing:-.04em}.muted{color:#667085}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:18px 0}.card{padding:18px}.k{text-transform:uppercase;font-size:11px;letter-spacing:.12em;color:#667085;font-weight:800}.v{font-size:30px;font-weight:850;letter-spacing:-.05em;margin-top:6px}.good{color:#047857}.warn{color:#b45309}.bad{color:#b91c1c}table{width:100%;border-collapse:collapse;background:white;border-radius:14px;overflow:hidden}th,td{padding:10px 12px;border-bottom:1px solid #edf2f7;text-align:left;vertical-align:top}th{font-size:11px;text-transform:uppercase;color:#667085;letter-spacing:.08em}code{background:#f1f5f9;border-radius:5px;padding:2px 5px}ul{padding-left:20px}
+</style></head><body><main>
+<section class="hero"><div class="k">Akira operations</div><h1>Ops Dashboard</h1><p class="muted">Generated 2026-09-05T11:15:39-04:00. Public status without secrets.</p></section>
+<section class="grid">
+  <div class="card"><div class="k">Cron</div><div class="v good">0 active</div><p class="muted">0 total jobs</p></div>
+  <div class="card"><div class="k">GBrain doctor</div><div class="v good">90</div><p class="muted">remediation 80 / max 80</p></div>
+  <div class="card"><div class="k">GBrain queue</div><div class="v good">0</div><p class="muted">waiting 0 · active 1 · stalled 0</p></div>
+  <div class="card"><div class="k">Git hygiene</div><div class="v warn">7</div><p class="muted">changed files · 7 generated-ish · 0 canonical-ish</p></div>
+  <div class="card"><div class="k">Google</div><div class="v good">OK</div><p class="muted">Akira defaults file present: True</p></div>
+  <div class="card"><div class="k">TripIt API</div><div class="v warn">Auth</div><p class="muted">Missing TripIt credentials: consumer_key, consumer_secret. Provide env vars or run oauth-start/oauth-finish after adding consumer_key/consumer_secret.</p></div>
+</section>
+<section class="card"><h2>Next scheduled jobs</h2><table><thead><tr><th>Name</th><th>Schedule</th><th>Next run</th><th>Last status</th></tr></thead><tbody></tbody></table></section>
+<section class="grid"><div class="card"><h2>Cron anomalies</h2><ul><li>none</li></ul></div><div class="card"><h2>Git sample</h2><ul><li><code>M vault/90-derived/dashboards/public/birthdays.html</code></li><li><code> M vault/90-derived/dashboards/public/calendar.html</code></li><li><code> M vault/90-derived/dashboards/public/cyber.html</code></li><li><code> M vault/90-derived/dashboards/public/daily_digest.html</code></li><li><code> M vault/90-derived/dashboards/public/meal_plan.html</code></li><li><code> M vault/90-derived/dashboards/public/philosophy.html</code></li><li><code> M vault/90-derived/dashboards/public/techmeme.html</code></li></ul></div></section>
+<section class="card"><h2>Known structural work</h2><ul><li>Resolver reachability is clean; current score drag is stub-guard history and timeline coverage.</li><li>TripIt API awaits credentials/OAuth; browser access is separate.</li><li>Generated-vs-canonical vault policy needs ongoing commit hygiene.</li></ul></section>
+</main></body></html>

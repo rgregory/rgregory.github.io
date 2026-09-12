@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock reaction to cybersecurity 8-Ks</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --page: #f9f9f7;
+    --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+    --grid: #e1e0d9; --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --wk: #2a78d6; --mo: #1baf7a;
+    --neg: #a33b3b; --pos: #006300;
+    --tip-bg: #0b0b0b; --tip-ink: #fcfcfb;
+    --rowhover: rgba(42,120,214,0.07);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface: #1a1a19; --page: #0d0d0d;
+      --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+      --grid: #2c2c2a; --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --wk: #3987e5; --mo: #199e70;
+      --neg: #e66767; --pos: #0ca30c;
+      --tip-bg: #f4f4f0; --tip-ink: #111110;
+      --rowhover: rgba(57,135,229,0.10);
+    }
+  }
+  html, body { margin: 0; background: var(--page); color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 40px 20px 72px; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; margin-bottom: 10px; }
+  h1 { font-size: clamp(24px, 4vw, 34px); line-height: 1.15; font-weight: 700;
+    letter-spacing: -0.015em; margin: 0 0 12px; text-wrap: balance; }
+  .lede { color: var(--ink-2); font-size: 15px; max-width: 66ch; margin: 0 0 8px; }
+  .method { color: var(--muted); font-size: 13px; max-width: 72ch; margin: 0; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px; margin: 32px 0; }
+  .kpi { background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 16px; }
+  .kpi .lbl { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--muted); font-weight: 600; }
+  .kpi .val { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; margin: 4px 0 2px; }
+  .kpi .val.up { color: var(--pos); } .kpi .val.dn { color: var(--neg); }
+  .kpi .sub { font-size: 12px; color: var(--muted); }
+  .panel { background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px 20px 12px; margin: 28px 0; }
+  .panel h2 { font-size: 16px; font-weight: 700; margin: 0 0 2px; }
+  .panel .note { font-size: 12.5px; color: var(--muted); margin: 0 0 14px; }
+  .legend { display: flex; gap: 18px; align-items: center; font-size: 12.5px;
+    color: var(--ink-2); margin-bottom: 10px; flex-wrap: wrap; }
+  .legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px;
+    vertical-align: -1px; margin-right: 6px; }
+  .chart-scroll { overflow-x: auto; }
+  #chart { display: block; width: 100%; height: auto; min-width: 620px; }
+  .tip { position: fixed; pointer-events: none; z-index: 10; background: var(--tip-bg);
+    color: var(--tip-ink); border-radius: 6px; padding: 8px 10px; font-size: 12px;
+    line-height: 1.45; max-width: 260px; opacity: 0; transition: opacity 80ms;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+  @media (prefers-reduced-motion: reduce) { .tip { transition: none; } }
+  .tip b { font-size: 12.5px; }
+  .tip .trow { display: flex; justify-content: space-between; gap: 14px;
+    font-variant-numeric: tabular-nums; }
+  .tablewrap { overflow-x: auto; margin-top: 14px; border: 1px solid var(--border);
+    border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 12.8px; min-width: 760px; }
+  th { text-align: right; font-size: 10.5px; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600;
+    padding: 10px 10px 8px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; padding-left: 16px; }
+  th:nth-child(2), td:nth-child(2) { text-align: left; }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--grid); text-align: right;
+    font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--ink-2); }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: var(--rowhover); }
+  td.co { color: var(--ink); font-weight: 600; max-width: 230px; overflow: hidden;
+    text-overflow: ellipsis; }
+  td .tick { color: var(--muted); font-weight: 400; }
+  td.up { color: var(--pos); font-weight: 600; } td.dn { color: var(--neg); font-weight: 600; }
+  td.na { color: var(--muted); }
+  .foot { font-size: 12px; color: var(--muted); max-width: 78ch; margin-top: 28px; }
+</style></head><body>
+<div class="wrap">
+  <div class="eyebrow">Market reaction study &middot; data as of Jul 12, 2026</div>
+  <h1>Does the market punish a cybersecurity 8-K?</h1>
+  <p class="lede">The 50 most recent SEC 8-K cybersecurity disclosures from the
+    Board-Cybersecurity incident tracker, with each company's share price the day
+    before the filing and roughly one week and one month after.</p>
+  <p class="method">Returns are measured from the last close <em>before</em> the 8-K
+    date to the first close on/after +7 and +30 calendar days. Recent filings
+    without a one-week or one-month price yet are shown as pending.</p>
+  <div class="kpis">
+    <div class="kpi"><div class="lbl">Median, 1 week (raw)</div>
+      <div class="val dn">-0.6%</div><div class="sub">41 of 50 measurable</div></div>
+    <div class="kpi"><div class="lbl">Median, 1 week (vs SPY)</div>
+      <div class="val dn">-2.6%</div><div class="sub">95% CI -5.2% to +1.9%, sign-test p=0.35</div></div>
+    <div class="kpi"><div class="lbl">Median, 1 month (raw)</div>
+      <div class="val up">+0.1%</div><div class="sub">35 of 50 measurable</div></div>
+    <div class="kpi"><div class="lbl">Median, 1 month (vs SPY)</div>
+      <div class="val dn">-4.5%</div><div class="sub">95% CI -10.2% to +2.5%, sign-test p=0.31</div></div>
+  </div>
+  <div class="panel">
+    <h2>Backtest: short every filer, three holding periods</h2>
+    <p class="note">Hypothetical: short $1,000 of each company at the first close it was
+      actually tradable after the filing (EDGAR acceptance time; after-hours filings enter
+      at the next day's close), cover at +1 week, +1 month, or +3 months. Borrow fee of
+      10% annualized deducted; no commissions or slippage. Column N shrinks with
+      horizon &mdash; only filings old enough to reach that date are included.</p>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th style="text-align:left;padding-left:16px">Holding period</th>
+          <th>Total P&amp;L</th><th>Return on capital</th><th>Win rate</th><th>Worst single loss</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="co" style="text-align:left">1 week</td>
+            <td class="up">+$304.70</td>
+            <td class="up">+0.7%</td>
+            <td>24 / 43</td>
+            <td class="dn">-$241.51 (SAIL)</td>
+          </tr>
+          <tr>
+            <td class="co" style="text-align:left">1 month</td>
+            <td class="up">+$29.83</td>
+            <td class="up">+0.1%</td>
+            <td>16 / 37</td>
+            <td class="dn">-$258.01 (SAIL)</td>
+          </tr>
+          <tr>
+            <td class="co" style="text-align:left">3 months</td>
+            <td class="dn">-$1,059.21</td>
+            <td class="dn">-4.1%</td>
+            <td>12 / 26</td>
+            <td class="dn">-$1,636.87 (TRT)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:10px">Short-selling has uncapped downside &mdash;
+      each row's worst loss shows a single name that can wipe out many winners.</p>
+  </div>
+  <div class="panel">
+    <h2>Price change after the 8-K, by company</h2>
+    <p class="note">Percent change vs. the close on the trading day before the filing.
+      Newest filings at top. Bars are clipped at &plusmn;50% &mdash; clipped values are labeled.
+      Hover any bar for exact prices.</p>
+    <div class="legend">
+      <span><span class="sw" style="background:var(--wk)"></span>1 week later</span>
+      <span><span class="sw" style="background:var(--mo)"></span>1 month later</span>
+      <span style="color:var(--muted)">&mdash; not yet available</span>
+    </div>
+    <div class="chart-scroll"><svg id="chart" xmlns="http://www.w3.org/2000/svg"></svg></div>
+  </div>
+  <h2 style="font-size:16px">Full data</h2>
+  <div class="tablewrap"><table id="tbl">
+    <thead><tr>
+      <th>Company</th><th>8-K date</th><th>Item</th><th>Prev close</th>
+      <th>+1 wk %</th><th>+1 wk vs SPY</th><th>+1 mo %</th><th>+1 mo vs SPY</th>
+    </tr></thead><tbody></tbody>
+  </table></div>
+  <div class="foot">
+    <p><strong>Sources &amp; caveats.</strong> Companies from board-cybersecurity.com's
+      incident tracker (source "SEC 8-K"), enriched with SEC EDGAR filing metadata
+      (item numbers, acceptance timestamps). Item 1.05 = material incident disclosure;
+      other items (e.g. 8.01) are voluntary. Daily dividend- and split-adjusted closes
+      from Yahoo Finance (Stooq fallback is unadjusted). "vs SPY" columns subtract SPY's
+      return over the identical window. 7 of 50 companies had no retrievable
+      price history &mdash; often delisted or restructured names, so surviving-company
+      medians likely overstate how well filers fared. ⚠︎ marks companies with an earnings
+      filing inside the one-month window (return confounded). Amendments are deduplicated
+      to one row per company. Incidents often become public before the 8-K, so part of the
+      reaction can predate day 0. A small, recent sample &mdash; treat any pattern as
+      suggestive, not statistical proof.</p>
+  </div>
+</div>
+<div class="tip" id="tip"></div>
+<script>
+const DATA = [{"company": "SR Bancorp, Inc.", "ticker": "SRBK", "date": "2026-07-10", "item": "8.01", "earnings_near": false, "prev_close": 18.96, "entry_close": null, "week_close": null, "month_close": null, "quarter_close": null, "week_pct": null, "month_pct": null, "quarter_pct": null, "week_excess": null, "month_excess": null}, {"company": "River Financial Corp", "ticker": "RVRF", "date": "2026-07-10", "item": "1.05", "earnings_near": false, "prev_close": 48.0, "entry_close": null, "week_close": null, "month_close": null, "quarter_close": null, "week_pct": null, "month_pct": null, "quarter_pct": null, "week_excess": null, "month_excess": null}, {"company": "SHOREPOWER TECHNOLOGIES INC.", "ticker": "SPEV", "date": "2026-07-07", "item": null, "earnings_near": false, "prev_close": null, "entry_close": null, "week_close": null, "month_close": null, "quarter_close": null, "week_pct": null, "month_pct": null, "quarter_pct": null, "week_excess": null, "month_excess": null}, {"company": "NAVIENT CORP", "ticker": "NAVI", "date": "2026-07-02", "item": "1.05", "earnings_near": false, "prev_close": 8.73, "entry_close": 8.39, "week_close": 8.03, "month_close": null, "quarter_close": null, "week_pct": -8.02, "month_pct": null, "quarter_pct": null, "week_excess": -8.82, "month_excess": null}, {"company": "AdaptHealth Corp.", "ticker": "AHCO", "date": "2026-07-02", "item": "1.05", "earnings_near": false, "prev_close": 10.6, "entry_close": 10.27, "week_close": 10.16, "month_close": null, "quarter_close": null, "week_pct": -4.15, "month_pct": null, "quarter_pct": null, "week_excess": -4.95, "month_excess": null}, {"company": "Coupang, Inc.", "ticker": "CPNG", "date": "2026-07-01", "item": null, "earnings_near": false, "prev_close": 17.37, "entry_close": 18.56, "week_close": 19.0, "month_close": null, "quarter_close": null, "week_pct": 9.38, "month_pct": null, "quarter_pct": null, "week_excess": 9.56, "month_excess": null}, {"company": "8X8 INC /DE/", "ticker": "EGHT", "date": "2026-06-23", "item": "1.05", "earnings_near": false, "prev_close": 1.72, "entry_close": 1.72, "week_close": 1.71, "month_close": null, "quarter_close": null, "week_pct": -0.58, "month_pct": null, "quarter_pct": null, "week_excess": -0.9, "month_excess": null}, {"company": "HALLMARK VENTURE GROUP, INC.", "ticker": "HLLK", "date": "2026-06-16", "item": "1.01", "earnings_near": false, "prev_close": 0.25, "entry_close": 0.85, "week_close": 0.81, "month_close": null, "quarter_close": null, "week_pct": 224.0, "month_pct": null, "quarter_pct": null, "week_excess": 226.56, "month_excess": null}, {"company": "iRhythm Technologies, Inc.", "ticker": "IRTC", "date": "2026-06-15", "item": "1.05", "earnings_near": false, "prev_close": 113.65, "entry_close": 108.84, "week_close": 104.69, "month_close": null, "quarter_close": null, "week_pct": -7.88, "month_pct": null, "quarter_pct": null, "week_excess": -8.49, "month_excess": null}, {"company": "POPULAR, INC.", "ticker": "BPOP", "date": "2026-06-09", "item": "8.01", "earnings_near": false, "prev_close": 153.66, "entry_close": 156.15, "week_close": 160.34, "month_close": 169.39, "quarter_close": null, "week_pct": 4.35, "month_pct": 10.24, "quarter_pct": null, "week_excess": 2.85, "month_excess": 8.29}, {"company": "ORRSTOWN FINANCIAL SERVICES INC", "ticker": "ORRF", "date": "2026-05-29", "item": "8.01", "earnings_near": false, "prev_close": 37.13, "entry_close": 36.71, "week_close": 37.69, "month_close": 40.73, "quarter_close": null, "week_pct": 1.51, "month_pct": 9.7, "quarter_pct": null, "week_excess": 3.77, "month_excess": 11.25}, {"company": "Oncology Institute, Inc.", "ticker": "TOI", "date": "2026-05-22", "item": "1.05", "earnings_near": false, "prev_close": 4.47, "entry_close": 4.59, "week_close": 4.69, "month_close": 5.01, "quarter_close": null, "week_pct": 4.92, "month_pct": 12.08, "quarter_pct": null, "week_excess": 3.07, "month_excess": 11.6}, {"company": "WEST PHARMACEUTICAL SERVICES INC", "ticker": "WST", "date": "2026-05-20", "item": "1.05", "earnings_near": false, "prev_close": 303.93, "entry_close": 316.13, "week_close": 312.71, "month_close": 329.71, "quarter_close": null, "week_pct": 2.89, "month_pct": 8.48, "quarter_pct": null, "week_excess": 0.61, "month_excess": 6.77}, {"company": "Inotiv, Inc.", "ticker": "NOTV", "date": "2026-05-18", "item": null, "earnings_near": false, "prev_close": null, "entry_close": 0.018, "week_close": 0.018, "month_close": 0.018, "quarter_close": null, "week_pct": null, "month_pct": null, "quarter_pct": null, "week_excess": null, "month_excess": null}, {"company": "CB Financial Services, Inc.", "ticker": "CBFV", "date": "2026-05-11", "item": "1.05", "earnings_near": true, "prev_close": 35.2054, "entry_close": 34.759, "week_close": 34.32, "month_close": 36.99, "quarter_close": null, "week_pct": -2.51, "month_pct": 5.07, "quarter_pct": null, "week_excess": -2.65, "month_excess": 6.72}, {"company": "SailPoint, Inc.", "ticker": "SAIL", "date": "2026-05-11", "item": "7.01", "earnings_near": true, "prev_close": 12.23, "entry_close": 11.77, "week_close": 14.59, "month_close": 14.71, "quarter_close": null, "week_pct": 19.3, "month_pct": 20.28, "quarter_pct": null, "week_excess": 19.16, "month_excess": 21.93}, {"company": "ITRON, INC.", "ticker": "ITRI", "date": "2026-05-01", "item": "8.01", "earnings_near": true, "prev_close": 83.8, "entry_close": 84.22, "week_close": 81.87, "month_close": 84.79, "quarter_close": null, "week_pct": -2.3, "month_pct": 1.18, "quarter_pct": null, "week_excess": -4.94, "month_excess": -4.37}, {"company": "MiniMed Group, Inc.", "ticker": "MMED", "date": "2026-04-27", "item": "7.01", "earnings_near": false, "prev_close": 13.2, "entry_close": 12.94, "week_close": 11.87, "month_close": 10.8, "quarter_close": null, "week_pct": -10.08, "month_pct": -18.18, "quarter_pct": null, "week_excess": -10.65, "month_excess": -23.3}, {"company": "Medtronic plc", "ticker": "MDT", "date": "2026-04-24", "item": "7.01", "earnings_near": false, "prev_close": 83.0408, "entry_close": 82.1785, "week_close": 79.2847, "month_close": 76.9061, "quarter_close": null, "week_pct": -4.52, "month_pct": -7.39, "quarter_pct": null, "week_excess": -6.24, "month_excess": -13.34}, {"company": "ADT Inc.", "ticker": "ADT", "date": "2026-04-24", "item": "8.01", "earnings_near": true, "prev_close": 7.1806, "entry_close": 7.1607, "week_close": 7.488, "month_close": 6.8731, "quarter_close": null, "week_pct": 4.28, "month_pct": -4.28, "quarter_pct": null, "week_excess": 2.56, "month_excess": -10.23}, {"company": "RCI HOSPITALITY HOLDINGS, INC.", "ticker": "RICK", "date": "2026-04-10", "item": null, "earnings_near": true, "prev_close": 24.209, "entry_close": 24.0993, "week_close": 26.1433, "month_close": 24.2389, "quarter_close": 26.28, "week_pct": 7.99, "month_pct": 0.12, "quarter_pct": 8.55, "week_excess": 3.54, "month_excess": -8.61}, {"company": "STRYKER CORP", "ticker": "SYK", "date": "2026-04-09", "item": "1.05", "earnings_near": true, "prev_close": 339.1047, "entry_close": 338.247, "week_close": 337.4791, "month_close": 281.8276, "quarter_close": 326.85, "week_pct": -0.48, "month_pct": -16.89, "quarter_pct": -3.61, "week_excess": -4.27, "month_excess": -26.25}, {"company": "Bitcoin Depot Inc.", "ticker": "BTM", "date": "2026-04-08", "item": null, "earnings_near": false, "prev_close": null, "entry_close": 0.115, "week_close": 0.115, "month_close": 0.115, "quarter_close": 0.115, "week_pct": null, "month_pct": null, "quarter_pct": null, "week_excess": null, "month_excess": null}, {"company": "HASBRO, INC.", "ticker": "HAS", "date": "2026-04-01", "item": "8.01", "earnings_near": true, "prev_close": 92.8396, "entry_close": 89.4276, "week_close": 93.0876, "month_close": 94.4961, "quarter_close": 82.59, "week_pct": 0.27, "month_pct": 1.78, "quarter_pct": -11.04, "week_excess": -3.68, "month_excess": -9.03}, {"company": "CareCloud, Inc.", "ticker": "CCLD", "date": "2026-03-27", "item": "5.02", "earnings_near": false, "prev_close": 3.81, "entry_close": 3.52, "week_close": 3.24, "month_close": 3.26, "quarter_close": 2.08, "week_pct": -14.96, "month_pct": -14.44, "quarter_pct": -45.41, "week_excess": -17.11, "month_excess": -25.3}, {"company": "HERITAGE FINANCIAL CORP /WA/", "ticker": "HFWA", "date": "2026-03-20", "item": "8.01", "earnings_near": true, "prev_close": 24.8018, "entry_close": 25.0595, "week_close": 24.9505, "month_close": 27.3395, "quarter_close": 27.92, "week_pct": 0.6, "month_pct": 10.23, "quarter_pct": 12.57, "week_excess": 4.23, "month_excess": 2.52}, {"company": "TRIO-TECH INTERNATIONAL", "ticker": "TRT", "date": "2026-03-20", "item": "1.05", "earnings_near": false, "prev_close": 6.2, "entry_close": 6.06, "week_close": 5.94, "month_close": 6.71, "quarter_close": 15.83, "week_pct": -4.19, "month_pct": 8.23, "quarter_pct": 155.32, "week_excess": -0.56, "month_excess": 0.52}, {"company": "UFP TECHNOLOGIES INC", "ticker": "UFPT", "date": "2026-02-24", "item": "1.01", "earnings_near": true, "prev_close": 241.79, "entry_close": 240.16, "week_close": 202.91, "month_close": 187.98, "quarter_close": 229.06, "week_pct": -16.08, "month_pct": -22.25, "quarter_pct": -5.26, "week_excess": -15.78, "month_excess": -17.04}, {"company": "WYTEC INTERNATIONAL INC", "ticker": "WYTC", "date": "2026-02-03", "item": "1.05", "earnings_near": false, "prev_close": 1.7, "entry_close": 1.87, "week_close": 1.55, "month_close": 1.8, "quarter_close": 1.45, "week_pct": -8.82, "month_pct": 5.88, "quarter_pct": -14.71, "week_excess": -8.35, "month_excess": 7.91}, {"company": "AFLAC INC", "ticker": "AFL", "date": "2025-12-19", "item": null, "earnings_near": false, "prev_close": 109.3102, "entry_close": 108.9044, "week_close": 108.756, "month_close": 108.1227, "quarter_close": 106.6179, "week_pct": -0.51, "month_pct": -1.09, "quarter_pct": -2.46, "week_excess": -2.86, "month_excess": -1.55}, {"company": "Phoenix Education Partners, Inc.", "ticker": "PXED", "date": "2025-12-02", "item": "8.01", "earnings_near": false, "prev_close": null, "entry_close": null, "week_close": null, "month_close": null, "quarter_close": null, "week_pct": null, "month_pct": null, "quarter_pct": null, "week_excess": null, "month_excess": null}, {"company": "LOGITECH INTERNATIONAL S.A.", "ticker": "LOGI", "date": "2025-11-14", "item": "7.01", "earnings_near": false, "prev_close": 118.59, "entry_close": 113.27, "week_close": 109.92, "month_close": 111.94, "quarter_close": 87.02, "week_pct": -7.31, "month_pct": -5.61, "quarter_pct": -26.62, "week_excess": -5.37, "month_excess": -6.9}, {"company": "JEWETT CAMERON TRADING CO LTD", "ticker": "JCTC", "date": "2025-10-21", "item": "1.05", "earnings_near": false, "prev_close": 3.34, "entry_close": 3.28, "week_close": 3.21, "month_close": 2.45, "quarter_close": 1.75, "week_pct": -3.89, "month_pct": -26.65, "quarter_pct": -47.6, "week_excess": -6.24, "month_excess": -23.85}, {"company": "F5, INC.", "ticker": "FFIV", "date": "2025-10-15", "item": "1.05", "earnings_near": true, "prev_close": 343.17, "entry_close": 295.35, "week_close": 297.84, "month_close": 234.0, "quarter_close": 269.81, "week_pct": -13.21, "month_pct": -31.81, "quarter_pct": -21.38, "week_excess": -14.05, "month_excess": -33.27}, {"company": "RTX Corp", "ticker": "RTX", "date": "2025-09-24", "item": "8.01", "earnings_near": true, "prev_close": 158.7175, "entry_close": 158.6878, "week_close": 165.3019, "month_close": 176.6219, "quarter_close": 184.377, "week_pct": 4.15, "month_pct": 11.28, "quarter_pct": 16.17, "week_excess": 3.36, "month_excess": 9.16}, {"company": "BOYD GAMING CORP", "ticker": "BYD", "date": "2025-09-23", "item": "7.01", "earnings_near": true, "prev_close": 82.8895, "entry_close": 83.833, "week_close": 85.859, "month_close": 84.3991, "quarter_close": 86.2898, "week_pct": 3.58, "month_pct": 1.82, "quarter_pct": 4.1, "week_excess": 3.68, "month_excess": 1.08}, {"company": "DATA I/O CORP", "ticker": "DAIO", "date": "2025-09-10", "item": "1.05", "earnings_near": false, "prev_close": 3.49, "entry_close": 3.45, "week_close": 3.33, "month_close": 3.05, "quarter_close": 2.97, "week_pct": -4.58, "month_pct": -12.61, "quarter_pct": -14.9, "week_excess": -5.94, "month_excess": -13.3}, {"company": "EVERTEC, Inc.", "ticker": "EVTC", "date": "2025-09-02", "item": "8.01", "earnings_near": false, "prev_close": 35.5428, "entry_close": 34.7459, "week_close": 33.9988, "month_close": 32.8333, "quarter_close": 28.6793, "week_pct": -4.34, "month_pct": -7.62, "quarter_pct": -19.31, "week_excess": -5.16, "month_excess": -11.65}, {"company": "Ingram Micro Holding Corp", "ticker": "INGM", "date": "2025-07-07", "item": "8.01", "earnings_near": true, "prev_close": 21.5255, "entry_close": 20.2935, "week_close": 20.2442, "month_close": 18.6081, "quarter_close": 21.3057, "week_pct": -5.95, "month_pct": -13.55, "quarter_pct": -1.02, "week_excess": -5.87, "month_excess": -14.74}, {"company": "SURMODICS INC", "ticker": "SRDX", "date": "2025-07-02", "item": null, "earnings_near": false, "prev_close": null, "entry_close": null, "week_close": null, "month_close": null, "quarter_close": null, "week_pct": null, "month_pct": null, "quarter_pct": null, "week_excess": null, "month_excess": null}, {"company": "ALASKA AIR GROUP, INC.", "ticker": "ALK", "date": "2025-06-26", "item": "8.01", "earnings_near": true, "prev_close": 48.66, "entry_close": 49.37, "week_close": 51.05, "month_close": 54.33, "quarter_close": 52.9, "week_pct": 4.91, "month_pct": 11.65, "quarter_pct": 8.71, "week_excess": 1.91, "month_excess": 6.74}, {"company": "UNITED NATURAL FOODS INC", "ticker": "UNFI", "date": "2025-06-26", "item": "1.05", "earnings_near": false, "prev_close": 21.67, "entry_close": 22.77, "week_close": 23.26, "month_close": 28.43, "quarter_close": 29.16, "week_pct": 7.34, "month_pct": 31.2, "quarter_pct": 34.56, "week_excess": 4.34, "month_excess": 26.29}, {"company": "NUCOR CORP", "ticker": "NUE", "date": "2025-06-20", "item": "1.05", "earnings_near": false, "prev_close": 123.9904, "entry_close": 123.8037, "week_close": 129.1493, "month_close": 140.2703, "quarter_close": 132.5241, "week_pct": 4.16, "month_pct": 13.13, "quarter_pct": 6.88, "week_excess": 0.93, "month_excess": 7.57}, {"company": "Zoomcar Holdings, Inc.", "ticker": "ZCAR", "date": "2025-06-13", "item": "1.05", "earnings_near": true, "prev_close": 1.2, "entry_close": 0.85, "week_close": 0.595, "month_close": 0.542, "quarter_close": 0.379, "week_pct": -50.42, "month_pct": -54.83, "quarter_pct": -68.42, "week_excess": -49.14, "month_excess": -58.62}, {"company": "ERIE INDEMNITY CO", "ticker": "ERIE", "date": "2025-06-11", "item": "8.01", "earnings_near": false, "prev_close": 351.4046, "entry_close": 349.9123, "week_close": 339.9736, "month_close": 336.9712, "quarter_close": 324.6718, "week_pct": -3.25, "month_pct": -4.11, "quarter_pct": -7.61, "week_excess": -2.31, "month_excess": -7.82}, {"company": "Victoria&#39;s Secret &amp; Co.", "ticker": "VSCO", "date": "2025-06-03", "item": null, "earnings_near": false, "prev_close": null, "entry_close": null, "week_close": null, "month_close": null, "quarter_close": null, "week_pct": null, "month_pct": null, "quarter_pct": null, "week_excess": null, "month_excess": null}, {"company": "MainStreet Bancshares, Inc.", "ticker": "MNSB", "date": "2025-05-30", "item": "8.01", "earnings_near": false, "prev_close": 18.5898, "entry_close": 18.3445, "week_close": 17.854, "month_close": 18.5407, "quarter_close": 22.2635, "week_pct": -3.96, "month_pct": -0.26, "quarter_pct": 19.76, "week_excess": -5.5, "month_excess": -5.28}, {"company": "MASIMO CORP", "ticker": "MASI", "date": "2025-05-27", "item": null, "earnings_near": false, "prev_close": null, "entry_close": null, "week_close": null, "month_close": null, "quarter_close": null, "week_pct": null, "month_pct": null, "quarter_pct": null, "week_excess": null, "month_excess": null}, {"company": "Coinbase Global, Inc.", "ticker": "COIN", "date": "2025-05-15", "item": "1.05", "earnings_near": false, "prev_close": 263.41, "entry_close": 266.46, "week_close": 271.95, "month_close": 261.57, "quarter_close": 327.01, "week_pct": 3.24, "month_pct": -0.7, "quarter_pct": 24.14, "week_excess": 4.01, "month_excess": -3.27}, {"company": "Global Crossing Airlines Group Inc.", "ticker": "JETMF", "date": "2025-05-09", "item": "8.01", "earnings_near": true, "prev_close": 0.61, "entry_close": 0.585, "week_close": 0.656, "month_close": 0.62, "quarter_close": 0.604, "week_pct": 7.54, "month_pct": 1.64, "quarter_pct": -0.98, "week_excess": 2.38, "month_excess": -4.49}];
+const esc = v => String(v == null ? '' : v).replace(/[&<>'"]/g, ch => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'}[ch]));
+const fmt$ = v => v == null ? '—' : (v < 1 ? '$' + v.toFixed(4) : '$' + v.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
+const fmtP = v => v == null ? '—' : (v > 0 ? '+' : '') + v.toFixed(Math.abs(v) >= 100 ? 0 : 1) + '%';
+
+const rows = DATA.filter(d => d.prev_close != null);
+const CLAMP = 50, ROWH = 30, BARH = 9, GAP = 2;
+const ML = 60, MR = 24, MT = 22, MB = 8, PW = 660;
+const H = MT + rows.length * ROWH + MB;
+const svg = document.getElementById('chart');
+svg.setAttribute('viewBox', `0 0 ${ML + PW + MR} ${H}`);
+const x = v => ML + (Math.max(-CLAMP, Math.min(CLAMP, v)) + CLAMP) / (2 * CLAMP) * PW;
+const NS = 'http://www.w3.org/2000/svg';
+const el = (tag, attrs, parent) => {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  (parent || svg).appendChild(e); return e;
+};
+
+[-50, -25, 0, 25, 50].forEach(v => {
+  el('line', {x1: x(v), x2: x(v), y1: MT - 4, y2: H - MB,
+    stroke: v === 0 ? 'var(--baseline)' : 'var(--grid)',
+    'stroke-width': v === 0 ? 1.5 : 1});
+  const t = el('text', {x: x(v), y: MT - 9, 'text-anchor': 'middle',
+    'font-size': 10.5, fill: 'var(--muted)'});
+  t.textContent = (v > 0 ? '+' : '') + v + '%';
+});
+
+const tip = document.getElementById('tip');
+function showTip(evt, d) {
+  tip.innerHTML = `<b>${esc(d.company)} (${esc(d.ticker)})</b><br>8-K filed ${esc(d.date)}
+    <div class="trow"><span>Close before</span><span>${fmt$(d.prev_close)}</span></div>
+    <div class="trow"><span>+1 week</span><span>${d.week_close == null ? 'pending' : fmt$(d.week_close) + '  ' + fmtP(d.week_pct)}</span></div>
+    <div class="trow"><span>+1 month</span><span>${d.month_close == null ? 'pending' : fmt$(d.month_close) + '  ' + fmtP(d.month_pct)}</span></div>`;
+  tip.style.opacity = 1;
+  moveTip(evt);
+}
+function moveTip(evt) {
+  const w = tip.offsetWidth, vw = window.innerWidth;
+  let lx = evt.clientX + 14; if (lx + w > vw - 8) lx = evt.clientX - w - 14;
+  tip.style.left = lx + 'px';
+  tip.style.top = Math.max(8, evt.clientY - 20) + 'px';
+}
+const hideTip = () => tip.style.opacity = 0;
+
+rows.forEach((d, i) => {
+  const y0 = MT + i * ROWH;
+  const g = el('g', {});
+  const hit = el('rect', {x: 0, y: y0, width: ML + PW + MR, height: ROWH, fill: 'transparent'}, g);
+  const lab = el('text', {x: ML - 8, y: y0 + ROWH / 2 + 4, 'text-anchor': 'end',
+    'font-size': 11.5, 'font-weight': 600, fill: 'var(--ink-2)'}, g);
+  lab.textContent = d.ticker;
+
+  const bar = (val, cy, color) => {
+    if (val == null) {
+      const t = el('text', {x: x(0) + 6, y: cy + BARH / 2 + 3.5, 'font-size': 10,
+        fill: 'var(--muted)'}, g);
+      t.textContent = '—';
+      return;
+    }
+    const clipped = Math.abs(val) > CLAMP;
+    const xa = x(0), xb = x(val);
+    el('rect', {x: Math.min(xa, xb), y: cy, width: Math.max(1, Math.abs(xb - xa)),
+      height: BARH, rx: 2.5, fill: color}, g);
+    if (clipped) {
+      const dir = val > 0 ? 1 : -1;
+      el('path', {d: `M ${xb + dir * 1} ${cy} l ${dir * 4} ${BARH / 2} l ${-dir * 4} ${BARH / 2} Z`,
+        fill: color}, g);
+      const t = el('text', {x: xb - dir * 8, y: cy + BARH / 2 + 3.5,
+        'text-anchor': val > 0 ? 'end' : 'start', 'font-size': 10,
+        'font-weight': 700, fill: 'var(--ink)',
+        stroke: 'var(--surface)', 'stroke-width': 3, 'paint-order': 'stroke'}, g);
+      t.textContent = fmtP(val);
+    }
+  };
+  const mid = y0 + (ROWH - (BARH * 2 + GAP)) / 2;
+  bar(d.week_pct, mid, 'var(--wk)');
+  bar(d.month_pct, mid + BARH + GAP, 'var(--mo)');
+
+  hit.addEventListener('mousemove', e => showTip(e, d));
+  hit.addEventListener('mouseleave', hideTip);
+});
+
+const tb = document.querySelector('#tbl tbody');
+DATA.forEach(d => {
+  const tr = document.createElement('tr');
+  const pctCell = v => v == null ? `<td class="na">—</td>`
+    : `<td class="${v >= 0 ? 'up' : 'dn'}">${fmtP(v)}</td>`;
+  const earn = d.earnings_near ? ' <span class="tick" title="earnings filing within window">⚠︎</span>' : '';
+  tr.innerHTML =
+    `<td class="co">${esc(d.company)} <span class="tick">${esc(d.ticker)}</span>${earn}</td>` +
+    `<td style="text-align:left">${esc(d.date)}</td>` +
+    `<td style="text-align:left">${esc(d.item || '—')}</td>` +
+    `<td>${d.prev_close == null ? '<span class="na">no data</span>' : fmt$(d.prev_close)}</td>` +
+    pctCell(d.week_pct) + pctCell(d.week_excess) +
+    pctCell(d.month_pct) + pctCell(d.month_excess);
+  tb.appendChild(tr);
+});
+</script>
+</body></html>

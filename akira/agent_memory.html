@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" x-data="{nav:false}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="akira-report-version" content="agent-memory-2026-07-15-v1">
+<title>Agent Memory: The Missing Software Layer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/css/tabler.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<style>
+:root{--ink:#101a1d;--paper:#f3f0e7;--card:#fffdf7;--muted:#657176;--line:#d7d3c7;--green:#b7f34a;--green2:#65d887;--cyan:#65d9e9;--amber:#f4c768;--red:#f58a7f;--navy:#13262b;--blue:#3566e8;--mono:"IBM Plex Mono",monospace;--sans:"DM Sans",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.55}a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}.shell{max-width:1320px;margin:auto;padding:0 24px}.topbar{position:sticky;top:0;z-index:20;background:rgba(243,240,231,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.topbar .shell{min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font-family:var(--mono);font-size:13px;font-weight:600;text-decoration:none;letter-spacing:.04em}.brand span{display:inline-block;background:var(--green);padding:3px 7px;margin-right:8px}.nav{display:flex;gap:18px;align-items:center;font-size:13px}.nav a{text-decoration:none;color:#435156}.nav a:hover{color:var(--ink)}.mobile-toggle{display:none;border:1px solid var(--line);background:var(--card);font-family:var(--mono);padding:7px 10px}.hero{background:var(--navy);color:#f8f7f0;border-bottom:1px solid #284046;overflow:hidden}.hero .shell{padding-top:72px;padding-bottom:68px;position:relative}.hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);gap:48px;align-items:end}.eyebrow{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:var(--green);margin-bottom:20px}.hero h1{font-size:clamp(3rem,7vw,6.7rem);line-height:.89;letter-spacing:-.075em;margin:0;max-width:950px}.hero h1 em{font-style:normal;color:var(--green)}.hero .lede{font-size:clamp(1.05rem,2vw,1.35rem);color:#c8d0cf;max-width:760px;margin:28px 0 0}.verdict{border-top:1px solid #456067;padding-top:20px}.verdict .label,.label{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}.verdict .label{color:#91a4a7}.verdict strong{display:block;font-size:1.5rem;line-height:1.18;margin:10px 0}.verdict p{color:#aebbbb;margin:0}.hero-rule{position:absolute;width:520px;height:520px;border:1px solid rgba(183,243,74,.18);border-radius:50%;right:-170px;top:-250px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);background:var(--card)}.metric{padding:28px 26px;border-right:1px solid var(--line)}.metric:last-child{border:0}.metric .n{font-family:var(--mono);font-size:2rem;font-weight:600;letter-spacing:-.05em}.metric p{margin:6px 0 0;color:var(--muted);font-size:.9rem}.section{padding:82px 0;border-bottom:1px solid var(--line)}.section-head{display:grid;grid-template-columns:220px minmax(0,820px);gap:38px;margin-bottom:40px}.kicker{font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#496066}.section h2{font-size:clamp(2rem,4.5vw,4rem);line-height:1;letter-spacing:-.055em;margin:0}.section-intro{font-size:1.15rem;color:#4f5d61;max-width:780px;margin:18px 0 0}.thesis{font-size:clamp(1.6rem,3.4vw,3rem);line-height:1.12;letter-spacing:-.035em;max-width:1100px;margin:0 0 42px}.thesis mark{background:var(--green);padding:0 .12em}.failure-grid{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--line);background:var(--card)}.failure{padding:22px 18px;border-right:1px solid var(--line);min-height:175px}.failure:last-child{border:0}.failure .num{font-family:var(--mono);font-size:11px;color:var(--muted)}.failure h3{font-size:1rem;margin:28px 0 8px}.failure p{font-size:.84rem;color:var(--muted);margin:0}.callout{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid #243a3f;background:var(--navy);color:#fff;margin-top:28px}.callout>div{padding:30px}.callout>div+div{border-left:1px solid #3c5358}.callout h3{font-size:1.3rem;margin:0 0 10px}.callout p{color:#b9c5c5;margin:0}.table-card{background:var(--card);border:1px solid var(--line);overflow:auto}.data-table{width:100%;border-collapse:collapse;font-size:.9rem}.data-table th{position:static;background:#e7e3d8;text-align:left;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.08em;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}.data-table td{padding:15px 14px;border-bottom:1px solid #e6e2d8;vertical-align:top}.data-table tr:last-child td{border-bottom:0}.data-table tbody tr:hover{background:#faf7ee}.sort{border:0;background:transparent;padding:0;font:inherit;text-transform:inherit;letter-spacing:inherit;cursor:pointer;color:inherit}.sort:after{content:" ↕";color:#8f999b}.offering{font-weight:700}.offering a{text-decoration:none;border-bottom:1px solid #aab2af}.pill{display:inline-block;font-family:var(--mono);font-size:10px;border:1px solid currentColor;border-radius:999px;padding:3px 7px;white-space:nowrap}.fit-high{color:#267b47;background:#edf8ec}.fit-med{color:#755909;background:#fff6d8}.fit-low{color:#9a3e38;background:#fff0ed}.note{font-size:.78rem;color:var(--muted);margin:10px 0 0}.architecture{background:#0b171b;border:1px solid #263a40;padding:26px;overflow:auto}.architecture svg{display:block;width:100%;min-width:880px;height:auto}.arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.arch-note{border:1px solid var(--line);background:var(--card);padding:22px}.arch-note h3{font-family:var(--mono);font-size:.9rem;margin:0 0 10px}.arch-note p{margin:0;color:var(--muted)}.code{background:#0b171b;color:#d9e5e2;border-left:5px solid var(--green);padding:24px;font:13px/1.65 var(--mono);overflow:auto;margin-top:22px}.code .g{color:var(--green)}.code .c{color:#789095}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}.principle{background:var(--card);border:1px solid var(--line);padding:24px}.principle .pnum{font-family:var(--mono);font-size:11px;color:#58716e}.principle h3{font-size:1.08rem;margin:22px 0 8px}.principle p{font-size:.9rem;color:var(--muted);margin:0}.triad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px}.wedge{padding:28px;border:1px solid var(--line);background:var(--card);position:relative;overflow:hidden}.wedge:before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--accent)}.wedge .role{font:11px var(--mono);text-transform:uppercase;letter-spacing:.11em;color:var(--muted)}.wedge h3{font-size:1.45rem;line-height:1.1;margin:18px 0 10px}.wedge p{color:var(--muted);margin:0}.number-cell{font:600 1.15rem var(--mono)}.gtm-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.gtm-card{background:var(--card);border:1px solid var(--line);padding:28px}.gtm-card h3{font-size:1.35rem;margin:0 0 14px}.gtm-card ul{padding-left:20px;margin:0}.gtm-card li{margin:7px 0;color:#4d5a5d}.timeline{display:grid;grid-template-columns:repeat(3,1fr);margin-top:18px;border:1px solid var(--line)}.phase{padding:28px;background:var(--card);border-right:1px solid var(--line)}.phase:last-child{border:0}.phase .days{font:11px var(--mono);text-transform:uppercase;color:var(--blue)}.phase h3{font-size:1.25rem;margin:12px 0}.phase p{color:var(--muted);margin:0}.cost-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.cost{border:1px solid var(--line);background:var(--card);padding:28px}.cost.recommended{background:var(--navy);color:#fff;border-color:var(--navy)}.cost .tier{font:11px var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}.cost.recommended .tier{color:var(--green)}.cost .price{font:600 3rem var(--mono);letter-spacing:-.07em;margin:18px 0 4px}.cost .month{font-size:.78rem;color:var(--muted)}.cost.recommended .month,.cost.recommended p{color:#b9c5c5}.cost p{font-size:.9rem;color:var(--muted);margin:20px 0 0}.decision{background:var(--green);padding:70px 0}.decision-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:end}.decision h2{font-size:clamp(2.7rem,6vw,6rem);line-height:.9;letter-spacing:-.075em;margin:0}.decision p{font-size:1.12rem;margin:0}.decision ol{padding-left:22px;margin:18px 0 0}.decision li{margin:6px 0}.sources{font-size:.84rem}.sources ol{columns:2;column-gap:50px;padding-left:20px}.sources li{break-inside:avoid;margin:0 0 10px;color:#546267}.footer{background:#0b171b;color:#aebbbb;padding:28px 0;font:12px var(--mono)}.footer .shell{display:flex;justify-content:space-between;gap:20px}.footer a{color:var(--green)}
+@media(max-width:1000px){.failure-grid{grid-template-columns:repeat(2,1fr)}.failure{border-bottom:1px solid var(--line)}.failure:nth-child(even){border-right:0}.principles{grid-template-columns:repeat(2,1fr)}.hero-grid,.decision-grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media(max-width:760px){.shell{padding-left:16px;padding-right:16px}.hero .shell{padding-top:50px;padding-bottom:48px}.hero h1{font-size:3.5rem}.nav{display:none}.mobile-toggle{display:block}.nav.mobile{display:flex;position:absolute;top:58px;left:0;right:0;background:var(--paper);padding:16px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}.section{padding:58px 0}.section-head{grid-template-columns:1fr;gap:12px}.failure-grid,.triad,.gtm-grid,.cost-grid,.timeline,.arch-grid,.principles{grid-template-columns:1fr}.failure,.phase{border-right:0;border-bottom:1px solid var(--line)}.callout{grid-template-columns:1fr}.callout>div+div{border-left:0;border-top:1px solid #3c5358}.metrics{grid-template-columns:1fr}.metric{border-right:0;border-bottom:1px solid var(--line)}.sources ol{columns:1}.footer .shell{flex-direction:column}}
+@media print{.topbar{display:none}.section{padding:35px 0}.hero .shell{padding:35px 24px}.data-table th{position:static}.architecture{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="shell">
+    <a class="brand" href="index.html"><span>AKIRA</span> EXECUTIVE RESEARCH</a>
+    <button class="mobile-toggle" @click="nav=!nav" aria-label="Toggle navigation">Sections</button>
+    <nav class="nav" :class="nav ? 'mobile' : ''">
+      <a href="#thesis">Thesis</a><a href="#market">Market</a><a href="#design">Design</a><a href="#wedges">Use cases</a><a href="#gtm">GTM</a><a href="#cost">Cost</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div class="shell">
+    <div class="hero-rule"></div>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Executive briefing / 15 July 2026</div>
+        <h1>Agent memory is the <em>missing software layer.</em></h1>
+        <p class="lede">The opportunity is not a larger vector store. It is an evidence ledger that preserves where a memory came from, when it was true, who may use it, what superseded it, and why it entered an agent’s context.</p>
+      </div>
+      <aside class="verdict">
+        <div class="label">Recommended direction</div>
+        <strong>Build provenance infrastructure, not another agent framework.</strong>
+        <p>Append observations once. Keep inference, search, graphs, profiles, and prompt context as replaceable projections.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+<div class="metrics">
+  <div class="metric"><div class="n">11</div><p>offerings examined</p></div>
+  <div class="metric"><div class="n">10</div><p>outcome-linked market wedges</p></div>
+  <div class="metric"><div class="n">6</div><p>portable core commands</p></div>
+  <div class="metric"><div class="n">€23.48</div><p>recommended monthly Hetzner infrastructure</p></div>
+</div>
+<section class="section" id="thesis">
+  <div class="shell">
+    <div class="section-head"><div class="kicker">01 / Why it matters</div><div><h2>Intelligence without continuity is a demo.</h2><p class="section-intro">A frontier model without durable memory repeatedly starts over. A frontier model with careless memory becomes confidently stale, contaminated, invasive, or impossible to audit.</p></div></div>
+    <p class="thesis">Memory determines an agent’s continuity, identity, learning, coordination, economics, and trust. The critical problem is not simply <mark>what to recall</mark>, but what authority recalled data should have.</p>
+    <div class="failure-grid">
+      <article class="failure"><div class="num">01</div><h3>Omission</h3><p>A decisive fact or commitment never enters context.</p></article>
+      <article class="failure"><div class="num">02</div><h3>Contamination</h3><p>A malicious or low-authority source becomes agent belief.</p></article>
+      <article class="failure"><div class="num">03</div><h3>Staleness</h3><p>A superseded fact continues to govern action.</p></article>
+      <article class="failure"><div class="num">04</div><h3>Authority collapse</h3><p>Quotation, paraphrase, and inference become indistinguishable.</p></article>
+      <article class="failure"><div class="num">05</div><h3>Scope leakage</h3><p>One person, project, or tenant sees another’s memory.</p></article>
+      <article class="failure"><div class="num">06</div><h3>Privacy overreach</h3><p>Temporary or sensitive data persists without control.</p></article>
+      <article class="failure"><div class="num">07</div><h3>Irreproducibility</h3><p>No one can explain why a memory shaped a decision.</p></article>
+    </div>
+    <div class="callout"><div><h3>Evidence before inference</h3><p>An observation records what a source said or what occurred. An inference records what a model or person concluded. They may be retrieved together; they must never become indistinguishable.</p></div><div><h3>Forgetting is part of memory</h3><p>Correction, supersession, permission revocation, expiry, and deletion are lifecycle operations—not an account-level afterthought.</p></div></div>
+  </div>
+</section>
+<section class="section" id="market">
+  <div class="shell">
+    <div class="section-head"><div class="kicker">02 / Market map</div><div><h2>The API converges. The semantics do not.</h2><p class="section-intro">Most products expose a small write/search/inspect surface. The strategic differences are whether evidence survives extraction, time and contradiction are explicit, permissions propagate, and the store can be rebuilt or exported.</p></div></div>
+    <div class="table-card">
+      <table class="data-table sortable">
+        <thead><tr><th><button class="sort">Offering</button></th><th><button class="sort">Category</button></th><th>Distinctive primitive</th><th>Deployment posture</th><th>Primary caution</th><th><button class="sort">Substrate fit</button></th></tr></thead>
+        <tbody>
+          <tr><td class="offering"><a href="https://github.com/vectorize-io/hindsight">Hindsight</a></td><td>Compact memory API</td><td>retain / recall / reflect; temporal, graph, lexical and vector fusion</td><td>Cloud, Docker, embedded Python</td><td>Small surface fronts a substantial model pipeline</td><td><span class="pill fit-med">Medium</span></td></tr>
+          <tr><td class="offering"><a href="https://github.com/mnemosyne-oss/mnemosyne">Mnemosyne</a></td><td>Local memory engine</td><td>Working, episodic and temporal triple tiers in one SQLite file</td><td>Local Python, CLI, MCP, optional sync</td><td>Very young; broad tool surface and identity ambiguity</td><td><span class="pill fit-high">High</span></td></tr>
+          <tr><td class="offering"><a href="https://github.com/supermemoryai/supermemory">Supermemory</a></td><td>Context engine</td><td>Evolving fact graph, profiles, expiry and contradiction handling</td><td>Managed service or one-process local binary</td><td>Automatic inference and forgetting require strong audit</td><td><span class="pill fit-high">High ops</span></td></tr>
+          <tr><td class="offering"><a href="https://github.com/topoteretes/cognee">Cognee</a></td><td>Knowledge platform</td><td>remember / recall / forget / improve; ontology and graph pipelines</td><td>Library, API, Docker, Cloud</td><td>Platform-sized implementation beneath four clean verbs</td><td><span class="pill fit-med">Medium</span></td></tr>
+          <tr><td class="offering"><a href="https://github.com/mem0ai/mem0">Mem0</a></td><td>Compact memory API</td><td>ADD-first fact extraction, scopes, CRUD and search</td><td>SDK, self-hosted server, managed platform</td><td>OSS and hosted behavior differ; optional multi-store sprawl</td><td><span class="pill fit-high">High API</span></td></tr>
+          <tr><td class="offering"><a href="https://help.getzep.com/">Zep</a></td><td>Managed temporal graph</td><td>Context Graphs, temporal facts and prompt-ready Context Blocks</td><td>Managed or in-customer-cloud</td><td>No supported current Community Edition</td><td><span class="pill fit-low">Adapter</span></td></tr>
+          <tr><td class="offering"><a href="https://docs.letta.com/letta-agent/memory.md">Letta</a></td><td>Stateful agent runtime</td><td>Inspectable MemFS/context repositories and background consolidation</td><td>Cloud, local runtime, self-hosted app server</td><td>Owns the agent runtime, not a neutral memory layer</td><td><span class="pill fit-med">Borrow pattern</span></td></tr>
+          <tr><td class="offering"><a href="https://arxiv.org/abs/2310.08560">MemGPT</a></td><td>Design lineage</td><td>Virtual context: fast prompt memory and slower external memory</td><td>Original research pattern; maintained lineage is Letta</td><td>Not a separate current competing product</td><td><span class="pill fit-med">Inspiration</span></td></tr>
+          <tr><td class="offering"><a href="https://github.com/getzep/graphiti">Graphiti</a></td><td>Temporal graph engine</td><td>Bi-temporal episodes, entities and fact edges with provenance</td><td>Self-hosted library/API/MCP plus graph backend</td><td>Specialized graph infrastructure and model-dependent extraction</td><td><span class="pill fit-med">Projection</span></td></tr>
+          <tr><td class="offering"><a href="https://github.com/langchain-ai/langmem">LangMem</a></td><td>Composable library</td><td>Semantic, episodic and procedural formation in hot path or background</td><td>Python library with application-selected store</td><td>No turnkey durable service; LangGraph gravity</td><td><span class="pill fit-high">High library</span></td></tr>
+          <tr><td class="offering"><a href="https://github.com/CaviraOSS/OpenMemory">OpenMemory</a></td><td>Local cognitive engine</td><td>Multiple memory sectors, temporal KG and explainable recall traces</td><td>Embedded SQLite/Postgres or server/MCP</td><td>Name collision and active rewrite/breaking-change warning</td><td><span class="pill fit-med">Potential</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Identity caveats: “OpenMemory” names multiple projects; this row uses CaviraOSS/OpenMemory. Mem0’s OpenMemory application is being sunset. MemGPT is the original design lineage that became Letta, not an independent current vendor. Zep Cloud is managed; Graphiti is its supported open engine.</p>
+  </div>
+</section>
+<section class="section" id="design">
+  <div class="shell">
+    <div class="section-head"><div class="kicker">03 / Conceptual design</div><div><h2>One journal. Small programs. Disposable projections.</h2><p class="section-intro">The source of truth is an immutable, namespaced event ledger. Search indexes, vectors, graphs, summaries, profiles, and prompt context are derived products—not privileged memory.</p></div></div>
+    <div class="architecture" aria-label="Agent memory architecture diagram">
+      <svg viewBox="0 0 1160 610" role="img" aria-labelledby="archTitle archDesc">
+        <title id="archTitle">Provenance-first agent memory architecture</title><desc id="archDesc">Inputs pass through normalization to an append-only journal, which feeds replaceable projections and a query/context compiler. Policy, audit and deletion controls govern every stage.</desc>
+        <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0L0 0 0 40" fill="none" stroke="#1b2d32" stroke-width="1"/></pattern><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#799095"/></marker><marker id="arrowg" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b7f34a"/></marker></defs>
+        <rect width="1160" height="610" fill="url(#grid)"/>
+        <g stroke="#799095" stroke-width="2" fill="none" marker-end="url(#arrow)"><path d="M180 150H270"/><path d="M430 150H510"/><path d="M705 150H770"/><path d="M950 150H1030"/><path d="M610 210V285"/><path d="M610 390V455"/></g>
+        <g stroke="#b7f34a" stroke-width="2" fill="none" stroke-dasharray="6 5" marker-end="url(#arrowg)"><path d="M610 505H260V220"/><path d="M610 505H1080V220"/></g>
+        <g font-family="IBM Plex Mono,monospace">
+          <g><rect x="40" y="95" width="140" height="110" rx="7" fill="#14282d" stroke="#65d9e9"/><text x="60" y="126" fill="#65d9e9" font-size="12">INPUTS</text><text x="60" y="151" fill="#d7e1df" font-size="11">chat · docs</text><text x="60" y="170" fill="#d7e1df" font-size="11">events · tools</text><text x="60" y="189" fill="#789095" font-size="9">NDJSON / HTTP</text></g>
+          <g><rect x="270" y="105" width="160" height="90" rx="7" fill="#14282d" stroke="#65d887"/><text x="292" y="137" fill="#65d887" font-size="12">mem-normalize</text><text x="292" y="160" fill="#d7e1df" font-size="10">validate · hash</text><text x="292" y="178" fill="#789095" font-size="9">idempotency key</text></g>
+          <g><rect x="510" y="80" width="195" height="130" rx="7" fill="#271e3f" stroke="#b89af2"/><text x="535" y="115" fill="#b89af2" font-size="12">EVENT JOURNAL</text><text x="535" y="143" fill="#e4ddf2" font-size="11">observations</text><text x="535" y="163" fill="#e4ddf2" font-size="11">revisions · tombstones</text><text x="535" y="187" fill="#9f93b4" font-size="9">PostgreSQL / SQLite</text></g>
+          <g><rect x="770" y="85" width="180" height="120" rx="7" fill="#3a2c10" stroke="#f4c768"/><text x="793" y="118" fill="#f4c768" font-size="12">OUTBOX</text><text x="793" y="145" fill="#eee2c4" font-size="11">chunk · embed</text><text x="793" y="165" fill="#eee2c4" font-size="11">compact · expire</text><text x="793" y="187" fill="#ad9b74" font-size="9">transactional jobs</text></g>
+          <g><rect x="1030" y="95" width="100" height="110" rx="7" fill="#14282d" stroke="#65d887"/><text x="1052" y="126" fill="#65d887" font-size="12">WORKERS</text><text x="1052" y="151" fill="#d7e1df" font-size="10">systemd</text><text x="1052" y="171" fill="#789095" font-size="9">retryable</text></g>
+          <g><rect x="310" y="285" width="600" height="105" rx="9" fill="#101f23" stroke="#51686d"/><text x="340" y="317" fill="#9aabad" font-size="11">REPLACEABLE PROJECTIONS</text><g fill="#d7e1df" font-size="11"><text x="345" y="357">FTS</text><text x="445" y="357">VECTORS</text><text x="575" y="357">TEMPORAL GRAPH</text><text x="765" y="357">PROFILES</text></g><g stroke="#354b50"><line x1="410" y1="330" x2="410" y2="375"/><line x1="535" y1="330" x2="535" y2="375"/><line x1="735" y1="330" x2="735" y2="375"/></g></g>
+          <g><rect x="405" y="455" width="410" height="100" rx="9" fill="#17341f" stroke="#b7f34a"/><text x="432" y="488" fill="#b7f34a" font-size="12">mem-query → CONTEXT COMPILER</text><text x="432" y="515" fill="#dce9dd" font-size="11">rank · policy · provenance · token budget</text><text x="432" y="538" fill="#83a089" font-size="9">exact revision and retrieval trace returned</text></g>
+          <g><rect x="40" y="455" width="220" height="100" rx="9" fill="#351d1f" stroke="#f58a7f"/><text x="65" y="486" fill="#f58a7f" font-size="12">CONTROL PLANE</text><text x="65" y="512" fill="#eed8d7" font-size="10">policy · audit · deletion</text><text x="65" y="533" fill="#aa8381" font-size="9">tenant scope everywhere</text></g>
+          <g><rect x="930" y="455" width="200" height="100" rx="9" fill="#14282d" stroke="#65d9e9"/><text x="955" y="486" fill="#65d9e9" font-size="12">AGENTS</text><text x="955" y="512" fill="#d7e1df" font-size="10">memory is data</text><text x="955" y="533" fill="#789095" font-size="9">never instruction authority</text></g>
+        </g>
+      </svg>
+    </div>
+    <div class="arch-grid"><div class="arch-note"><h3>Hosted boundary</h3><p>PostgreSQL provides concurrency, row-level security, jobs, full-text search and pgvector. The transactional outbox replaces an early message broker.</p></div><div class="arch-note"><h3>Local boundary</h3><p>SQLite WAL, FTS and optional embeddings implement the same command contract for a single user, offline research, tests and export.</p></div></div>
+    <pre class="code"><span class="c"># one record in; one result out</span>
+printf '%s\n' '{"schema":"memory.v1","subject":"project:p7", \
+  "kind":"observation","text":"Award report due 30 Sep", \
+  "source":{"ref":"award.pdf#page=12"},"idempotency_key":"award:12:3"}' \
+| <span class="g">mem-normalize</span> \
+| <span class="g">mem-put</span>
+
+printf '%s\n' '{"schema":"search.v1","query":"reporting obligations", \
+  "as_of":"2026-07-15T00:00:00Z","limit":10}' \
+| <span class="g">mem-query</span></pre>
+    <div class="principles">
+      <article class="principle"><div class="pnum">01</div><h3>Immutable journal first</h3><p>Append observations, revisions and tombstones before building any index.</p></article>
+      <article class="principle"><div class="pnum">02</div><h3>Separate inference</h3><p>Reflections and summaries retain explicit derivation lineage and confidence.</p></article>
+      <article class="principle"><div class="pnum">03</div><h3>Temporal by default</h3><p>Observed time, event time and valid time are distinct fields.</p></article>
+      <article class="principle"><div class="pnum">04</div><h3>Policy follows data</h3><p>Permissions and retention propagate to chunks, vectors, graphs and exports.</p></article>
+      <article class="principle"><div class="pnum">05</div><h3>Indexes are disposable</h3><p>Lexical, vector, graph and profile views can be rebuilt from the journal.</p></article>
+      <article class="principle"><div class="pnum">06</div><h3>Exit is a feature</h3><p>Exact-ID retrieval and lossless NDJSON/Markdown export prevent captivity.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section" id="wedges">
+  <div class="shell">
+    <div class="section-head"><div class="kicker">04 / Market wedges</div><div><h2>Sell an outcome, not “memory.”</h2><p class="section-intro">The defensible wedges are narrow systems of record for recurring obligations: show how an interpretation formed, prove which witness supports a reading, remember what a narrator allowed, or demonstrate why a grant commitment was fulfilled.</p></div></div>
+    <div class="triad">
+      <article class="wedge" style="--accent:var(--green)"><div class="role">Commercial entry</div><h3>Grant commitments and closeout</h3><p>Clear buyer, recurring deadlines, measurable audit and handoff labor, and an obligation-to-evidence schema.</p></article>
+      <article class="wedge" style="--accent:var(--cyan)"><div class="role">Product lighthouse</div><h3>Philosophy argument provenance</h3><p>Forces exact citation, epistemic types, objections, contested claims, editions and longitudinal reasoning.</p></article>
+      <article class="wedge" style="--accent:var(--amber)"><div class="role">Trust showcase</div><h3>Rights-aware oral history</h3><p>Makes permission inheritance, revocation, cultural protocol and derivative use the product itself.</p></article>
+    </div>
+    <div class="table-card">
+      <table class="data-table sortable">
+        <thead><tr><th><button class="sort">#</button></th><th><button class="sort">Specific use case</button></th><th><button class="sort">Primary buyer</button></th><th>Memory failure</th><th>Pilot outcome</th><th><button class="sort">GTM role</button></th></tr></thead>
+        <tbody>
+          <tr><td class="number-cell">1</td><td class="offering"><a href="#usecase-note">Philosophy argument-and-objection ledger</a></td><td>Department, graduate school, research library</td><td>Gloss, quotation, edition and objection lineage collapse</td><td>Verified source-linked claims per research hour</td><td>Design lighthouse</td></tr>
+          <tr><td class="number-cell">2</td><td class="offering"><a href="#usecase-note">Literary critical-edition witness memory</a></td><td>Digital-humanities center, university press</td><td>Variant decisions cannot be reconstructed from witnesses</td><td>Apparatus errors and rework per 1,000 variants</td><td>Specialist module</td></tr>
+          <tr><td class="number-cell">3</td><td class="offering"><a href="#usecase-note">Rights-aware oral-history memory</a></td><td>Archives director, library dean, museum</td><td>Content survives while permission boundaries disappear</td><td>Clearance time and permission incidents</td><td>Trust showcase</td></tr>
+          <tr><td class="number-cell">4</td><td class="offering"><a href="#usecase-note">Longitudinal graduate-supervision memory</a></td><td>Graduate school or dean</td><td>Milestones, feedback and handoffs fragment over years</td><td>Missed milestones and replacement-advisor ramp time</td><td>Delay until controls mature</td></tr>
+          <tr><td class="number-cell">5</td><td class="offering"><a href="#usecase-note">Writing-center continuity memory</a></td><td>Writing-center director, student-success office</td><td>Every tutor starts over; observations become lasting labels</td><td>Repeat-context time and referral follow-through</td><td>Opt-in departmental pilot</td></tr>
+          <tr><td class="number-cell">6</td><td class="offering"><a href="#usecase-note">Confidential editorial and peer-review memory</a></td><td>Scholarly society or publisher</td><td>Conflict rationale and policy precedent vanish with staff</td><td>Decision latency and policy exceptions</td><td>OJS-adjacent plug-in</td></tr>
+          <tr><td class="number-cell">7</td><td class="offering"><a href="#usecase-note">Grant-commitment and closeout memory</a></td><td>VP Research, sponsored-programs office</td><td>Obligations scatter across awards, email and turnover</td><td>Late deliverables and audit-reconstruction time</td><td>First commercial wedge</td></tr>
+          <tr><td class="number-cell">8</td><td class="offering"><a href="#usecase-note">Qualitative-research consent memory</a></td><td>IRB office or research institute</td><td>Consent and interpretation lose subject-level lineage</td><td>Consent deviations and audit-prep time</td><td>Governance expansion</td></tr>
+          <tr><td class="number-cell">9</td><td class="offering"><a href="#usecase-note">Accreditation evidence-lineage memory</a></td><td>Provost or institutional research office</td><td>Evidence packets are rebuilt for every review</td><td>Evidence-collection hours per review</td><td>Adjacent revenue wedge</td></tr>
+          <tr><td class="number-cell">10</td><td class="offering"><a href="#usecase-note">Public-interest legal matter memory</a></td><td>Legal-aid director or clinic dean</td><td>Privilege, deadlines and matter rationale fragment</td><td>Matter ramp time and missed deadlines</td><td>Later regulated expansion</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" id="usecase-note">Pilot outcomes are measurement proposals, not claims of demonstrated performance. Each pilot should establish a baseline and test provenance, permission, deletion and cross-tenant failures alongside task quality.</p>
+  </div>
+</section>
+<section class="section" id="gtm">
+  <div class="shell">
+    <div class="section-head"><div class="kicker">05 / Go to market</div><div><h2>Start where memory has an owner and a deadline.</h2><p class="section-intro">Individual faculty are valuable design partners but weak initial economic buyers. Research offices, centers, libraries, archives and accreditation programs can own a bounded workflow and budget.</p></div></div>
+    <div class="gtm-grid">
+      <article class="gtm-card"><h3>Positioning</h3><ul><li><strong>Category:</strong> provenance infrastructure for AI agents.</li><li><strong>Promise:</strong> Memory your agents can cite, correct, and delete.</li><li><strong>Enemy:</strong> opaque context without source, authority, revision, permission or expiry.</li><li><strong>Value metric:</strong> active governed workflow or obligation portfolio—not tokens.</li></ul></article>
+      <article class="gtm-card"><h3>Initial offer</h3><ul><li>12-week fixed-scope obligation-memory pilot.</li><li>25–50 grants, one center or sponsor.</li><li>Read-only source intake; human-approved obligations.</li><li>Baseline and outcome report, export bundle and verified deletion path.</li><li>Pricing hypothesis: $15k–$30k; validate during discovery.</li></ul></article>
+      <article class="gtm-card"><h3>Distribution</h3><ul><li>Research-administration associations and NIH-heavy centers.</li><li>APA, humanities institutes and research librarians for the lighthouse.</li><li>OHA and SAA workshops for the governance showcase.</li><li>Open local CLI plus Zotero, Obsidian and MCP adapters.</li></ul></article>
+      <article class="gtm-card"><h3>Procurement baseline</h3><ul><li>HECVAT, data-flow map and dated SOC 2 roadmap.</li><li>SSO, tenant isolation, audit export and no-training terms.</li><li>Retention, legal hold, deletion, export and offboarding.</li><li>WCAG 2.2 AA target and NIST AI RMF mapping.</li></ul></article>
+    </div>
+    <div class="timeline">
+      <article class="phase"><div class="days">Days 1–30</div><h3>Problem proof</h3><p>Fifteen interviews, three workflow maps, baseline labor and buyer/budget validation.</p></article>
+      <article class="phase"><div class="days">Days 31–60</div><h3>Product proof</h3><p>Journal, temporal revisions, provenance retrieval, export and revocation evaluation.</p></article>
+      <article class="phase"><div class="days">Days 61–90</div><h3>Buyer proof</h3><p>One paid design partner or two signed pilots; stop if praise never becomes ownership and budget.</p></article>
+    </div>
+  </div>
+</section>
+<section class="section" id="cost">
+  <div class="shell">
+    <div class="section-head"><div class="kicker">06 / Single-server economics</div><div><h2>Infrastructure is not the expensive part.</h2><p class="section-intro">A deliberately boring hosted launch fits on one Hetzner server. The meaningful cost risks are model consumption, engineering, security review and institutional procurement—not the initial box.</p></div></div>
+    <div class="cost-grid">
+      <article class="cost"><div class="tier">Low / pilot</div><div class="price">€10.62</div><div class="month">per month, excluding VAT</div><p>CX33: 4 shared vCPU, 8 GB RAM, 80 GB SSD; BX11 1 TB Storage Box; IPv4.</p></article>
+      <article class="cost recommended"><div class="tier">Recommended launch</div><div class="price">€23.48</div><div class="month">per month, excluding VAT</div><p>CX43: 8 shared vCPU, 16 GB RAM, 160 GB SSD; Object Storage base; IPv4.</p></article>
+      <article class="cost"><div class="tier">Predictable CPU</div><div class="price">€93.48</div><div class="month">per month, excluding VAT</div><p>CCX23: 4 dedicated vCPU, 16 GB RAM, 160 GB SSD; Object Storage base; IPv4.</p></article>
+    </div>
+    <div class="callout"><div><h3>Run on the included SSD</h3><p>Keep PostgreSQL on the server’s local SSD and use encrypted, database-aware off-host backups. Hetzner Cloud Volume contents are not included in server snapshots or backups.</p></div><div><h3>Scale from measurements</h3><p>Move embedding workers first, PostgreSQL second. Add a dedicated graph system only when measured retrieval quality justifies the operational cost.</p></div></div>
+    <p class="note">Snapshot observed 2026-07-15 from official Hetzner pages, European eu-central assumptions, excluding VAT. Excludes domain, email, model/embedding APIs, external monitoring, second-provider backup, labor and compliance. Prices and availability can change.</p>
+  </div>
+</section>
+<section class="decision">
+  <div class="shell decision-grid">
+    <h2>Build the ledger. Keep everything else replaceable.</h2>
+    <div><p>The next decision is not which vector database to use. It is whether three workflows will pay for inspectable continuity.</p><ol><li>Interview grant-closeout owners.</li><li>Build the philosophy provenance benchmark.</li><li>Test oral-history permission propagation.</li><li>Ship six commands on SQLite.</li><li>Earn the right to host PostgreSQL.</li></ol></div>
+  </div>
+</section>
+<section class="section sources" id="sources">
+  <div class="shell">
+    <div class="section-head"><div class="kicker">07 / Sources</div><div><h2>Evidence base</h2><p class="section-intro">First-party product documentation, canonical repositories, official regulation and standards sources, and official Hetzner pricing. Accessed 2026-07-15 unless noted.</p></div></div>
+    <ol>
+      <li><a href="https://github.com/vectorize-io/hindsight">Vectorize Hindsight repository</a> and <a href="https://hindsight.vectorize.io/">documentation</a>.</li>
+      <li><a href="https://github.com/mnemosyne-oss/mnemosyne">Mnemosyne OSS repository</a>.</li>
+      <li><a href="https://github.com/supermemoryai/supermemory">Supermemory repository</a> and <a href="https://supermemory.ai/docs/concepts/how-it-works">concepts</a>.</li>
+      <li><a href="https://github.com/topoteretes/cognee">Cognee repository</a> and <a href="https://docs.cognee.ai/">documentation</a>.</li>
+      <li><a href="https://github.com/mem0ai/mem0">Mem0 repository</a> and <a href="https://docs.mem0.ai/core-concepts/how-it-works">concepts</a>.</li>
+      <li><a href="https://help.getzep.com/concepts">Zep concepts</a> and <a href="https://github.com/getzep/graphiti">Graphiti repository</a>.</li>
+      <li><a href="https://docs.letta.com/letta-agent/memory.md">Letta memory documentation</a> and <a href="https://arxiv.org/abs/2310.08560">MemGPT paper</a>.</li>
+      <li><a href="https://github.com/langchain-ai/langmem">LangMem repository</a>.</li>
+      <li><a href="https://github.com/CaviraOSS/OpenMemory">CaviraOSS/OpenMemory repository</a>.</li>
+      <li><a href="https://studentprivacy.ed.gov/ferpa">FERPA</a>; <a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng">GDPR</a>; <a href="https://www.ren-isac.net/hecvat/index.html">HECVAT</a>.</li>
+      <li><a href="https://tei-c.org/release/doc/tei-p5-doc/en/html/TC.html">TEI Critical Apparatus</a>; <a href="https://oralhistory.org/principles-and-best-practices-revised-2018/">OHA principles</a>; <a href="https://www2.archivists.org/statements/saa-core-values-statement-and-code-of-ethics">SAA ethics</a>.</li>
+      <li><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF</a>; <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a>.</li>
+      <li><a href="https://www.hetzner.com/cloud/cost-optimized/">Hetzner cost-optimized Cloud</a>; <a href="https://www.hetzner.com/cloud/general-purpose/">general-purpose Cloud</a>; <a href="https://www.hetzner.com/storage/object-storage/">Object Storage</a>.</li>
+    </ol>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="shell"><span>Akira research loop / Agent memory software layer</span><span><a href="index.html">Akira index</a> · version 2026-07-15-v1</span></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta20/dist/js/tabler.min.js"></script>
+<script>
+document.querySelectorAll('table.sortable').forEach(table=>{table.querySelectorAll('th .sort').forEach((button,index)=>{button.addEventListener('click',()=>{const body=table.tBodies[0],rows=[...body.rows],ascending=button.dataset.dir!=='asc';table.querySelectorAll('.sort').forEach(b=>delete b.dataset.dir);button.dataset.dir=ascending?'asc':'desc';rows.sort((a,b)=>{let av=a.cells[index].innerText.trim(),bv=b.cells[index].innerText.trim();const an=parseFloat(av.replace(/[^0-9.-]/g,'')),bn=parseFloat(bv.replace(/[^0-9.-]/g,''));let result=(!Number.isNaN(an)&&!Number.isNaN(bn))?an-bn:av.localeCompare(bv);return ascending?result:-result});rows.forEach(r=>body.appendChild(r))})})});
+</script>
+</body>
+</html>

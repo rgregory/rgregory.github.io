@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Weekly Vegetarian Meal Plan</title><style>:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#111827;background:#f8fafc}
+*{box-sizing:border-box}body{margin:0;background:#f8fafc;color:#111827}a{color:#3366ff}
+.pm-header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid #e5e7eb}
+.pm-header-inner{max-width:1280px;margin:0 auto;padding:0 1rem;height:3.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.pm-brand{font-size:1rem;font-weight:700;line-height:1.1;text-decoration:none;color:#111827}.pm-brand strong{color:#3366ff}.pm-brand small{display:block;margin-top:2px;font-size:9px;font-weight:400;color:#9ca3af;letter-spacing:.03em}
+.pm-nav{display:flex;align-items:center;gap:.5rem}.pm-button{display:inline-flex;align-items:center;border:1px solid #e5e7eb;border-radius:20px;background:#fff;color:#6b7280;padding:8px 14px;font-size:13px;font-weight:500;text-decoration:none}.pm-button:hover{background:#f3f4f6;color:#374151}
+.pm-page{max-width:1280px;margin:0 auto;padding:1.5rem 1rem}.pm-hero{padding:1.25rem 1.35rem;margin-bottom:1rem;background:#fff;border:1px solid #e5e7eb;border-radius:.5rem;box-shadow:0 1px 4px rgba(0,0,0,.07)}.pm-hero h1{margin:0;font-size:clamp(1.5rem,3vw,2rem);letter-spacing:-.04em}.pm-hero p{margin:.35rem 0 0;color:#6b7280;font-size:.875rem}.pm-kicker{margin-bottom:.45rem;color:#3366ff;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+.pm-card{background:#fff;border:1px solid #e5e7eb;border-radius:.5rem;box-shadow:0 1px 4px rgba(0,0,0,.07);padding:1.25rem}.pm-card h1,.pm-card h2,.pm-card h3,.pm-card h4{color:#111827;letter-spacing:-.02em}.pm-card h1{font-size:1.35rem}.pm-card h2{margin-top:1.7rem;padding-bottom:.45rem;border-bottom:1px solid #e5e7eb;font-size:1.1rem}.pm-card h3{margin-top:1.25rem;font-size:.9rem}.pm-card h4{margin-top:1rem;font-size:.86rem}.pm-card p,.pm-card li{color:#374151;font-size:.9rem;line-height:1.55}.pm-card ul{padding-left:1.25rem}.pm-source{margin-top:0!important;color:#9ca3af!important;font-size:.72rem!important}.pm-source code{color:#6b7280}
+.pm-table-wrap{overflow:auto;margin:1rem 0;border:1px solid #e5e7eb;border-radius:.5rem}.pm-table{width:100%;border-collapse:collapse;font-size:.875rem}.pm-table thead{background:#f3f4f6;border-bottom:1px solid #e5e7eb}.pm-table th{padding:8px 10px;text-align:left;color:#374151;font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.025em;white-space:nowrap}.pm-table td{padding:9px 10px;border-bottom:1px solid #f1f5f9;vertical-align:top}.pm-table tbody tr:hover{background:#f9fafb}.pm-table tbody tr:last-child td{border-bottom:0}.pm-protein{font-weight:700;color:#3366ff;white-space:nowrap}
+.pm-sort-button{display:inline-flex;align-items:center;gap:.35rem;border:0;background:transparent;color:inherit;padding:0;font:inherit;text-transform:inherit;letter-spacing:inherit;cursor:pointer}.pm-sort-button:hover{color:#3366ff}.pm-sort-icon{color:#9ca3af;font-size:.8rem}.pm-sort-button[aria-sort="ascending"] .pm-sort-icon,.pm-sort-button[aria-sort="descending"] .pm-sort-icon{color:#3366ff}.pm-meal-card{margin:1rem 0;padding:1rem 1.1rem;border:1px solid #e5e7eb;border-left:4px solid #3366ff;border-radius:.5rem;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.05)}.pm-meal-card h4{margin:.05rem 0 .8rem;font-size:1rem}.pm-meal-card p{margin:.55rem 0}.pm-meal-card ul{margin:.4rem 0 .8rem;columns:2;column-gap:2rem}.pm-meal-card li{break-inside:avoid}.pm-day-heading{margin-top:1.5rem!important;padding:.65rem .8rem!important;border:0!important;border-radius:.4rem;background:#f3f4f6;color:#111827!important;font-size:1rem!important}
+@media(max-width:700px){.pm-page{padding:.9rem .65rem}.pm-card{padding:.9rem}.pm-header-inner{padding:0 .65rem}.pm-nav .pm-button{padding:7px 10px}.pm-table-wrap{border:0;overflow:visible}.pm-table,.pm-table tbody,.pm-table tr,.pm-table td{display:block;width:100%}.pm-table thead{display:none}.pm-table tr{margin:.7rem 0;padding:.45rem .7rem;border:1px solid #e5e7eb;border-left:4px solid #3366ff;border-radius:.5rem;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.04)}.pm-table td{display:grid;grid-template-columns:5.5rem minmax(0,1fr);gap:.75rem;padding:.42rem 0;border:0;font-size:.84rem}.pm-table td::before{content:attr(data-label);color:#6b7280;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em}.pm-meal-card{padding:.85rem .9rem}.pm-meal-card ul{columns:1}.pm-day-heading{margin-top:1.25rem!important}}</style></head>
+<body><header class="pm-header"><div class="pm-header-inner"><a class="pm-brand" href="index.html"><span><strong>Akira</strong> / Meal Plan</span><small>WEEKLY PLANNING ARTIFACT</small></a><nav class="pm-nav"><a class="pm-button" href="index.html">Index</a></nav></div></header><main class="pm-page"><div class="pm-hero"><div class="pm-kicker">Akira / Weekly planning</div><h1>Weekly Vegetarian Meal Plan</h1><p>Generated 19Sep26 10:15:14 AM EDT</p></div><section class="pm-card"><h1>Weekly Vegetarian Meal Plan</h1>
+<p>Monday–Friday</p>
+<h2>Week at a glance</h2>
+<div class="pm-table-wrap"><table class="pm-table"><thead><tr><th>Date</th><th>Lunch</th><th style="text-align:right">Protein</th><th>Dinner</th><th style="text-align:right">Protein</th></tr></thead><tbody><tr><td data-label="Date">Monday, 2026-09-14</td><td data-label="Lunch"><a href="#recipe-lunch-lentil-feta-farro-salad">Lentil Feta Farro Salad</a></td><td style="text-align:right" data-label="Protein">20g</td><td data-label="Dinner"><a href="#recipe-dinner-harissa-halloumi-tray-bake">Harissa Chickpea Halloumi Tray Bake</a></td><td style="text-align:right" data-label="Protein">20g</td></tr><tr><td data-label="Date">Tuesday, 2026-09-15</td><td data-label="Lunch"><a href="#recipe-lunch-edamame-rice-crunch-box">Edamame Brown Rice Crunch Boxes</a></td><td style="text-align:right" data-label="Protein">19g</td><td data-label="Dinner"><a href="#recipe-dinner-sesame-egg-fried-rice">Sesame Egg Fried Rice with Edamame</a></td><td style="text-align:right" data-label="Protein">19g</td></tr><tr><td data-label="Date">Wednesday, 2026-09-16</td><td data-label="Lunch"><a href="#recipe-lunch-black-bean-yogurt-wrap">Black Bean Greek Yogurt Wraps</a></td><td style="text-align:right" data-label="Protein">18g</td><td data-label="Dinner"><a href="#recipe-dinner-black-bean-sweet-potato-skillet">Black Bean Sweet Potato Skillet with Eggs</a></td><td style="text-align:right" data-label="Protein">18g</td></tr><tr><td data-label="Date">Thursday, 2026-09-17</td><td data-label="Lunch"><a href="#recipe-lunch-greek-yogurt-chickpea-pita">Greek Yogurt Chickpea Salad Pitas</a></td><td style="text-align:right" data-label="Protein">28g</td><td data-label="Dinner"><a href="#recipe-dinner-tofu-teriyaki-rice">One-Skillet Tofu Teriyaki Rice</a></td><td style="text-align:right" data-label="Protein">24g</td></tr><tr><td data-label="Date">Friday, 2026-09-18</td><td data-label="Lunch"><a href="#recipe-lunch-cottage-cheese-quinoa-bowl">Cottage Cheese Quinoa Crunch Bowls</a></td><td style="text-align:right" data-label="Protein">24g</td><td data-label="Dinner"><a href="#recipe-dinner-paneer-fajita-skillet">Paneer Pepper Fajita Skillet</a></td><td style="text-align:right" data-label="Protein">23g</td></tr></tbody></table></div>
+<h2>Needed ingredients</h2>
+<h3>Bakery</h3>
+<ul>
+<li>whole-wheat pita: 4 rounds</li>
+<li>whole-wheat tortillas: 4 large</li>
+</ul>
+<h3>Frozen</h3>
+<ul>
+<li>shelled edamame: 12 oz × 2 + 16 oz</li>
+</ul>
+<h3>Pantry</h3>
+<ul>
+<li>almonds: 1 cup</li>
+<li>black beans: 2 cans × 2</li>
+<li>brown rice: 1 cup dry</li>
+<li>chickpeas: 2 cans × 2</li>
+<li>cooked lentils: 2 cups</li>
+<li>cooked rice: 4 cups × 2</li>
+<li>cornstarch: 1 tbsp</li>
+<li>fajita seasoning: 1 tbsp</li>
+<li>farro: 1 cup dry</li>
+<li>harissa: 2 tbsp</li>
+<li>lemon: 1</li>
+<li>maple syrup: 1 tbsp</li>
+<li>olive oil: 2 tbsp × 4 + 3 tbsp</li>
+<li>peanuts: 3/4 cup</li>
+<li>quinoa: 1 cup dry</li>
+<li>red wine vinegar: 2 tbsp</li>
+<li>rice vinegar: 2 tbsp × 2</li>
+<li>sesame oil: 1 tbsp × 2</li>
+<li>smoked paprika: 1 tsp</li>
+<li>soy sauce: 2 tbsp × 2 + 3 tbsp × 2</li>
+<li>whole-wheat tortillas: 6</li>
+</ul>
+<h3>Produce</h3>
+<ul>
+<li>arugula: 5 oz</li>
+<li>bell pepper: 1</li>
+<li>bell peppers: 3</li>
+<li>broccoli: 1 large head</li>
+<li>carrots: 2 + 3 + 4</li>
+<li>corn kernels: 1.5 cups</li>
+<li>cucumber: 1 × 2</li>
+<li>ginger: 1 knob</li>
+<li>grape tomatoes: 1 pint</li>
+<li>kale: 1 bunch</li>
+<li>lime: 1</li>
+<li>parsley: 1 bunch × 2</li>
+<li>radishes: 1 bunch</li>
+<li>red onion: 1 × 2</li>
+<li>roasted red peppers: 1 jar</li>
+<li>romaine: 1 head</li>
+<li>scallions: 1 bunch × 4</li>
+<li>shallot: 1</li>
+<li>snap peas: 8 oz</li>
+<li>sweet potatoes: 2 medium</li>
+<li>yellow onion: 1 + 1 large</li>
+</ul>
+<h3>Refrigerated/Dairy</h3>
+<ul>
+<li>Greek yogurt: 1 cup + 3/4 cup</li>
+<li>cheddar: 4 oz</li>
+<li>cottage cheese: 2 cups</li>
+<li>eggs: 4 + 6</li>
+<li>extra-firm tofu: 14 oz</li>
+<li>feta: 4 oz + 5 oz</li>
+<li>halloumi: 8 oz</li>
+<li>paneer: 10 oz</li>
+<li>pepper jack cheese: 5 oz</li>
+</ul>
+<h2>Meal breakdown</h2>
+<h3>Monday, 2026-09-14</h3>
+<h4 id="recipe-lunch-lentil-feta-farro-salad">Lunch — <a href="#recipe-lunch-lentil-feta-farro-salad">Lentil Feta Farro Salad</a> (20g protein)</h4>
+<p>Farro, lentils, roasted peppers, feta, and arugula with red-wine vinaigrette.</p>
+<p>Portable: yes · Microwave friendly: no · Prep: 24 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>arugula (5 oz)</li>
+<li>roasted red peppers (1 jar)</li>
+<li>shallot (1)</li>
+<li>feta (5 oz)</li>
+<li>farro (1 cup dry)</li>
+<li>cooked lentils (2 cups)</li>
+<li>olive oil (3 tbsp)</li>
+<li>red wine vinegar (2 tbsp)</li>
+</ul>
+<p>Prep note: Pack arugula on top so it stays fresh until lunch.</p>
+<h4 id="recipe-dinner-harissa-halloumi-tray-bake">Dinner — <a href="#recipe-dinner-harissa-halloumi-tray-bake">Harissa Chickpea Halloumi Tray Bake</a> (20g protein)</h4>
+<p>A sheet-pan dinner with chickpeas, carrots, red onion, and halloumi under a mild harissa glaze.</p>
+<p>One-pan preferred: yes · Microwave friendly: yes · Prep: 30 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>carrots (4)</li>
+<li>red onion (1)</li>
+<li>parsley (1 bunch)</li>
+<li>halloumi (8 oz)</li>
+<li>chickpeas (2 cans)</li>
+<li>harissa (2 tbsp)</li>
+<li>olive oil (2 tbsp)</li>
+</ul>
+<p>Prep note: Use a mild harissa so the leftovers stay approachable and not too intense.</p>
+<h3>Tuesday, 2026-09-15</h3>
+<h4 id="recipe-lunch-edamame-rice-crunch-box">Lunch — <a href="#recipe-lunch-edamame-rice-crunch-box">Edamame Brown Rice Crunch Boxes</a> (19g protein)</h4>
+<p>Brown rice, edamame, cucumbers, peanuts, and sesame dressing in bento-style boxes.</p>
+<p>Portable: yes · Microwave friendly: yes · Prep: 18 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>cucumber (1)</li>
+<li>radishes (1 bunch)</li>
+<li>scallions (1 bunch)</li>
+<li>shelled edamame (16 oz)</li>
+<li>brown rice (1 cup dry)</li>
+<li>peanuts (3/4 cup)</li>
+<li>sesame oil (1 tbsp)</li>
+<li>soy sauce (2 tbsp)</li>
+<li>rice vinegar (2 tbsp)</li>
+</ul>
+<p>Prep note: These are fine cold but also reheat well if you want the rice warm.</p>
+<h4 id="recipe-dinner-sesame-egg-fried-rice">Dinner — <a href="#recipe-dinner-sesame-egg-fried-rice">Sesame Egg Fried Rice with Edamame</a> (19g protein)</h4>
+<p>A fast skillet dinner with eggs, edamame, rice, and plenty of crunchy vegetables.</p>
+<p>One-pan preferred: yes · Microwave friendly: yes · Prep: 20 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>carrots (2)</li>
+<li>scallions (1 bunch)</li>
+<li>eggs (6)</li>
+<li>shelled edamame (12 oz)</li>
+<li>cooked rice (4 cups)</li>
+<li>sesame oil (1 tbsp)</li>
+<li>soy sauce (3 tbsp)</li>
+</ul>
+<p>Prep note: Great for using leftover rice and any extra scallions or carrots from lunches.</p>
+<h3>Wednesday, 2026-09-16</h3>
+<h4 id="recipe-lunch-black-bean-yogurt-wrap">Lunch — <a href="#recipe-lunch-black-bean-yogurt-wrap">Black Bean Greek Yogurt Wraps</a> (18g protein)</h4>
+<p>Whole-wheat wraps filled with black beans, corn, pepper jack, and a Greek yogurt spread.</p>
+<p>Portable: yes · Microwave friendly: yes · Prep: 16 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>romaine (1 head)</li>
+<li>corn kernels (1.5 cups)</li>
+<li>bell pepper (1)</li>
+<li>Greek yogurt (3/4 cup)</li>
+<li>pepper jack cheese (5 oz)</li>
+<li>black beans (2 cans)</li>
+<li>whole-wheat tortillas (4 large)</li>
+</ul>
+<p>Prep note: Wrap tightly in foil so they hold up in a work bag and reheat cleanly.</p>
+<h4 id="recipe-dinner-black-bean-sweet-potato-skillet">Dinner — <a href="#recipe-dinner-black-bean-sweet-potato-skillet">Black Bean Sweet Potato Skillet with Eggs</a> (18g protein)</h4>
+<p>Sweet potatoes, black beans, greens, and baked eggs in one sturdy skillet dinner.</p>
+<p>One-pan preferred: yes · Microwave friendly: yes · Prep: 28 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>sweet potatoes (2 medium)</li>
+<li>kale (1 bunch)</li>
+<li>yellow onion (1)</li>
+<li>eggs (4)</li>
+<li>cheddar (4 oz)</li>
+<li>black beans (2 cans)</li>
+<li>smoked paprika (1 tsp)</li>
+<li>olive oil (2 tbsp)</li>
+</ul>
+<p>Prep note: Dice the sweet potato small so the total cook time stays under half an hour.</p>
+<h3>Thursday, 2026-09-17</h3>
+<h4 id="recipe-lunch-greek-yogurt-chickpea-pita">Lunch — <a href="#recipe-lunch-greek-yogurt-chickpea-pita">Greek Yogurt Chickpea Salad Pitas</a> (28g protein)</h4>
+<p>Chickpeas, chopped vegetables, feta, and Greek yogurt packed separately with whole-wheat pita.</p>
+<p>Portable: yes · Microwave friendly: no · Prep: 18 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>cucumber (1)</li>
+<li>grape tomatoes (1 pint)</li>
+<li>red onion (1)</li>
+<li>parsley (1 bunch)</li>
+<li>Greek yogurt (1 cup)</li>
+<li>feta (4 oz)</li>
+<li>chickpeas (2 cans)</li>
+<li>olive oil (2 tbsp)</li>
+<li>lemon (1)</li>
+<li>whole-wheat pita (4 rounds)</li>
+</ul>
+<p>Prep note: Mix the filling on Sunday night; pack the pita separately so it stays dry.</p>
+<h4 id="recipe-dinner-tofu-teriyaki-rice">Dinner — <a href="#recipe-dinner-tofu-teriyaki-rice">One-Skillet Tofu Teriyaki Rice</a> (24g protein)</h4>
+<p>Crisp tofu, broccoli, and rice finished in a quick teriyaki-style glaze.</p>
+<p>One-pan preferred: yes · Microwave friendly: yes · Prep: 28 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>broccoli (1 large head)</li>
+<li>scallions (1 bunch)</li>
+<li>ginger (1 knob)</li>
+<li>extra-firm tofu (14 oz)</li>
+<li>cooked rice (4 cups)</li>
+<li>soy sauce (3 tbsp)</li>
+<li>maple syrup (1 tbsp)</li>
+<li>cornstarch (1 tbsp)</li>
+</ul>
+<p>Prep note: Use leftover rice to keep this firmly in the easy-weeknight bucket.</p>
+<h3>Friday, 2026-09-18</h3>
+<h4 id="recipe-lunch-cottage-cheese-quinoa-bowl">Lunch — <a href="#recipe-lunch-cottage-cheese-quinoa-bowl">Cottage Cheese Quinoa Crunch Bowls</a> (24g protein)</h4>
+<p>Cold quinoa bowls with cottage cheese, almonds, edamame, and crisp vegetables.</p>
+<p>Portable: yes · Microwave friendly: no · Prep: 20 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>carrots (3)</li>
+<li>snap peas (8 oz)</li>
+<li>scallions (1 bunch)</li>
+<li>cottage cheese (2 cups)</li>
+<li>shelled edamame (12 oz)</li>
+<li>quinoa (1 cup dry)</li>
+<li>almonds (1 cup)</li>
+<li>soy sauce (2 tbsp)</li>
+<li>rice vinegar (2 tbsp)</li>
+</ul>
+<p>Prep note: Keep almonds separate until lunch for better texture.</p>
+<h4 id="recipe-dinner-paneer-fajita-skillet">Dinner — <a href="#recipe-dinner-paneer-fajita-skillet">Paneer Pepper Fajita Skillet</a> (23g protein)</h4>
+<p>Paneer, onions, and peppers tossed with fajita spices and served with warm tortillas.</p>
+<p>One-pan preferred: yes · Microwave friendly: yes · Prep: 25 minutes</p>
+<p>Ingredients:</p>
+<ul>
+<li>bell peppers (3)</li>
+<li>yellow onion (1 large)</li>
+<li>lime (1)</li>
+<li>paneer (10 oz)</li>
+<li>whole-wheat tortillas (6)</li>
+<li>olive oil (2 tbsp)</li>
+<li>fajita seasoning (1 tbsp)</li>
+</ul>
+<p>Prep note: If you want leftovers, slice the paneer thick so it reheats without drying out.</p>
+<h2>Sunday prep / shared components</h2>
+<ul>
+<li>Shared ingredients to batch once: feta, olive oil, cucumber, scallions, shelled edamame, sesame oil, soy sauce, rice vinegar.</li>
+<li>Cook one base grain on Sunday if the plan includes quinoa, farro, couscous, or rice so lunches assemble quickly.</li>
+<li>Wash and chop crunchy vegetables in advance; keep dressings and nuts separate for work lunches.</li>
+<li>Press tofu, roast vegetables, and boil eggs in the same prep block to keep the weeknight dinners easy.</li>
+</ul>
+<h2>Rotation notes</h2>
+<ul>
+<li>Lunches remain portable and low-mess for work; dinners stay weeknight-easy.</li>
+</ul></section></main><script>(() => {
+  const root = document.querySelector('.pm-card');
+  if (!root) return;
+  const table = root.querySelector('.pm-table');
+  if (table && table.tHead && table.tBodies[0]) {
+    const headers = [...table.tHead.rows[0].cells].map(cell => cell.textContent.trim());
+    [...table.tBodies[0].rows].forEach(row => [...row.cells].forEach((cell, index) => cell.dataset.label = headers[index] || 'Value'));
+    [...table.tHead.rows[0].cells].forEach((cell, index) => {
+      const label = cell.textContent.trim();
+      cell.innerHTML = `<button class="pm-sort-button" type="button" aria-sort="none" aria-label="Sort by ${label}">${label}<span class="pm-sort-icon" aria-hidden="true">↕</span></button>`;
+      const button = cell.querySelector('button');
+      button.addEventListener('click', () => {
+        const direction = button.getAttribute('aria-sort') === 'ascending' ? 'descending' : 'ascending';
+        [...table.tHead.rows[0].cells].forEach(other => other.querySelector('button')?.setAttribute('aria-sort', 'none'));
+        button.setAttribute('aria-sort', direction);
+        const dayOrder = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+        const rows = [...table.tBodies[0].rows];
+        rows.sort((a, b) => {
+          const av = a.cells[index]?.textContent.trim() || '';
+          const bv = b.cells[index]?.textContent.trim() || '';
+          const an = parseFloat(av.replace(/[^0-9.-]/g, ''));
+          const bn = parseFloat(bv.replace(/[^0-9.-]/g, ''));
+          const left = index === 0 ? dayOrder.indexOf(av) : (Number.isNaN(an) ? av : an);
+          const right = index === 0 ? dayOrder.indexOf(bv) : (Number.isNaN(bn) ? bv : bn);
+          const result = typeof left === 'number' && typeof right === 'number' ? left - right : String(left).localeCompare(String(right));
+          return direction === 'ascending' ? result : -result;
+        });
+        rows.forEach(row => table.tBodies[0].appendChild(row));
+      });
+    });
+  }
+  [...root.querySelectorAll('h3')].filter(heading => /^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$/.test(heading.textContent.trim())).forEach(heading => heading.classList.add('pm-day-heading'));
+  [...root.querySelectorAll('h4')].forEach(heading => {
+    if (heading.parentElement !== root) return;
+    const card = document.createElement('article');
+    card.className = 'pm-meal-card';
+    root.insertBefore(card, heading);
+    card.appendChild(heading);
+    let node = card.nextElementSibling;
+    while (node && !node.matches('h2,h3,h4')) { const next = node.nextElementSibling; card.appendChild(node); node = next; }
+  });
+})();</script></body></html>

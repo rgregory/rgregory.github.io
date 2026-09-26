@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" x-data="{ evidenceOpen: false }">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Akira weekly sit-down, week ending September 25, 2026.">
+  <title>Akira Weekly Sit-Down — September 25, 2026</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler.min.css" integrity="sha384-kz+I4+mczbNiZfLAJMxOlJaZmnbRYhARHNkR2k6tal4gz7OL33/0puDD3SvkiNX9" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/js/tabler.min.js" integrity="sha384-pku3birjgGovaJ9ngF7SaxKkF/eYUvBjiMJ+jTtWbNesIj2Rud2K63+4JD7EF4gk" crossorigin="anonymous"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.17.3/dist/cdn.min.js" integrity="sha384-/7syvHwR9PpZbxOwOnlTTl4DepN0R0q9aiGAu+D0AcTtZXmrNw0zgp+TzUlPgDx2" crossorigin="anonymous"></script>
+  <style>
+    :root { --ink:#172033; --muted:#62708a; --line:#dce3ed; --paper:#f5f7fa; --navy:#10213e; --blue:#2765d8; --green:#0e7c5d; --amber:#aa6916; --red:#b34545; }
+    * { box-sizing:border-box} body {margin:0;color:var(--ink);background:var(--paper);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+    .shell{max-width:1160px;margin:auto;padding:28px 20px 56px}.masthead{background:linear-gradient(135deg,#112746 0%,#18365e 58%,#2765d8 170%);color:#fff;border-radius:18px;padding:36px clamp(24px,5vw,58px);box-shadow:0 14px 40px #10213e22}.eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:.75rem;font-weight:750;color:#a8c8ff}h1{max-width:780px;margin:8px 0 12px;font-size:clamp(2rem,5vw,3.75rem);letter-spacing:-.045em;line-height:1.05}.dek{max-width:770px;margin:0;color:#d9e6ff;font-size:1.05rem}.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px}.metric{padding:14px 16px;background:#ffffff14;border:1px solid #ffffff24;border-radius:10px}.metric strong{display:block;font-size:1.35rem;color:#fff}.metric span{display:block;color:#c6d8f4;font-size:.78rem}.notice{display:flex;gap:12px;margin:22px 0;padding:15px 17px;background:#fff8e8;border-left:4px solid var(--amber);border-radius:5px;color:#684719}.notice b{white-space:nowrap}.grid{display:grid;grid-template-columns:1.25fr .75fr;gap:20px;align-items:start}.card{background:#fff;border:1px solid var(--line);border-radius:13px;padding:24px;box-shadow:0 4px 16px #10213e0a}.card+.card{margin-top:20px}h2{display:flex;align-items:center;gap:10px;font-size:1.22rem;letter-spacing:-.02em;margin:0 0 15px}.number{display:inline-grid;place-items:center;width:27px;height:27px;border-radius:50%;color:#fff;background:var(--blue);font-size:.78rem}ul,ol{margin:0;padding-left:1.25rem}li+li{margin-top:10px}.answer{color:#264a8e;font-weight:650}.open{color:#8e5714;font-weight:650}.pattern{margin:0;color:#31405a;font-size:1.03rem}.pattern em{color:var(--blue);font-style:normal;font-weight:700}.evidence{background:#eff4fb;border-color:#d6e3f4}.evidence li{color:#43506a}.footer{color:var(--muted);font-size:.82rem;padding:22px 4px 0}.evidence-toggle{border:0;background:none;color:var(--blue);font:inherit;font-weight:700;padding:0;cursor:pointer;text-decoration:underline}
+    @media(max-width:780px){.shell{padding:14px 14px 38px}.masthead{border-radius:13px;padding:28px 24px}.metrics,.grid{grid-template-columns:1fr}.card{padding:20px}}
+  </style>
+</head>
+<body>
+  <main class="container-xl shell">
+    <header class="masthead">
+      <div class="eyebrow">Akira / Weekly sit-down</div>
+      <h1>Week ending September 25, 2026</h1>
+      <p class="dek">The work moved from broad AI-governance language toward inspectable grants, tested control boundaries, and decision-ready evidence.</p>
+      <div class="metrics" aria-label="Weekly evidence summary">
+        <div class="metric"><strong>199</strong><span>vault files changed</span></div>
+        <div class="metric"><strong>38</strong><span>verified active cron jobs</span></div>
+        <div class="metric"><strong>7</strong><span>AI-agent daily updates</span></div>
+      </div>
+    </header>
+    <aside class="notice"><b>Bottom line</b><span>Research and scheduler delivery are healthy. GBrain remains blocked on an overlapping-source provenance conflict, and the ops snapshot still misreports the cron-job count.</span></aside>
+    <div class="grid">
+      <section>
+        <article class="card"><h2><span class="number">1</span>Accomplished</h2><ul>
+          <li>Maintained seven daily digests, local-events briefings, cyber briefings, and AI-agent updates, culminating in the September 25 weekly synthesis. The September 24 error review verified 38 active jobs, no currently failed enabled job, and a passing cron doctor.</li>
+          <li>Advanced AI-agent research to <b>grant-accountable agency</b>: material transitions need a scoped issuer, stable principal, permitted evidence, time/budget boundary, enforcement point, and reversible closeout.</li>
+          <li>Built a substantial internal AI-governance/data-center GTM package. Its recommended opening offers are the O1 Evidence Opportunity Scan and O2 Renewal / Deployment Evidence Sprint; it remains correctly gated from external use.</li>
+          <li>Added Docker AI Governance control analysis, including sandbox/MCP/audit boundaries, direct-MCP bypass conditions, license uncertainty, and the evidence Akira can add beyond vendor telemetry.</li>
+          <li>Hardened vault synchronization around GBrain-worker routing, managed-worktree handling, longer status checks, and transient schema-lock retry.</li>
+        </ul></article>
+        <article class="card"><h2><span class="number">2</span>Learned</h2><ul>
+          <li>Memory may inform a request, but it cannot mint authority. The useful governance unit is an externally enforceable grant, not accumulated context or an agent’s self-description.</li>
+          <li>Runtime products can evidence defined enforcement decisions, not “AI governance” in the abstract. Coverage, bypasses, business authorization, and output quality still require independent proof.</li>
+          <li>The credible AI-risk offer is evidence translation: inventory, control/bypass testing, telemetry mapping, residual-risk ownership, and a renewal/deployment decision artifact.</li>
+          <li>Scheduler health and dashboard health differ: the latest snapshot says “0 active / 0 total” jobs despite a verified count of 38. The snapshot count is defective.</li>
+        </ul></article>
+        <article class="card"><h2><span class="number">3</span>Asked / answered</h2><ul>
+          <li>What grants an agent permission to cross its next boundary? <span class="answer">A scoped, externally checkable grant tied to identity, provenance, capability, time, resource budget, and closeout.</span></li>
+          <li>What can Docker AI Governance establish? <span class="answer">Particular policy decisions under configured Sandbox and organization control—not complete coverage, correct output, business authorization, or compliance.</span></li>
+          <li>What is the practical initial service shape? <span class="answer">A pilot-first O1/O2 evidence service for one bounded agent/tool or deployment path, pending Roger’s commercial decisions.</span></li>
+          <li>Did the car search produce a buy recommendation? <span class="answer">No. Two low-cost Ranger listings were captured, but one has no visible mileage and the other exceeds the preferred limit; eBay and Eggleston were blocked.</span></li>
+        </ul></article>
+      </section>
+      <aside>
+        <article class="card"><h2><span class="number">4</span>Open loops</h2><ul>
+          <li>Resolve overlapping GBrain sources only after auditing the legacy source’s 330 indexed pages and approving a disposition.</li>
+          <li>Reauthorize GBrain Google access after the Testing-mode refresh token expired.</li>
+          <li>Repair and verify the ops-dashboard cron count.</li>
+          <li>Continue the Parkinson/SB-0107 watch; current evidence remains preclinical.</li>
+          <li>Improve used-car coverage around blocked eBay and Eggleston collection paths.</li>
+          <li>Keep the pre-existing Akira working-tree changes isolated from this report.</li>
+        </ul></article>
+        <article class="card"><h2><span class="number">5</span>Next actions</h2><ol>
+          <li>Exercise a grant/completion ledger on one canonical-state workflow that can publish or call an external system.</li>
+          <li>Take the AI-risk package through its internal release gate: beachhead, offer boundaries, price/capacity, and partner/product terms.</li>
+          <li>Present the GBrain source-ownership decision with audit/backup options, then remeasure active-source freshness after approval.</li>
+          <li>Fix the cron-count defect and compare the next snapshot with the live registry.</li>
+          <li>Keep vehicle and Parkinson monitoring source-disciplined.</li>
+        </ol></article>
+        <article class="card evidence"><h2>Cross-thread pattern</h2><p class="pattern">The work converges on <em>authority and completion that another party can inspect</em>: agent grants, runtime enforcement records, an evidence-led GTM service, and canonical Markdown with rebuildable derivatives. The remaining weakness is operational truthfulness when a dashboard contradicts the live system.</p></article>
+      </aside>
+    </div>
+    <article class="card evidence" style="margin-top:20px"><h2>Evidence trail</h2><ul>
+      <li>Git since the prior sit-down: 199 vault files changed, including the AI-agent briefing, seven research updates, GTM package, Docker findings, daily artifacts, and watchdog changes.</li>
+      <li>System records: September 24 error review (38 active jobs; no enabled job currently failed; cron doctor passing) and September 25 ops snapshot (fast doctor 50; remediation 83/83; defective cron count).</li>
+      <li>Current GBrain readback: <span x-show="!evidenceOpen">akira-active has 3,432 pages and full embedding coverage. </span><button class="evidence-toggle" @click="evidenceOpen = !evidenceOpen" x-text="evidenceOpen ? 'Hide detail' : 'Show sync blocker'"></button><span x-show="evidenceOpen" x-cloak> The current dry-run sync fails with <code>page_identity_changed</code>: another origin occupies an imported slug.</span></li>
+    </ul></article>
+    <footer class="footer">Akira weekly sit-down · Canonical source: vault/90-derived/dashboards/weekly_sitdown.md · Refreshed in place</footer>
+  </main>
+</body>
+</html>

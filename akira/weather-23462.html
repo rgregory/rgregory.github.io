@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weather — Virginia Beach 23462</title>
+<style>
+:root { color-scheme: dark; --bg:#0f172a; --panel:#111827; --muted:#9ca3af; --text:#f8fafc; --line:#334155; --accent:#38bdf8; --accent2:#f59e0b; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: radial-gradient(circle at top left, rgba(56,189,248,.18), transparent 32rem), var(--bg); color:var(--text); }
+main { max-width: 1120px; margin: 0 auto; padding: 32px 20px 56px; }
+.hero, .panel, .forecast-card { background: rgba(17,24,39,.86); border:1px solid rgba(148,163,184,.18); box-shadow: 0 20px 70px rgba(0,0,0,.28); border-radius: 22px; }
+.hero { padding: 28px; display:grid; grid-template-columns: 1.4fr .9fr; gap: 24px; align-items:end; }
+h1 { font-size: clamp(2.2rem, 6vw, 5rem); line-height:.9; margin: 0 0 12px; }
+h2 { margin: 0 0 16px; }
+.kicker, .muted { color: var(--muted); }
+.kicker { text-transform:uppercase; letter-spacing:.14em; font-weight:700; font-size:.78rem; }
+.now { text-align:right; }
+.now-temp { font-size: clamp(3rem, 10vw, 7rem); font-weight: 800; line-height:.9; color: var(--accent); }
+.grid { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; margin: 18px 0; }
+.metric { background: rgba(15,23,42,.72); border:1px solid rgba(148,163,184,.14); border-radius:16px; padding:14px; }
+.metric strong, .big { display:block; font-size:1.55rem; margin-top:4px; }
+.panel { padding: 22px; margin-top: 18px; overflow:hidden; }
+.forecast-grid { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+.forecast-card { padding: 14px; box-shadow:none; }
+.chart, .bars { width:100%; height:auto; }
+.grid line { stroke: var(--line); stroke-width: 1; opacity:.8; }
+.grid text, .xlabels text, .bars text { fill: var(--muted); font-size: 13px; }
+.temp-line { fill:none; stroke: var(--accent2); stroke-width: 4; stroke-linecap:round; stroke-linejoin:round; }
+.points circle { fill: var(--accent2); stroke: #fff; stroke-width: 1.5; }
+.history-line { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 6 6; opacity: .7; }
+.history text { fill: var(--muted); font-size: 12px; }
+.bars rect { fill: var(--accent); opacity:.72; }
+.axis { stroke: var(--line); }
+footer { color: var(--muted); margin-top: 20px; font-size:.88rem; }
+@media (max-width: 760px) { .hero { grid-template-columns:1fr; } .now { text-align:left; } .grid, .forecast-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+</style>
+</head>
+<body>
+<main>
+  <section class="hero">
+    <div>
+      <div class="kicker">OpenWeather · ZIP 23462</div>
+      <h1>Virginia Beach, US</h1>
+      <p class="muted">Generated 2026-09-03 13:10 EDT. Current conditions: Clear Sky.</p>
+    </div>
+    <div class="now">
+      <div class="now-temp">91°F</div>
+      <div>Feels like 103°F</div>
+    </div>
+  </section>
+
+  <section class="grid" aria-label="Current weather metrics">
+    <div class="metric"><span class="muted">Humidity</span><strong>72%</strong></div>
+    <div class="metric"><span class="muted">Pressure</span><strong>1016 hPa</strong></div>
+    <div class="metric"><span class="muted">Wind</span><strong>8.1 mph NNE</strong></div>
+    <div class="metric"><span class="muted">Sun</span><strong>6:37 AM / 7:31 PM</strong></div>
+  </section>
+
+  <section class="panel">
+    <h2>Temperature — next 48 hours</h2>
+    <svg class="chart" viewBox="0 0 960 280" role="img" aria-label="Forecast temperature line chart">
+  <g class="grid"><line x1="46" x2="914" y1="46.0" y2="46.0" /><text x="12" y="50.0">98°</text><line x1="46" x2="914" y1="93.0" y2="93.0" /><text x="12" y="97.0">91°</text><line x1="46" x2="914" y1="140.0" y2="140.0" /><text x="12" y="144.0">84°</text><line x1="46" x2="914" y1="187.0" y2="187.0" /><text x="12" y="191.0">77°</text><line x1="46" x2="914" y1="234.0" y2="234.0" /><text x="12" y="238.0">70°</text></g>
+  <g class="history"><line class="history-line" x1="46" x2="914" y1="234.0" y2="234.0"><title>2025-09-03: mean 70° · high 76° · low 66°</title></line><text x="908" y="229.0" text-anchor="end">2025 · 70°</text><line class="history-line" x1="46" x2="914" y1="210.8" y2="210.8"><title>2023-09-03: mean 74° · high 86° · low 62°</title></line><text x="52" y="205.8" text-anchor="start">2023 · 74°</text><line class="history-line" x1="46" x2="914" y1="217.6" y2="217.6"><title>2021-09-03: mean 73° · high 76° · low 70°</title></line><text x="908" y="212.6" text-anchor="end">2021 · 73°</text></g>
+  <path class="temp-line" d="M46.0,94.7 L103.9,92.5 L161.7,122.1 L219.6,168.3 L277.5,175.6 L335.3,195.8 L393.2,191.8 L451.1,68.7 L508.9,46.0 L566.8,89.2 L624.7,196.7 L682.5,220.8 L740.4,195.8 L798.3,176.1 L856.1,175.7 L914.0,156.8" />
+  <g class="points"><circle cx="46.0" cy="94.7" r="4"><title>Thu 2PM: 91°</title></circle><circle cx="103.9" cy="92.5" r="4"><title>Thu 5PM: 91°</title></circle><circle cx="161.7" cy="122.1" r="4"><title>Thu 8PM: 87°</title></circle><circle cx="219.6" cy="168.3" r="4"><title>Thu 11PM: 80°</title></circle><circle cx="277.5" cy="175.6" r="4"><title>Fri 2AM: 79°</title></circle><circle cx="335.3" cy="195.8" r="4"><title>Fri 5AM: 76°</title></circle><circle cx="393.2" cy="191.8" r="4"><title>Fri 8AM: 76°</title></circle><circle cx="451.1" cy="68.7" r="4"><title>Fri 11AM: 95°</title></circle><circle cx="508.9" cy="46.0" r="4"><title>Fri 2PM: 98°</title></circle><circle cx="566.8" cy="89.2" r="4"><title>Fri 5PM: 92°</title></circle><circle cx="624.7" cy="196.7" r="4"><title>Fri 8PM: 76°</title></circle><circle cx="682.5" cy="220.8" r="4"><title>Fri 11PM: 72°</title></circle><circle cx="740.4" cy="195.8" r="4"><title>Sat 2AM: 76°</title></circle><circle cx="798.3" cy="176.1" r="4"><title>Sat 5AM: 79°</title></circle><circle cx="856.1" cy="175.7" r="4"><title>Sat 8AM: 79°</title></circle><circle cx="914.0" cy="156.8" r="4"><title>Sat 11AM: 82°</title></circle></g>
+  <g class="xlabels"><text x="46.0" y="250" text-anchor="middle">Thu2PM</text><text x="161.7" y="250" text-anchor="middle">Thu8PM</text><text x="277.5" y="250" text-anchor="middle">Fri2AM</text><text x="393.2" y="250" text-anchor="middle">Fri8AM</text><text x="508.9" y="250" text-anchor="middle">Fri2PM</text><text x="624.7" y="250" text-anchor="middle">Fri8PM</text><text x="740.4" y="250" text-anchor="middle">Sat2AM</text><text x="856.1" y="250" text-anchor="middle">Sat8AM</text></g>
+</svg>
+    <p class="muted">Dashed lines mark the daily mean on this date 1, 3, and 5 years ago (Open-Meteo archive, ERA5 reanalysis).</p>
+  </section>
+
+  <section class="panel">
+    <h2>Precipitation — next 48 hours</h2>
+    <p class="muted">Forecast total: 10.7 mm · Average temp: 82.9°</p>
+    <svg class="bars" viewBox="0 0 960 180" role="img" aria-label="Forecast precipitation bar chart">
+  <line class="axis" x1="38" x2="922" y1="142" y2="142" />
+  <rect x="46.8" y="142.0" width="37.6" height="0.0"><title>Thu 2PM: 0.0 mm</title></rect><rect x="102.1" y="142.0" width="37.6" height="0.0"><title>Thu 5PM: 0.0 mm</title></rect><rect x="157.3" y="142.0" width="37.6" height="0.0"><title>Thu 8PM: 0.0 mm</title></rect><rect x="212.6" y="142.0" width="37.6" height="0.0"><title>Thu 11PM: 0.0 mm</title></rect><rect x="267.8" y="139.3" width="37.6" height="2.7"><title>Fri 2AM: 0.2 mm</title></rect><rect x="323.1" y="142.0" width="37.6" height="0.0"><title>Fri 5AM: 0.0 mm</title></rect><rect x="378.3" y="142.0" width="37.6" height="0.0"><title>Fri 8AM: 0.0 mm</title></rect><rect x="433.6" y="142.0" width="37.6" height="0.0"><title>Fri 11AM: 0.0 mm</title></rect><rect x="488.8" y="142.0" width="37.6" height="0.0"><title>Fri 2PM: 0.0 mm</title></rect><rect x="544.1" y="142.0" width="37.6" height="0.0"><title>Fri 5PM: 0.0 mm</title></rect><rect x="599.3" y="38.0" width="37.6" height="104.0"><title>Fri 8PM: 9.8 mm</title></rect><rect x="654.6" y="135.4" width="37.6" height="6.6"><title>Fri 11PM: 0.6 mm</title></rect><rect x="709.8" y="142.0" width="37.6" height="0.0"><title>Sat 2AM: 0.0 mm</title></rect><rect x="765.1" y="142.0" width="37.6" height="0.0"><title>Sat 5AM: 0.0 mm</title></rect><rect x="820.3" y="142.0" width="37.6" height="0.0"><title>Sat 8AM: 0.0 mm</title></rect><rect x="875.6" y="142.0" width="37.6" height="0.0"><title>Sat 11AM: 0.0 mm</title></rect>
+  <text x="12" y="24">mm / 3h</text>
+</svg>
+  </section>
+
+  <section class="panel">
+    <h2>Next 24 hours</h2>
+    <div class="forecast-grid"><article class="forecast-card">
+              <div class="muted">Thu 2PM</div>
+              <div class="big">91°F</div>
+              <div>Clear Sky</div>
+              <div class="muted">Wind 1.7 mph ENE</div>
+              <div class="muted">Precip 0.0 mm</div>
+            </article><article class="forecast-card">
+              <div class="muted">Thu 5PM</div>
+              <div class="big">91°F</div>
+              <div>Few Clouds</div>
+              <div class="muted">Wind 10.0 mph ESE</div>
+              <div class="muted">Precip 0.0 mm</div>
+            </article><article class="forecast-card">
+              <div class="muted">Thu 8PM</div>
+              <div class="big">87°F</div>
+              <div>Scattered Clouds</div>
+              <div class="muted">Wind 9.0 mph SSE</div>
+              <div class="muted">Precip 0.0 mm</div>
+            </article><article class="forecast-card">
+              <div class="muted">Thu 11PM</div>
+              <div class="big">80°F</div>
+              <div>Broken Clouds</div>
+              <div class="muted">Wind 8.8 mph WSW</div>
+              <div class="muted">Precip 0.0 mm</div>
+            </article><article class="forecast-card">
+              <div class="muted">Fri 2AM</div>
+              <div class="big">79°F</div>
+              <div>Light Rain</div>
+              <div class="muted">Wind 8.2 mph WSW</div>
+              <div class="muted">Precip 0.2 mm</div>
+            </article><article class="forecast-card">
+              <div class="muted">Fri 5AM</div>
+              <div class="big">76°F</div>
+              <div>Overcast Clouds</div>
+              <div class="muted">Wind 9.4 mph SW</div>
+              <div class="muted">Precip 0.0 mm</div>
+            </article><article class="forecast-card">
+              <div class="muted">Fri 8AM</div>
+              <div class="big">76°F</div>
+              <div>Broken Clouds</div>
+              <div class="muted">Wind 8.7 mph W</div>
+              <div class="muted">Precip 0.0 mm</div>
+            </article><article class="forecast-card">
+              <div class="muted">Fri 11AM</div>
+              <div class="big">95°F</div>
+              <div>Clear Sky</div>
+              <div class="muted">Wind 11.0 mph WSW</div>
+              <div class="muted">Precip 0.0 mm</div>
+            </article></div>
+  </section>
+
+  <footer>Data source: OpenWeather current weather + 5 day / 3 hour forecast APIs. Raw payload cached locally in 90-derived/data/weather/.</footer>
+</main>
+</body>
+</html>
